@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="40BrRbJXIBcAXQMNbnj7c8OLT-6rHPy7ur7YTDRhNf0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Sony Xperia 5 II透過官方管道解鎖後，便可以Root和刷機。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sony Xperia 5 II root教學">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/index.html">
+<meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="Sony Xperia 5 II透過官方管道解鎖後，便可以Root和刷機。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/Z7LKNIx.png">
+<meta property="og:image" content="https://i.imgur.com/oMUIRD3.png">
+<meta property="og:image" content="https://i.imgur.com/RaEMZbU.png">
+<meta property="og:image" content="https://i.imgur.com/p0PQfLL.png">
+<meta property="og:image" content="https://i.imgur.com/ixi94Zt.png">
+<meta property="og:image" content="https://i.imgur.com/g2NEhiN.png">
+<meta property="og:image" content="https://i.imgur.com/3A32UX1.png">
+<meta property="og:image" content="https://i.imgur.com/Jm8Fi5h.png">
+<meta property="article:published_time" content="2021-12-06T17:31:00.000Z">
+<meta property="article:modified_time" content="2021-12-06T17:44:56.786Z">
+<meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/Z7LKNIx.png">
+
+<link rel="canonical" href="https://ivon852.github.io/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Sony Xperia 5 II root教學 | Ivon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ivon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享所學電腦技術。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Sony Xperia 5 II root教學
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-12-07 01:31:00 / 修改時間：01:44:56" itemprop="dateCreated datePublished" datetime="2021-12-07T01:31:00+08:00">2021-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Sony Xperia 5 II透過官方管道解鎖後，便可以Root和刷機。</p>
+<span id="more"></span>
+
+<p>操作前務必備份資料，解鎖bootloader後手機資料會全部清除。想刷回原廠（上鎖）記得先備份TA分區，本文不討論。<br>Root後DRM會掉到L3，會影響看Netflix之類的影片。<br><img src="https://i.imgur.com/Z7LKNIx.png"></p>
+<h2 id="目標："><a href="#目標：" class="headerlink" title="目標："></a>目標：</h2><p>在Sony原廠系統安裝Magisk，取得Root權限。</p>
+<p>Root後無法運作的項目：DRM保護的影音會無法以高畫質播放。</p>
+<h2 id="準備工具："><a href="#準備工具：" class="headerlink" title="準備工具："></a>準備工具：</h2><ul>
+<li><p>手機：Sony Xperia 5 II (XQ-AS72)，Android 11 (軔體版本58.1.A.5.441)</p>
+</li>
+<li><p>Ubuntu安裝adb tools套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install android-tools-adb android-tools-fastboot</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>Windows則是要下載<a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">ADB Platform Tools</a>。裡面包含所有需要的驅動程式。下載解壓縮，在該資料夾按著shift，右鍵開啟Powershell，輸入<code>.\adb</code>或<code>.\fastboot</code>即可執行ADB指令。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>解鎖bootloader → 刷入第三方Recovery → 刷入Magisk</p>
+<p>*第三方Recovery非必須，僅為方便管理系統。</p>
+<h2 id="解鎖bootloader"><a href="#解鎖bootloader" class="headerlink" title="解鎖bootloader"></a>解鎖bootloader</h2><ol>
+<li><p> 手機撥號輸入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*#*#7378423#*#* </span><br></pre></td></tr></table></figure></li>
+<li><p>進入<code>Service info</code> → <code>Configuration</code> → <code>Rooting Status</code>，確認<code>bootloader unlock allowed</code>是否為<code>yes</code>，代表可解鎖。<br><img src="https://i.imgur.com/oMUIRD3.png"></p>
+</li>
+<li><p>接下來要取得解鎖碼。到<a target="_blank" rel="noopener" href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/">Sony官網</a>。下方表單選取自己的裝置，輸入IMEI碼（系統設定→關於手機，若有雙卡填SIM 1的就好）將二個破保的警告選項都打勾。按下<code>Submit</code>，接著會出現一組解鎖碼，將其複製下來。<br><img src="https://i.imgur.com/RaEMZbU.png"></p>
+</li>
+<li><p><code>系統設定</code>→<code>版本號碼</code>點5下，<code>系統設定</code>→<code>系統</code>就會出現<code>開發人員選項</code>，點進去，開啟<code>OEM解鎖</code>。<br><img src="https://i.imgur.com/p0PQfLL.png"></p>
+</li>
+<li><p>手機連到電腦，確認電腦抓得到手機，手機上同意USB偵錯，並進入fastboot:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br><span class="line">adb reboot fastboot</span><br></pre></td></tr></table></figure></li>
+<li><p>進入fastboot模式後，Sony手機的指示燈應會變成藍色，用指令確認是否電腦有抓到手機：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot devices</span><br></pre></td></tr></table></figure></li>
+<li><p>開始解鎖bootloader:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot oem unlock 0x解鎖碼</span><br><span class="line"><span class="comment">#解鎖碼的格式為「0x」+剛剛網站取得的解鎖碼。</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>終端機回傳「Okay」就代表成功了。</p>
+<p>重開機後資料已被清除，要重新設定手機。</p>
+<h2 id="安裝第三方Recovery"><a href="#安裝第三方Recovery" class="headerlink" title="安裝第三方Recovery"></a>安裝第三方Recovery</h2><ol>
+<li><p>這裡使用OrangeFox (基於TWRP）到<a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/twrp-unoffical-orangefox-recovery-project-r10-0.4223365/">XDA</a>下載。</p>
+</li>
+<li><p>進入fastboot模式，刷入OrangeFox：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash recovery orange_fox.img</span><br><span class="line"><span class="comment">#orange_fox.img自行代換成下載的檔案名稱。</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>拔掉傳輸線，接著馬上長按開機鍵+音量下鍵，進入Recovery。</p>
+<h2 id="刷入Magisk"><a href="#刷入Magisk" class="headerlink" title="刷入Magisk"></a>刷入Magisk</h2><p>如果擔心開不了機，可先備份原本的boot.img。</p>
+<p>這裡要使用特製版Magisk，不然會卡在開機畫面。到<a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/kernel-stock-kernel-patched-with-magisk-on-customized-hk-android-11.4247827/">XDA</a>下載fengmubai製作的，對應韌體版本的<code>boot.img</code>。</p>
+<ol>
+<li><p>透過fastboot刷入boot.img到boot分區:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot magisk_patched_HK*.img</span><br><span class="line"><span class="comment">#或者用OrangeFox Recovery刷也可以。</span></span><br></pre></td></tr></table></figure></li>
+<li><p>重開機後要到應用程式列表點選Magisk安裝更新。<br><img src="https://i.imgur.com/ixi94Zt.png"></p>
+</li>
+<li><p>同意修復環境，之後重開機。<br><img src="https://i.imgur.com/g2NEhiN.png"></p>
+</li>
+<li><p>在設定中開啟Magisk Hide。<br><img src="https://i.imgur.com/3A32UX1.png"></p>
+</li>
+<li><p>執行SafetyNet檢測：成功<br><img src="https://i.imgur.com/Jm8Fi5h.png"></p>
+</li>
+</ol>
+<p>解鎖bootloader後，每次重開機都會顯示「手機已解鎖，無法驗證是否遭竄改」的警告。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/how-to-unlock-bootloader/">https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/how-to-unlock-bootloader/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/07/Ubuntu%E5%AE%89%E8%A3%9DDroidCam%EF%BC%8C%E6%8A%8A%E6%89%8B%E6%A9%9F%E8%AE%8A%E6%88%90%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A8%8A%E9%8F%A1%E9%A0%AD/" rel="prev" title="Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭">
+      <i class="fa fa-chevron-left"></i> Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A8%99%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">目標：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%96%E5%82%99%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">準備工具：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%8E%96bootloader"><span class="nav-number">4.</span> <span class="nav-text">解鎖bootloader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E7%AC%AC%E4%B8%89%E6%96%B9Recovery"><span class="nav-number">5.</span> <span class="nav-text">安裝第三方Recovery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E5%85%A5Magisk"><span class="nav-number">6.</span> <span class="nav-text">刷入Magisk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ivon Huang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivon Huang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
