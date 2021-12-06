@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2021/12/06/Google%E7%9B%B8%E7%B0%BF%E6%90%AC%E5%AE%B6-%E9%9B%A2%E7%B7%9A%E7%89%88Google%E7%9B%B8%E7%B0%BF%E8%BB%9F%E9%AB%94PhotoPrism/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2021/12/06/Linux%E5%9F%B7%E8%A1%8CAltServer/</loc>
     
     <lastmod>2021-12-06</lastmod>
@@ -75,6 +84,13 @@
   
   <url>
     <loc>https://ivon852.github.io/tags/iOS/</loc>
+    <lastmod>2021-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/Windows/</loc>
     <lastmod>2021-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
