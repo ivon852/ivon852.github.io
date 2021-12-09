@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="40BrRbJXIBcAXQMNbnj7c8OLT-6rHPy7ur7YTDRhNf0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、實驗目的：在Android手機執行Linux桌面程式，自行編譯驅動，觀看1080p影片和玩3D遊戲，外接螢幕和使用鍵鼠操作。 網誌好讀版： 實際測試程式：企鵝在滑雪 Minetest Youtube播放1080p影片 Glark2 二、說明：Termux是一款Android上的Linux終端機模擬器，不需要Root權限就可以Proot安裝Linux發行版。但預設安裝的沒有硬體加速，換言之就是繪">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D硬體加速的Proot Linux">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/index.html">
+<meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="一、實驗目的：在Android手機執行Linux桌面程式，自行編譯驅動，觀看1080p影片和玩3D遊戲，外接螢幕和使用鍵鼠操作。 網誌好讀版： 實際測試程式：企鵝在滑雪 Minetest Youtube播放1080p影片 Glark2 二、說明：Termux是一款Android上的Linux終端機模擬器，不需要Root權限就可以Proot安裝Linux發行版。但預設安裝的沒有硬體加速，換言之就是繪">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.postimg.cc/gJJyjBjg/Screenshot-20211210-002930.png">
+<meta property="og:image" content="https://i.postimg.cc/VNzWQN8Q/Screenshot-20211210-002039.png">
+<meta property="og:image" content="https://i.postimg.cc/NjqxD4C0/Screenshot-20211210-001321.png">
+<meta property="og:image" content="https://i.postimg.cc/RZ7LDH2L/Screenshot-20211210-000209.png">
+<meta property="og:image" content="https://i.postimg.cc/ZRM8dFy4/Screenshot-20211210-015339.png">
+<meta property="og:image" content="https://i.postimg.cc/QMSkXr8B/Screenshot-20211210-021050.png">
+<meta property="article:published_time" content="2021-12-09T18:45:00.000Z">
+<meta property="article:modified_time" content="2021-12-09T18:50:51.960Z">
+<meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.postimg.cc/gJJyjBjg/Screenshot-20211210-002930.png">
+
+<link rel="canonical" href="https://ivon852.github.io/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>3D硬體加速的Proot Linux | Ivon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ivon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享所學電腦技術。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          3D硬體加速的Proot Linux
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-12-10 02:45:00 / 修改時間：02:50:51" itemprop="dateCreated datePublished" datetime="2021-12-10T02:45:00+08:00">2021-12-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/10/3D硬體加速的Proot-Linux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、實驗目的："><a href="#一、實驗目的：" class="headerlink" title="一、實驗目的："></a>一、實驗目的：</h2><p>在Android手機執行Linux桌面程式，自行編譯驅動，觀看1080p影片和玩3D遊戲，外接螢幕和使用鍵鼠操作。</p>
+<p>網誌好讀版：</p>
+<p>實際測試程式：<br>企鵝在滑雪<br><img src="https://i.postimg.cc/gJJyjBjg/Screenshot-20211210-002930.png"></p>
+<p>Minetest<br><img src="https://i.postimg.cc/VNzWQN8Q/Screenshot-20211210-002039.png"></p>
+<p>Youtube播放1080p影片<br><img src="https://i.postimg.cc/NjqxD4C0/Screenshot-20211210-001321.png"></p>
+<p>Glark2<br><img src="https://i.postimg.cc/RZ7LDH2L/Screenshot-20211210-000209.png"></p>
+<h2 id="二、說明："><a href="#二、說明：" class="headerlink" title="二、說明："></a>二、說明：</h2><p>Termux是一款Android上的Linux終端機模擬器，不需要Root權限就可以Proot安裝Linux發行版。<br>但預設安裝的沒有硬體加速，換言之就是繪圖效能很差，網頁播放1080p影片都會卡卡的。</p>
+<p>本文參考YouTube頻道GxmerSam的影片，自行在手機上編譯mesa驅動，進而實現硬體加速。</p>
+<p><strong>本文使用測試版的Termux，如果已經安裝穩定版Termux需先解除安裝。</strong></p>
+<p>手機：Sony Xperia 5 II，Android 11</p>
+<h2 id="三、安裝必要的App"><a href="#三、安裝必要的App" class="headerlink" title="三、安裝必要的App"></a>三、安裝必要的App</h2><p>1.從<a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/actions/workflows/debug_build.yml">Github</a>下載測試版Termux，解壓縮安裝APK。</p>
+<ol start="2">
+<li><p>開啟Termux，取得儲存空間權限，就能透過storage存取手機內部儲存空間目錄。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure></li>
+<li><p>從<a target="_blank" rel="noopener" href="https://github.com/termux/termux-x11/actions/workflows/debug_build.yml">Github</a>下載測試版Termux-x11，解壓縮安裝apk。<br>Termux-x11除了安裝apk外，還要開啟Termux，把deb檔移動到termux的家目錄：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#假設termux-x11.deb位於內部儲存空間</span><br><span class="line">mv storage/shared/termux-x11.deb</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>再用以下指令安裝：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i termux-x11.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Termux基本操作："><a href="#四、Termux基本操作：" class="headerlink" title="四、Termux基本操作："></a>四、Termux基本操作：</h2><ol>
+<li>輸入框長按可貼上指令。</li>
+<li>通知欄下滑，按下<code>Aquire Wakelock</code>可避免Termux在背景執行被系統殺掉。</li>
+<li>使用<code>pkg update</code> 和 <code>pkg upgrade</code>指令來安裝套件。</li>
+<li>左邊往內滑，按<code>New Session</code>可以開啟第二個終端機。</li>
+<li>使用<code>exit</code>指令退出程式。</li>
+</ol>
+<h2 id="五、安裝Linux發行版"><a href="#五、安裝Linux發行版" class="headerlink" title="五、安裝Linux發行版"></a>五、安裝Linux發行版</h2><p>這裡採用的是udroid，此腳本會在Termux安裝Ubuntu 21.04，桌面環境是xfce4。</p>
+<ol>
+<li><p>使用以下三條指令下載安裝：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -L -o install.sh https://git.io/hippo-installer</span><br><span class="line">bash install.sh</span><br><span class="line">udroid --install</span><br></pre></td></tr></table></figure></li>
+<li><p>下載完成，安裝完後的畫面。 <a target="_blank" rel="noopener" href="https://i.postimg.cc/QxWbcPbP/Screenshot-20211209-095646.png">https://i.postimg.cc/QxWbcPbP/Screenshot-20211209-095646.png</a></p>
+</li>
+</ol>
+<ol start="3">
+<li>使用指令進入系統：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">udroid</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="六、設定和測試x11桌面"><a href="#六、設定和測試x11桌面" class="headerlink" title="六、設定和測試x11桌面"></a>六、設定和測試x11桌面</h2><p>預設用vncserver + VNC Viewer App就可以看到桌面，但因為這裡要用硬體加速，改用x11來顯示桌面。</p>
+<ol>
+<li><p>先登出udroid系統，再安裝必要套件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">pkg install x11-repo -y</span><br><span class="line">pkg install xwayland termux-x11</span><br></pre></td></tr></table></figure></li>
+<li><p>啟動x11懸浮視窗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-x11</span><br></pre></td></tr></table></figure></li>
+<li><p>開第二個終端機，登入udroid</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro login udroid --shared-tmp</span><br></pre></td></tr></table></figure></li>
+<li><p> 有時候要殺掉vncserver預設開啟的DISPLAY</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver kill :0</span><br></pre></td></tr></table></figure></li>
+<li><p>啟動XFCE4桌面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DISPLAY=:0</span><br><span class="line">dbus-launch --exit-with-session startxfce4</span><br></pre></td></tr></table></figure></li>
+<li><p>這樣一來，懸浮視窗應該就會出現XFCE4桌面了。<br><img src="https://i.postimg.cc/ZRM8dFy4/Screenshot-20211210-015339.png"></p>
+</li>
+</ol>
+<h2 id="七、編譯驅動程式"><a href="#七、編譯驅動程式" class="headerlink" title="七、編譯驅動程式"></a>七、編譯驅動程式</h2><p>前面雖然安裝系統了，但還沒有真正的硬體加速，好玩的現在才剛開始。</p>
+<p>以下步驟參考自GxmerSam提供的說明文件，我按照實際安裝的情況寫了一些註解。</p>
+<ol>
+<li>到Github下載GxmerSam提供的檔案：</li>
+<li>解壓縮，將instructions資料夾移動到Termux家目錄。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv storage/downloads/instructions ~</span><br></pre></td></tr></table></figure></li>
+<li>接著開始編譯驅動程式。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#有時候autogen.sh編譯失敗可以再嘗試一次</span></span><br><span class="line">mkdir ~/dir</span><br><span class="line">termux-setup-storage</span><br><span class="line"><span class="built_in">echo</span> Y | pkg upgrade -y</span><br><span class="line"><span class="comment">#下載安裝需要的套件</span></span><br><span class="line">pkg install -y x11-repo</span><br><span class="line">pkg install -y clang lld cmake autoconf automake libtool <span class="string">&#x27;*ndk*&#x27;</span> make python git libandroid-shmem-static <span class="string">&#x27;vulkan*&#x27;</span> ninja llvm bison flex libx11 libdrm libpixman libxfixes libjpeg-turbo xtrans libxxf86vm xorg-xrandr xorg-font-util xorg-util-macros libxfont2 libxkbfile libpciaccess xcb-util-renderutil xcb-util-image xcb-util-keysyms xcb-util-wm xorg-xkbcomp xkeyboard-config libxdamage libxinerama</span><br><span class="line">pip install meson mako</span><br><span class="line"><span class="built_in">cd</span> ~/dir</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/freedesktop/xorg-xorgproto.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/wayland-project/wayland.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/wayland-project/wayland-protocols.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/freedesktop/libxshmfence.git</span><br><span class="line">git <span class="built_in">clone</span> --single-branch --shallow-since 2021-02-22 git://github.com/mesa3d/mesa.git </span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/dottedmag/libsha1.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/anholt/libepoxy.git</span><br><span class="line">git <span class="built_in">clone</span> -b xorg-server-1.20.13 --depth 1 git://github.com/freedesktop/xorg-xserver.git xorg-server-1.20.13</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/glmark2/glmark2.git</span><br><span class="line"><span class="comment">#編譯Xorg</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir</span><br><span class="line"><span class="built_in">cd</span> xorg-xorgproto</span><br><span class="line">./autogen.sh --prefix=<span class="variable">$PREFIX</span> --with-xmlto=no --with-fop=no --with-xsltproc=no</span><br><span class="line">make -j8 install</span><br><span class="line"><span class="built_in">cd</span> ~/dir/wayland</span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">pkg install binutils</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> -Ddocumentation=<span class="literal">false</span> ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="comment">#編譯Wayland Protocols</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/wayland-protocols</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> ..</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="comment">#編譯libshmfence</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/libxshmfence</span><br><span class="line">./autogen.sh --prefix=<span class="variable">$PREFIX</span> --with-shared-memory-dir=<span class="variable">$TMPDIR</span></span><br><span class="line">sed -i s/values.h/limits.h/ ./src/xshmfence_futex.h</span><br><span class="line">make -j8 install CPPFLAGS=-DMAXINT=INT_MAX</span><br><span class="line"><span class="comment">#編譯mesa</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/mesa</span><br><span class="line">git checkout b8970120545b3cb250821013cb459bf4d2acfda4</span><br><span class="line"><span class="comment">#apply patches，將壓縮檔的instructions目錄移動到termux家目錄</span></span><br><span class="line"><span class="keyword">for</span> patch <span class="keyword">in</span> ~/instructions/patches/mesa/*.patch; <span class="keyword">do</span> patch -p1 &lt; <span class="variable">$patch</span>; <span class="keyword">done</span></span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">meson ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="built_in">cd</span> ~/dir</span><br><span class="line"><span class="comment">#編譯libsha</span></span><br><span class="line"><span class="built_in">cd</span> libsha1</span><br><span class="line">./autogen.sh --prefix=<span class="variable">$PREFIX</span></span><br><span class="line">make -j8 install</span><br><span class="line"><span class="built_in">cd</span> ~/dir/libepoxy</span><br><span class="line"><span class="comment">#套用patch</span></span><br><span class="line"><span class="keyword">for</span> patch <span class="keyword">in</span> ~/instructions/patches/epoxy/*.patch; <span class="keyword">do</span> patch -p1 &lt; <span class="variable">$patch</span>; <span class="keyword">done</span></span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> -Degl=yes -Dglx=yes -Dtests=<span class="literal">false</span> -Dx11=<span class="literal">true</span> ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="built_in">cd</span> ~/dir/xorg-server-1.20.13</span><br><span class="line"><span class="comment">#套用patch</span></span><br><span class="line"><span class="keyword">for</span> patch <span class="keyword">in</span> ~/instructions/patches/xorg/*.patch; <span class="keyword">do</span> patch -p1 &lt; <span class="variable">$patch</span>; <span class="keyword">done</span></span><br><span class="line">./autogen.sh --enable-mitshm --enable-xcsecurity --enable-xf86bigfont --enable-xwayland --enable-xorg --enable-xnest --enable-xvfb --disable-xwin --enable-xephyr --enable-kdrive --disable-devel-docs --disable-config-hal --disable-config-udev --disable-unit-tests --disable-selective-werror --disable-static --without-dtrace --disable-glamor --enable-dri --enable-dri2 --enable-dri3 --enable-glx --with-sha1=libsha1 --with-pic --prefix=<span class="variable">$PREFIX</span> ; make -j8 install LDFLAGS=<span class="string">&#x27;-fuse-ld=lld /data/data/com.termux/files/usr/lib/libandroid-shmem.a -llog&#x27;</span></span><br><span class="line">make -j4 install</span><br><span class="line"><span class="comment">#編譯glmark2</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/glmark2</span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> -Dflavors=x11-gl ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="八、實際測試3D硬體加速："><a href="#八、實際測試3D硬體加速：" class="headerlink" title="八、實際測試3D硬體加速："></a>八、實際測試3D硬體加速：</h2><p>編譯好之後，步驟跟第六節一樣，啟動桌面再安裝要測試的應用程式。</p>
+<p>如果只要測試3D不開桌面，剛剛編譯好的glmark2是最好的選擇：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">termux-x11</span><br><span class="line">#開第二個終端機</span><br><span class="line">XDG_RUNTIME_DIR=$TMPDIR $PREFIX/bin/Xwayland &amp;</span><br><span class="line">export GALLIUM_DRIVER=zink</span><br><span class="line">export DISPLAY=:0</span><br><span class="line">sleep 5; glmark2 --fullscreen -b jellyfish -b refract -b terrain -b desktop</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.postimg.cc/QMSkXr8B/Screenshot-20211210-021050.png"></p>
+<h2 id="九、結論"><a href="#九、結論" class="headerlink" title="九、結論"></a>九、結論</h2><p>Termux是以Proot安裝Linux發行版，系統服務受到限制。<br>即使如此，3D性能還是沒有完全發揮，GxmerSam的影片表現的性能更高，但未透露具體設定細節。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://youtu.be/sbrif7lbkXE">https://youtu.be/sbrif7lbkXE</a></p>
+<p><a target="_blank" rel="noopener" href="https://gxmersam.blogspot.com/p/getting-hardware-acceleration-on-termux.html">https://gxmersam.blogspot.com/p/getting-hardware-acceleration-on-termux.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/RandomCoderOrg/ubuntu-on-android">https://github.com/RandomCoderOrg/ubuntu-on-android</a></p>
+<p><a target="_blank" rel="noopener" href="https://udroid-rc.gitbook.io/udroid-wiki/udroid-landing/quick-installation-and-usage/setting-up-gui/termux-x11">https://udroid-rc.gitbook.io/udroid-wiki/udroid-landing/quick-installation-and-usage/setting-up-gui/termux-x11</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/" rel="prev" title="Sony Xperia 5 II root教學">
+      <i class="fa fa-chevron-left"></i> Sony Xperia 5 II root教學
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AF%A6%E9%A9%97%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">一、實驗目的：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AA%AA%E6%98%8E%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">二、說明：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%9D%E5%BF%85%E8%A6%81%E7%9A%84App"><span class="nav-number">3.</span> <span class="nav-text">三、安裝必要的App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Termux%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">四、Termux基本操作：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E8%A3%9DLinux%E7%99%BC%E8%A1%8C%E7%89%88"><span class="nav-number">5.</span> <span class="nav-text">五、安裝Linux發行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E8%A8%AD%E5%AE%9A%E5%92%8C%E6%B8%AC%E8%A9%A6x11%E6%A1%8C%E9%9D%A2"><span class="nav-number">6.</span> <span class="nav-text">六、設定和測試x11桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B7%A8%E8%AD%AF%E9%A9%85%E5%8B%95%E7%A8%8B%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">七、編譯驅動程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%AF%A6%E9%9A%9B%E6%B8%AC%E8%A9%A63D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%EF%BC%9A"><span class="nav-number">8.</span> <span class="nav-text">八、實際測試3D硬體加速：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%B5%90%E8%AB%96"><span class="nav-number">9.</span> <span class="nav-text">九、結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">10.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ivon Huang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivon Huang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ivons-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ivon852.github.io/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/";
+    this.page.identifier = "2021/12/10/3D硬體加速的Proot-Linux/";
+    this.page.title = "3D硬體加速的Proot Linux";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ivons-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
