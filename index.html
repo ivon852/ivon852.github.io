@@ -172,7 +172,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-10 02:45:00 / 修改時間：02:52:07" itemprop="dateCreated datePublished" datetime="2021-12-10T02:45:00+08:00">2021-12-10</time>
+              <time title="創建時間：2021-12-10 02:45:00 / 修改時間：02:55:21" itemprop="dateCreated datePublished" datetime="2021-12-10T02:45:00+08:00">2021-12-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,78 +210,14 @@
 
       
           <h2 id="一、實驗目的："><a href="#一、實驗目的：" class="headerlink" title="一、實驗目的："></a>一、實驗目的：</h2><p>在Android手機執行Linux桌面程式，自行編譯驅動，觀看1080p影片和玩3D遊戲，外接螢幕和使用鍵鼠操作。</p>
-<p>實際測試程式：</p>
-<p>企鵝在滑雪<br><img src="https://i.postimg.cc/gJJyjBjg/Screenshot-20211210-002930.png"></p>
-<p>Minetest<br><img src="https://i.postimg.cc/VNzWQN8Q/Screenshot-20211210-002039.png"></p>
-<p>Youtube播放1080p影片<br><img src="https://i.postimg.cc/NjqxD4C0/Screenshot-20211210-001321.png"></p>
-<p>Glark2<br><img src="https://i.postimg.cc/RZ7LDH2L/Screenshot-20211210-000209.png"></p>
-<h2 id="二、說明："><a href="#二、說明：" class="headerlink" title="二、說明："></a>二、說明：</h2><p>Termux是一款Android上的Linux終端機模擬器，不需要Root權限就可以Proot安裝Linux發行版。<br>但預設安裝的沒有硬體加速，換言之就是繪圖效能很差，網頁播放1080p影片都會卡卡的。</p>
-<p>本文參考YouTube頻道GxmerSam的影片，自行在手機上編譯mesa驅動，進而實現硬體加速。</p>
-<p><strong>本文使用測試版的Termux，如果已經安裝穩定版Termux需先解除安裝。</strong></p>
-<p>手機：Sony Xperia 5 II，Android 11</p>
-<h2 id="三、安裝必要的App"><a href="#三、安裝必要的App" class="headerlink" title="三、安裝必要的App"></a>三、安裝必要的App</h2><p>1.從<a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/actions/workflows/debug_build.yml">Github</a>下載測試版Termux，解壓縮安裝APK。</p>
-<ol start="2">
-<li><p>開啟Termux，取得儲存空間權限，就能透過storage存取手機內部儲存空間目錄。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure></li>
-<li><p>從<a target="_blank" rel="noopener" href="https://github.com/termux/termux-x11/actions/workflows/debug_build.yml">Github</a>下載測試版Termux-x11，解壓縮安裝apk。<br>Termux-x11除了安裝apk外，還要開啟Termux，把deb檔移動到termux的家目錄：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#假設termux-x11.deb位於內部儲存空間</span><br><span class="line">mv storage/shared/termux-x11.deb</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>再用以下指令安裝：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i termux-x11.deb</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、Termux基本操作："><a href="#四、Termux基本操作：" class="headerlink" title="四、Termux基本操作："></a>四、Termux基本操作：</h2><ol>
-<li>輸入框長按可貼上指令。</li>
-<li>通知欄下滑，按下<code>Aquire Wakelock</code>可避免Termux在背景執行被系統殺掉。</li>
-<li>使用<code>pkg update</code> 和 <code>pkg upgrade</code>指令來安裝套件。</li>
-<li>左邊往內滑，按<code>New Session</code>可以開啟第二個終端機。</li>
-<li>使用<code>exit</code>指令退出程式。</li>
-</ol>
-<h2 id="五、安裝Linux發行版"><a href="#五、安裝Linux發行版" class="headerlink" title="五、安裝Linux發行版"></a>五、安裝Linux發行版</h2><p>這裡採用的是udroid，此腳本會在Termux安裝Ubuntu 21.04，桌面環境是xfce4。</p>
-<ol>
-<li><p>使用以下三條指令下載安裝：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -L -o install.sh https://git.io/hippo-installer</span><br><span class="line">bash install.sh</span><br><span class="line">udroid --install</span><br></pre></td></tr></table></figure></li>
-<li><p>下載完成，安裝完後的畫面。 <a target="_blank" rel="noopener" href="https://i.postimg.cc/QxWbcPbP/Screenshot-20211209-095646.png">https://i.postimg.cc/QxWbcPbP/Screenshot-20211209-095646.png</a></p>
-</li>
-</ol>
-<ol start="3">
-<li>使用指令進入系統：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">udroid</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="六、設定和測試x11桌面"><a href="#六、設定和測試x11桌面" class="headerlink" title="六、設定和測試x11桌面"></a>六、設定和測試x11桌面</h2><p>預設用vncserver + VNC Viewer App就可以看到桌面，但因為這裡要用硬體加速，改用x11來顯示桌面。</p>
-<ol>
-<li><p>先登出udroid系統，再安裝必要套件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">pkg install x11-repo -y</span><br><span class="line">pkg install xwayland termux-x11</span><br></pre></td></tr></table></figure></li>
-<li><p>啟動x11懸浮視窗</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-x11</span><br></pre></td></tr></table></figure></li>
-<li><p>開第二個終端機，登入udroid</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro login udroid --shared-tmp</span><br></pre></td></tr></table></figure></li>
-<li><p> 有時候要殺掉vncserver預設開啟的DISPLAY</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver kill :0</span><br></pre></td></tr></table></figure></li>
-<li><p>啟動XFCE4桌面。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DISPLAY=:0</span><br><span class="line">dbus-launch --exit-with-session startxfce4</span><br></pre></td></tr></table></figure></li>
-<li><p>這樣一來，懸浮視窗應該就會出現XFCE4桌面了。<br><img src="https://i.postimg.cc/ZRM8dFy4/Screenshot-20211210-015339.png"></p>
-</li>
-</ol>
-<h2 id="七、編譯驅動程式"><a href="#七、編譯驅動程式" class="headerlink" title="七、編譯驅動程式"></a>七、編譯驅動程式</h2><p>前面雖然安裝系統了，但還沒有真正的硬體加速，好玩的現在才剛開始。</p>
-<p>以下步驟參考自GxmerSam提供的說明文件，我按照實際安裝的情況寫了一些註解。</p>
-<ol>
-<li>到Github下載GxmerSam提供的檔案：</li>
-<li>解壓縮，將instructions資料夾移動到Termux家目錄。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv storage/downloads/instructions ~</span><br></pre></td></tr></table></figure></li>
-<li>接著開始編譯驅動程式。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#有時候autogen.sh編譯失敗可以再嘗試一次</span></span><br><span class="line">mkdir ~/dir</span><br><span class="line">termux-setup-storage</span><br><span class="line"><span class="built_in">echo</span> Y | pkg upgrade -y</span><br><span class="line"><span class="comment">#下載安裝需要的套件</span></span><br><span class="line">pkg install -y x11-repo</span><br><span class="line">pkg install -y clang lld cmake autoconf automake libtool <span class="string">&#x27;*ndk*&#x27;</span> make python git libandroid-shmem-static <span class="string">&#x27;vulkan*&#x27;</span> ninja llvm bison flex libx11 libdrm libpixman libxfixes libjpeg-turbo xtrans libxxf86vm xorg-xrandr xorg-font-util xorg-util-macros libxfont2 libxkbfile libpciaccess xcb-util-renderutil xcb-util-image xcb-util-keysyms xcb-util-wm xorg-xkbcomp xkeyboard-config libxdamage libxinerama</span><br><span class="line">pip install meson mako</span><br><span class="line"><span class="built_in">cd</span> ~/dir</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/freedesktop/xorg-xorgproto.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/wayland-project/wayland.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/wayland-project/wayland-protocols.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/freedesktop/libxshmfence.git</span><br><span class="line">git <span class="built_in">clone</span> --single-branch --shallow-since 2021-02-22 git://github.com/mesa3d/mesa.git </span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/dottedmag/libsha1.git</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/anholt/libepoxy.git</span><br><span class="line">git <span class="built_in">clone</span> -b xorg-server-1.20.13 --depth 1 git://github.com/freedesktop/xorg-xserver.git xorg-server-1.20.13</span><br><span class="line">git <span class="built_in">clone</span> --depth 1 git://github.com/glmark2/glmark2.git</span><br><span class="line"><span class="comment">#編譯Xorg</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir</span><br><span class="line"><span class="built_in">cd</span> xorg-xorgproto</span><br><span class="line">./autogen.sh --prefix=<span class="variable">$PREFIX</span> --with-xmlto=no --with-fop=no --with-xsltproc=no</span><br><span class="line">make -j8 install</span><br><span class="line"><span class="built_in">cd</span> ~/dir/wayland</span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">pkg install binutils</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> -Ddocumentation=<span class="literal">false</span> ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="comment">#編譯Wayland Protocols</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/wayland-protocols</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> ..</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="comment">#編譯libshmfence</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/libxshmfence</span><br><span class="line">./autogen.sh --prefix=<span class="variable">$PREFIX</span> --with-shared-memory-dir=<span class="variable">$TMPDIR</span></span><br><span class="line">sed -i s/values.h/limits.h/ ./src/xshmfence_futex.h</span><br><span class="line">make -j8 install CPPFLAGS=-DMAXINT=INT_MAX</span><br><span class="line"><span class="comment">#編譯mesa</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/mesa</span><br><span class="line">git checkout b8970120545b3cb250821013cb459bf4d2acfda4</span><br><span class="line"><span class="comment">#apply patches，將壓縮檔的instructions目錄移動到termux家目錄</span></span><br><span class="line"><span class="keyword">for</span> patch <span class="keyword">in</span> ~/instructions/patches/mesa/*.patch; <span class="keyword">do</span> patch -p1 &lt; <span class="variable">$patch</span>; <span class="keyword">done</span></span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">meson ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="built_in">cd</span> ~/dir</span><br><span class="line"><span class="comment">#編譯libsha</span></span><br><span class="line"><span class="built_in">cd</span> libsha1</span><br><span class="line">./autogen.sh --prefix=<span class="variable">$PREFIX</span></span><br><span class="line">make -j8 install</span><br><span class="line"><span class="built_in">cd</span> ~/dir/libepoxy</span><br><span class="line"><span class="comment">#套用patch</span></span><br><span class="line"><span class="keyword">for</span> patch <span class="keyword">in</span> ~/instructions/patches/epoxy/*.patch; <span class="keyword">do</span> patch -p1 &lt; <span class="variable">$patch</span>; <span class="keyword">done</span></span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> -Degl=yes -Dglx=yes -Dtests=<span class="literal">false</span> -Dx11=<span class="literal">true</span> ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="built_in">cd</span> ~/dir/xorg-server-1.20.13</span><br><span class="line"><span class="comment">#套用patch</span></span><br><span class="line"><span class="keyword">for</span> patch <span class="keyword">in</span> ~/instructions/patches/xorg/*.patch; <span class="keyword">do</span> patch -p1 &lt; <span class="variable">$patch</span>; <span class="keyword">done</span></span><br><span class="line">./autogen.sh --enable-mitshm --enable-xcsecurity --enable-xf86bigfont --enable-xwayland --enable-xorg --enable-xnest --enable-xvfb --disable-xwin --enable-xephyr --enable-kdrive --disable-devel-docs --disable-config-hal --disable-config-udev --disable-unit-tests --disable-selective-werror --disable-static --without-dtrace --disable-glamor --enable-dri --enable-dri2 --enable-dri3 --enable-glx --with-sha1=libsha1 --with-pic --prefix=<span class="variable">$PREFIX</span> ; make -j8 install LDFLAGS=<span class="string">&#x27;-fuse-ld=lld /data/data/com.termux/files/usr/lib/libandroid-shmem.a -llog&#x27;</span></span><br><span class="line">make -j4 install</span><br><span class="line"><span class="comment">#編譯glmark2</span></span><br><span class="line"><span class="built_in">cd</span> ~/dir/glmark2</span><br><span class="line">mkdir b</span><br><span class="line"><span class="built_in">cd</span> b</span><br><span class="line">meson -Dprefix=<span class="variable">$PREFIX</span> -Dflavors=x11-gl ..</span><br><span class="line">ninja install</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="八、實際測試3D硬體加速："><a href="#八、實際測試3D硬體加速：" class="headerlink" title="八、實際測試3D硬體加速："></a>八、實際測試3D硬體加速：</h2><p>編譯好之後，步驟跟第六節一樣，啟動桌面再安裝要測試的應用程式。</p>
-<p>如果只要測試3D不開桌面，剛剛編譯好的glmark2是最好的選擇：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">termux-x11</span><br><span class="line">#開第二個終端機</span><br><span class="line">XDG_RUNTIME_DIR=$TMPDIR $PREFIX/bin/Xwayland &amp;</span><br><span class="line">export GALLIUM_DRIVER=zink</span><br><span class="line">export DISPLAY=:0</span><br><span class="line">sleep 5; glmark2 --fullscreen -b jellyfish -b refract -b terrain -b desktop</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.postimg.cc/QMSkXr8B/Screenshot-20211210-021050.png"></p>
-<h2 id="九、結論"><a href="#九、結論" class="headerlink" title="九、結論"></a>九、結論</h2><p>Termux是以Proot安裝Linux發行版，系統服務受到限制。<br>即使如此，3D性能還是沒有完全發揮，GxmerSam的影片表現的性能更高，但未透露具體設定細節。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://youtu.be/sbrif7lbkXE">https://youtu.be/sbrif7lbkXE</a></p>
-<p><a target="_blank" rel="noopener" href="https://gxmersam.blogspot.com/p/getting-hardware-acceleration-on-termux.html">https://gxmersam.blogspot.com/p/getting-hardware-acceleration-on-termux.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/RandomCoderOrg/ubuntu-on-android">https://github.com/RandomCoderOrg/ubuntu-on-android</a></p>
-<p><a target="_blank" rel="noopener" href="https://udroid-rc.gitbook.io/udroid-wiki/udroid-landing/quick-installation-and-usage/setting-up-gui/termux-x11">https://udroid-rc.gitbook.io/udroid-wiki/udroid-landing/quick-installation-and-usage/setting-up-gui/termux-x11</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
