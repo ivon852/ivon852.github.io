@@ -4,7 +4,7 @@
   <url>
     <loc>https://ivon852.github.io/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/</loc>
     
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,36 +103,36 @@
 
   <url>
     <loc>https://ivon852.github.io/</loc>
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://ivon852.github.io/tags/iOS/</loc>
-    <lastmod>2021-12-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ivon852.github.io/tags/Linux/</loc>
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/Android/</loc>
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/iOS/</loc>
+    <lastmod>2021-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/Windows/</loc>
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -141,14 +141,14 @@
   
   <url>
     <loc>https://ivon852.github.io/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/</loc>
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/categories/%E5%8B%95%E6%BC%AB/</loc>
-    <lastmod>2021-12-09</lastmod>
+    <lastmod>2021-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
