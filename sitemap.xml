@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2021/12/12/%E6%89%8B%E6%A9%9F%E6%AA%94%E6%A1%88%E7%AE%A1%E7%90%86%E5%99%A8%E5%AD%98%E5%8F%96Termux%E7%9A%84%E7%9B%AE%E9%8C%84/</loc>
+    
+    <lastmod>2021-12-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/2021/12/12/Zenfone%202%20Selfie%E5%AE%89%E8%A3%9DpostmarketOS/</loc>
+    
+    <lastmod>2021-12-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/</loc>
     
     <lastmod>2021-12-11</lastmod>
@@ -112,7 +130,7 @@
 
   <url>
     <loc>https://ivon852.github.io/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -120,28 +138,28 @@
   
   <url>
     <loc>https://ivon852.github.io/tags/Linux/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/iOS/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/Android/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/Windows/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -150,14 +168,14 @@
   
   <url>
     <loc>https://ivon852.github.io/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/categories/%E5%8B%95%E6%BC%AB/</loc>
-    <lastmod>2021-12-11</lastmod>
+    <lastmod>2021-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
