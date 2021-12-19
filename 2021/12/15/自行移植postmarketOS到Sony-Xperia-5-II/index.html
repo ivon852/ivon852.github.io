@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.postimg.cc/WzstLfKH/2021-12-14_23-55-23_%E7%9A%84%E8%9E%A2%E5%B9%95%E6%93%B7%E5%9C%96.png">
 <meta property="og:image" content="https://i.postimg.cc/cCTCsBG4/2021-12-15-00-00-11.png">
 <meta property="article:published_time" content="2021-12-15T04:21:00.000Z">
-<meta property="article:modified_time" content="2021-12-15T04:33:26.722Z">
+<meta property="article:modified_time" content="2021-12-19T13:21:04.548Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
@@ -184,10 +184,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-12-15 12:21:00 / 修改時間：12:33:26" itemprop="dateCreated datePublished" datetime="2021-12-15T12:21:00+08:00">2021-12-15</time>
+              <time title="創建時間：2021-12-15 12:21:00" itemprop="dateCreated datePublished" datetime="2021-12-15T12:21:00+08:00">2021-12-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-19 21:21:04" itemprop="dateModified" datetime="2021-12-19T21:21:04+08:00">2021-12-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,15 +248,15 @@
 <li>初始化，按照問題設定參數<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap init</span><br><span class="line"><span class="comment">#Location of the &#x27;work&#x27; path. Multiple chroots (native, device arch, device rootfs) will be created in there. Work path: Enter維持預設</span></span><br><span class="line"><span class="comment">#Target device (either an existing one, or a new one for porting). Available (60): sony</span></span><br><span class="line">Device: pdx206</span><br><span class="line"><span class="comment">#You are about to do a new device port for &#x27;wiki-example&#x27;. Continue? (y/n): y</span></span><br><span class="line"><span class="comment">#Device architecture (armhf/armv7/aarch64/x86_64/x86) [armhf]: aarch64</span></span><br><span class="line"><span class="comment">#Who produced the device (e.g. LG)? Sony</span></span><br><span class="line"><span class="comment">#What is the official name (e.g. Google Nexus 5)? Sony Xperia 5 II</span></span><br><span class="line"><span class="comment">#Does the device have a hardware keyboard? (y/n) [n]: n</span></span><br><span class="line"><span class="comment">#Does the device have a sdcard or other external storage medium? (y/n) [n]: y</span></span><br><span class="line"><span class="comment">#Which flash method does the device support?</span></span><br><span class="line">Flash method (fastboot/heimdall/0xffff) [fastboot]: fastboot</span><br><span class="line"><span class="comment">#Username [user]: user</span></span><br><span class="line"><span class="comment">#User interface [weston]: xfce4</span></span><br><span class="line"><span class="comment">#剩下全部Enter</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="編譯Kernel"><a href="#編譯Kernel" class="headerlink" title="編譯Kernel"></a>編譯Kernel</h2><ol>
-<li><p>首先要取得手機kernel原始碼，postmarketOS預設是從LineageOS的Github找kernel，但目前還沒有Xperia 5 II的。不過Sony官方有在<a target="_blank" rel="noopener" href="https://github.com/sonyxperiadev/kernel-copyleft/tree/58.1.A.5.xxx">Github</a>上釋出Kernel。以Xperia 5 II為例，代號是pdx206，branch選擇58.1.A.5，commit選取最近的。如果用官方的編譯出問題，請改用EggOxysgen製作的<a target="_blank" rel="noopener" href="https://github.com/EggOxygen/android_kernel_sony_sm8250_pdx206">Unofficial LineageOS的kernel</a>。</p>
+<li><p>首先要取得手機kernel原始碼，postmarketOS預設是從LineageOS的Github找kernel，但目前還沒有Xperia 5 II的。不過Sony官方有在<a target="_blank" rel="noopener" href="https://github.com/sonyxperiadev/kernel-copyleft/tree/58.1.A.5.xxx">Github</a>上釋出Kernel。以Xperia 5 II為例，代號是pdx206，branch選擇58.1.A.5，commit選取最近的。另外EggOxysgen也有製作<a target="_blank" rel="noopener" href="https://github.com/EggOxygen/android_kernel_sony_sm8250_pdx206">Unofficial LineageOS的kernel</a>。</p>
 </li>
 <li><p>找到工作目錄:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/user/.<span class="built_in">local</span>/var/pmbootstrap/cache_git/pmaports/device/testing/linux-sony-pdx206</span><br></pre></td></tr></table></figure></li>
 <li><p>裡面會有一個<code>APKBUILD</code>檔案，裡面包括編譯kernel的設定檔。<code>#Source</code>區塊的<code>_repository</code>和<code>_commit</code>是網址。<code>$pkgname-$_commit.tar.gz</code>則是整個kernel專案的網址結構。<code>$_config</code>則是會套用到kerenel的patch。</p>
 </li>
-<li><p>因為這裡不使用LineageOS官方的repo，所以將檔案網址修改如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Source</span></span><br><span class="line">_repository=<span class="string">&quot;android_kernel_sony_sm8250_pdx206&quot;</span></span><br><span class="line">_commit=<span class="string">&quot;4e1d5cbb0f6723ecb01e4b9bca81420156cf5f65&quot;</span></span><br><span class="line">_config=<span class="string">&quot;config-<span class="variable">$_flavor</span>.<span class="variable">$arch</span>&quot;</span></span><br><span class="line"><span class="built_in">source</span>=<span class="string">&quot;</span></span><br><span class="line"><span class="string">	<span class="variable">$pkgname</span>-<span class="variable">$_commit</span>.tar.gz::https://github.com/EggOxygen/<span class="variable">$_repository</span>/archive/<span class="variable">$_commit</span>.tar.gz</span></span><br><span class="line"><span class="string">	<span class="variable">$_config</span></span></span><br><span class="line"><span class="string">&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>翻閱kerenl原始碼的repo，找到<code>MakeFile</code>檔案，按照裡面寫的<code>VERSION</code>和<code>PATCHLEVEL</code>和<code>SUBLEVEL</code>，在APKBUILDFILE的<code>pkg</code>填入版本號，例如這裡是4.15:</p>
+<li><p>因為這裡不使用LineageOS官方的repo，所以將檔案網址修改如下。最後一行<code>$_config</code>下方的patch檔案名稱，代表編譯時要套用這些patch。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Source</span></span><br><span class="line">_repository=<span class="string">&quot;android_kernel_sony_sm8250_pdx206&quot;</span></span><br><span class="line">_commit=<span class="string">&quot;4e1d5cbb0f6723ecb01e4b9bca81420156cf5f65&quot;</span></span><br><span class="line">_config=<span class="string">&quot;config-<span class="variable">$_flavor</span>.<span class="variable">$arch</span>&quot;</span></span><br><span class="line"><span class="built_in">source</span>=<span class="string">&quot;</span></span><br><span class="line"><span class="string">	<span class="variable">$pkgname</span>-<span class="variable">$_commit</span>.tar.gz::https://github.com/EggOxygen/<span class="variable">$_repository</span>/archive/<span class="variable">$_commit</span>.tar.gz</span></span><br><span class="line"><span class="string">	<span class="variable">$_config</span></span></span><br><span class="line"><span class="string">	linux4.17-gcc10-extern_YYLOC_global_declaration.patch</span></span><br><span class="line"><span class="string">	0001-x86-boot-compressed-Don-t-declare-__force_order-in-k.patch</span></span><br><span class="line"><span class="string">&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>翻閱kerenl原始碼的repo，找到<code>MakeFile</code>檔案，按照裡面寫的<code>VERSION</code>和<code>PATCHLEVEL</code>和<code>SUBLEVEL</code>，在APKBUILDFILE的<code>pkg</code>填入版本號，例如這裡是4.19.81:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkgver=4.19.81</span><br></pre></td></tr></table></figure></li>
 <li><p>從kernel的repo找到<code>defconfig</code>，這是用來產生kernel的檔案。這裡位於位於<code>arch/aarch64/configs</code> ，並將其下載到工作目錄，重新命名為<code>config-機型名稱-代號-位元</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/EggOxygen/android_kernel_sony_sm8250_pdx206/blob/q/arch/arm64/Kconfig</span><br><span class="line">mv defconfig  config-sony+pdx206.aarch64</span><br></pre></td></tr></table></figure></li>
@@ -258,19 +264,19 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap checksum linux-sony-pdx206</span><br></pre></td></tr></table></figure></li>
 <li><p>開始編譯，用以下指令看看會不會出錯（編譯時可以開另一個終端機執行<code>pmboopmbootstrap log</code>看錯誤訊息）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap kconfig edit</span><br></pre></td></tr></table></figure></li>
-<li><p>這台機型預設會加入4個patch檔案，如果kconfig顯示<code>cannot apply patch</code>，就必須從APKFILE中的<code>$config</code>刪除檔名，並從工作目錄刪除該patch的檔案。</p>
+<li><p>這台機型預設會加入4個patch檔案，如果kconfig顯示<code>cannot apply patch</code>，就必須從APKFILE中的<code>$config</code>刪除檔名，並從工作目錄刪除該patch的檔案。如果編譯會出現<code>Please don&#39;t include linux directly</code>就在APKBUILDFILE最前面加入<code>REPLACE_GCCH=0</code>。</p>
 </li>
 <li><p>用kconfig檢查</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap kconfig check</span><br></pre></td></tr></table></figure></li>
-<li><p>kconfig檢查時可能會找不到python指令，要choot進去<code>/home/user/.local/var/pmbootstrap/chroot_native</code>，用<code>apk add python2</code>安裝python。</p>
-</li>
+<li><p>kconfig檢查時可能會找不到python指令，要到<code>/home/user/.local/var/pmbootstrap/chroot_native</code>目錄，用chroot安裝python2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chroot .</span><br><span class="line">apk add python2</span><br></pre></td></tr></table></figure></li>
 <li><p>kconfig如果check失敗，再跑一次<code>pmbootstrap kconfig edit</code>，去<a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Kernel_configuration">WIKI</a>翻那些黃色WARNING的解釋。<br><img src="https://i.postimg.cc/WzstLfKH/2021-12-14_23-55-23_%E7%9A%84%E8%9E%A2%E5%B9%95%E6%93%B7%E5%9C%96.png"></p>
 </li>
 <li><p>按照Wiki指示，從kconfig的圖形界面去選項裡面啟用或停用。 改到<code>pmbootstrap kconfig check</code>回傳<code>succeeded!</code>為止。<br><img src="https://i.postimg.cc/cCTCsBG4/2021-12-15-00-00-11.png"></p>
 </li>
 <li><p>接著開始建立kernel，若出現錯誤可用grep指令於其他機型找相似錯誤訊息，將其patch檔加到這台手機的APKBUILDFILE，這裡我借了2個patch來修正錯誤: <code>linux4.17-gcc10-extern_YYLOC_global_declaration.patch</code>和<code>0001-x86-boot-compressed-Don-t-declare-__force_order-in-k.patch</code>。若有新增或刪除patch，都要重新<code>pmbootstrap checksum linux-sony-pdx206</code>一次後才可以重新build。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap build linux-sony-pdx206 </span><br></pre></td></tr></table></figure>
-<p><font color=#FF0000>========現在我卡在這邊，套用2個patch後還有<code>Please don&#39;t include compiler-gcc.h directly</code>的錯誤未解決。以下的內容都是按照wiki理想狀況寫的。=========</font></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap build linux-sony-pdx206</span><br><span class="line"><span class="comment">#如果想自己改原始kernel的原始程式碼，可以在build的時候加上src的參數改從自己解壓縮的檔案來編譯:</span></span><br><span class="line">pmbootstrap build linux-sony-pdx206 --src=kernel的目錄</span><br></pre></td></tr></table></figure>
+<p><font color=#FF0000>========現在我卡在這邊，套用2個patch後還有很多編譯錯誤未解決。以下的內容都是按照wiki理想狀況寫的。=========</font></p>
 </li>
 <li><p>編譯成功後，最後是到目錄<code>device-sony-pdx206</code>按照手機的解析度修改設定:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim deviceinfo</span><br><span class="line"><span class="comment">#deviceinfo_screen_width填1080，deviceinfo_screen_height填2520。</span></span><br></pre></td></tr></table></figure></li>
