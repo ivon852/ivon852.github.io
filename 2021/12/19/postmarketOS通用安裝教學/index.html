@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="40BrRbJXIBcAXQMNbnj7c8OLT-6rHPy7ur7YTDRhNf0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="這篇文章是postmarketOS的通用安裝教學，大部分的機型都能夠按照此步驟操作，將postmarketOS安裝至手機上，鮮少需要另外打patch的。 大部分的問題在postmarketOS WIKI都有解答。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="postmarketOS通用安裝教學">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/index.html">
+<meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="這篇文章是postmarketOS的通用安裝教學，大部分的機型都能夠按照此步驟操作，將postmarketOS安裝至手機上，鮮少需要另外打patch的。 大部分的問題在postmarketOS WIKI都有解答。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.postimg.cc/j5RHc39B/1024px-Postmarket-OS-logo-svg.png">
+<meta property="article:published_time" content="2021-12-19T15:12:00.000Z">
+<meta property="article:modified_time" content="2021-12-19T16:14:03.661Z">
+<meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.postimg.cc/j5RHc39B/1024px-Postmarket-OS-logo-svg.png">
+
+<link rel="canonical" href="https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>postmarketOS通用安裝教學 | Ivon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ivon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享所學電腦技術。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>網站地圖</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          postmarketOS通用安裝教學
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-12-19 23:12:00" itemprop="dateCreated datePublished" datetime="2021-12-19T23:12:00+08:00">2021-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-20 00:14:03" itemprop="dateModified" datetime="2021-12-20T00:14:03+08:00">2021-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/19/postmarketOS通用安裝教學/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>這篇文章是postmarketOS的通用安裝教學，大部分的機型都能夠按照此步驟操作，將postmarketOS安裝至手機上，鮮少需要另外打patch的。</p>
+<p>大部分的問題在<a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Installation_guide">postmarketOS WIKI</a>都有解答。<br><img src="https://i.postimg.cc/j5RHc39B/1024px-Postmarket-OS-logo-svg.png"></p>
+<span id="more"></span>
+
+<h2 id="一、什麼是postmarketOS"><a href="#一、什麼是postmarketOS" class="headerlink" title="一、什麼是postmarketOS"></a>一、什麼是postmarketOS</h2><p>Android基於Linux的內核研發而來，但是不能算是Linux系統。postmarketOS則是基於Alpine Linux，跟Ubuntu touch一樣，旨在為行動作業系統提供另一種選擇，將真正的開源Linux發行版安裝到裝置上，並提供長達10年的系統更新，並希望能儘量使用Mainline kernel。</p>
+<p>由於鎖定的目標是過季裝置，所以百款以上的舊型手機，如Nexus 5、Samsung i9100都有支援；近期的機型如Pocofone F1亦有人移植。</p>
+<p>目前postmarketOS不適合當作主力系統，硬體相容性較好的主要為開源手機，例如Pine Phone或Purism Librem；還有一加、小米之類對開發者友善的品牌機型。</p>
+<h2 id="二、系統要求"><a href="#二、系統要求" class="headerlink" title="二、系統要求"></a>二、系統要求</h2><p>確保你有Android刷機相關的知識，知道如何解鎖bootloader、刷入ROM、使用第三方Recovery，並懂得如何使用Linux系統。</p>
+<p>準備好安裝postmarketOS到你的手機了? 先到<a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Devices">postmarketOS WIKI</a>瀏覽看看你的機型是否有在裡面。沒有的話你也可以嘗試自行移植。</p>
+<p>安裝的過程你必須手動建立安裝檔(或者可理解為刷機包)，所以必須要有一台64位元Linux電腦，虛擬機也可以，WSL不建議。</p>
+<p>這裡以<code>Ubuntu 20.04</code>為例，電腦規格i5-7400 + 16 GB RAM。手機則是<code>紅米Note 5</code>，已解鎖bootloader，安裝TWRP作為Recovery。</p>
+<h2 id="三、安裝pmbootstrap"><a href="#三、安裝pmbootstrap" class="headerlink" title="三、安裝pmbootstrap"></a>三、安裝pmbootstrap</h2><p>pmbootstrap是pmOS官方的工具，除了建立安裝檔案以外，亦能進行移植工作。</p>
+<ol>
+<li><p>在Linux上安裝pmboostrap：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --user pmbootstrap</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure></li>
+<li><p>安裝自動補完</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-argcomplete</span><br></pre></td></tr></table></figure></li>
+<li><p>在bash shell的設定檔~/.bashrc加入以下內容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;/ &gt; ~/.bashrc</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="四、選擇你的機型並設定選項"><a href="#四、選擇你的機型並設定選項" class="headerlink" title="四、選擇你的機型並設定選項"></a>四、選擇你的機型並設定選項</h2><ol>
+<li><p>pmbootstrap在安裝時會從Gitlab上下載最新版，裡面包含各種機型的設定檔。首先初始化pmbootstrap:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap init</span><br><span class="line"><span class="comment">#按Enter使用預設工作目錄 (/home/user/.local/var/pmbootstrap)</span></span><br><span class="line">Work path: Enter</span><br><span class="line"><span class="comment">#更新頻道選擇edge</span></span><br><span class="line">Channel: edge</span><br><span class="line"><span class="comment">#Vendor為手機廠牌</span></span><br><span class="line">Vendor: xiaomi</span><br><span class="line"><span class="comment">#選擇手機的代號</span></span><br><span class="line">Device codename: whyred</span><br><span class="line"><span class="comment">#建立pmOS的使用者帳戶</span></span><br><span class="line">Username: User</span><br><span class="line"><span class="comment">#選擇桌面環境，xfce4最安全，但建議使用觸控筆。</span></span><br><span class="line">User Interface: xfce4</span><br></pre></td></tr></table></figure></li>
+<li><p>這就是每次建立對應機型的安裝檔要先做的工作，你必須告訴pmbootstrap你的pmOS應該長什麼樣子，才能開始建立安裝檔案。</p>
+</li>
+</ol>
+<h2 id="五、選擇安裝postmarketOS到手機的方法"><a href="#五、選擇安裝postmarketOS到手機的方法" class="headerlink" title="五、選擇安裝postmarketOS到手機的方法"></a>五、選擇安裝postmarketOS到手機的方法</h2><p>這個步驟就要建立安裝檔案了，有3種安裝postmarketOS的方法:</p>
+<ol>
+<li>安裝至SD卡 (不會影響到原有手機系統)</li>
+<li>用fastboot刷入 (需清除資料)</li>
+<li>用刷機包刷入 (需清除資料)</li>
+</ol>
+<h3 id="5-1-安裝至SD卡"><a href="#5-1-安裝至SD卡" class="headerlink" title="5.1. 安裝至SD卡"></a>5.1. 安裝至SD卡</h3><p>這個方法不會修改手機的資料，可以做雙系統，但是開機需要靠電腦下指令才能進入pmOS。</p>
+<ol>
+<li><p>SD卡插到電腦，用指令lsblk確定SD卡的掛載點：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdb      8:16   1  29.7G  0 disk /media/ivon/E8D8-4246</span><br></pre></td></tr></table></figure></li>
+<li><p>先取消掛載</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /media/ivon/E8D8-4246</span><br></pre></td></tr></table></figure></li>
+<li><p>然後再開始安裝</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap install --sdcard=/dev/sdb</span><br></pre></td></tr></table></figure></li>
+<li><p>pmbootstrap會自動格式化SD卡，並將系統安裝進去。過程中會要求建立使用者密碼，並會再確認是否要將SD卡格式化。</p>
+</li>
+<li><p>接著把SD卡裝到手機，讓手機進入fastboot模式，接到電腦，下指令開機:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap flasher boot</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="5-2-用fastboot刷入"><a href="#5-2-用fastboot刷入" class="headerlink" title="5.2. 用fastboot刷入"></a>5.2. 用fastboot刷入</h3><p>標準作法，這個方法將清除手機所有的資料。</p>
+<ol>
+<li><p>手機進入fastboot模式，接到電腦:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap flasher flash_rootfs</span><br></pre></td></tr></table></figure></li>
+<li><p>如果還是開不了機，就要刷入kernel:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap flasher flash_kernel</span><br><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="5-3-用刷機包安裝"><a href="#5-3-用刷機包安裝" class="headerlink" title="5.3. 用刷機包安裝"></a>5.3. 用刷機包安裝</h3><p>這個方法將清除手機所有的資料，可sideload或者傳輸刷機包到手機上再用TWRP安裝。</p>
+<ol>
+<li><p> 建立刷機包，大約5分鐘。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap install --android-recovery-zip</span><br><span class="line"><span class="comment">#(選擇性)如果要安裝到其他較大的分區，可以加上--partition的選項</span></span><br><span class="line">pmbootstrap install --android-recovery-zip</span><br><span class="line"> --recovery-install-partition=data</span><br></pre></td></tr></table></figure></li>
+<li><p>手機接上電腦，開機進入TWRP。從電腦的工作目錄找到建立的<code>pmos-*.zip</code>刷機包。我的檔案是在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.<span class="built_in">local</span>/var/pmbootstrap/chroot\_buildroot\_aarch64/var/lib/postmarketos-android-recovery-installer</span><br></pre></td></tr></table></figure></li>
+<li><p>將檔案傳到手機，用TWRP安裝，之後重新開機。</p>
+</li>
+</ol>
+<h2 id="六、安裝之後的設定"><a href="#六、安裝之後的設定" class="headerlink" title="六、安裝之後的設定"></a>六、安裝之後的設定</h2><p>開機後就算無法進入桌面，連著電腦的況下，也能用ssh連線到手機:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@172.16.42.1</span><br></pre></td></tr></table></figure>
+
+<p>如果順利看到postmarektOS的logo並進入桌面，就是大功告成。這一節簡介一些常用設定。</p>
+<p>如果你選擇的桌面是xfce4，那麼在點選輸入框時都會跳出螢幕小鍵盤。一般來說，如果裝置的WIFI正常運作的話，我會做如下設定:</p>
+<ol>
+<li><p>設定網路</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看附近的WIFI</span></span><br><span class="line">sudo nmcli device wifi list ifname wlan0</span><br><span class="line"><span class="comment">#連線至WIFI(SSID就是WIFI顯示的名稱，PASSWORD就是密碼，記得要用引號)</span></span><br><span class="line">sudo nmcli device wifi connect <span class="string">&quot;<span class="variable">$SSID</span>&quot;</span> password <span class="string">&quot;<span class="variable">$PASSWORD</span>&quot;</span> ifname <span class="string">&quot;wlan0&quot;</span></span><br><span class="line"><span class="comment">#設定開機自動連線</span></span><br><span class="line">sudo nmcli device <span class="built_in">set</span> <span class="string">&quot;wlan0&quot;</span> autoconnect yes</span><br></pre></td></tr></table></figure></li>
+<li><p>開機自動啟動ssh服務&amp;關閉DNS，這樣就可以透過電腦連線到手機了:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查看本機IP</span><br><span class="line">ifconfig</span><br><span class="line">sudo rc-service sshd start</span><br><span class="line">echo “UseDNS no” &gt;  /etc/ssh/sshd_config</span><br><span class="line">sudo rc-update add sshd</span><br></pre></td></tr></table></figure></li>
+<li><p>關機指令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo poweroff now。</span><br></pre></td></tr></table></figure></li>
+<li><p>設定VNC Server，再用電腦VNC Viewer連線到手機:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apk add x11vnc</span><br><span class="line"><span class="comment">#建立密碼</span></span><br><span class="line">x11vnc -storepasswd</span><br><span class="line"><span class="comment">#啟動vnc，預設port是5900。</span></span><br><span class="line">x11vnc</span><br></pre></td></tr></table></figure></li>
+<li><p>針對XFCE4: 在搜尋框輸入screensaver，將啟動螢幕保護時間的時間拉長或者關閉。因為pmOS還不成熟，一旦螢幕保護程式啟動手機會無法觸控。</p>
+</li>
+</ol>
+<h2 id="七、相關參考資源"><a href="#七、相關參考資源" class="headerlink" title="七、相關參考資源"></a>七、相關參考資源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Main_Page">postmarketOS WIKI</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Category:Community">postmarektOS的討論社群</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/19/Android%E6%89%8B%E6%A9%9F%E5%9F%B7%E8%A1%8Cdocker/" rel="prev" title="Android手機執行Docker">
+      <i class="fa fa-chevron-left"></i> Android手機執行Docker
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E9%BA%BC%E6%98%AFpostmarketOS"><span class="nav-number">1.</span> <span class="nav-text">一、什麼是postmarketOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%B5%B1%E8%A6%81%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">二、系統要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%9Dpmbootstrap"><span class="nav-number">3.</span> <span class="nav-text">三、安裝pmbootstrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%81%B8%E6%93%87%E4%BD%A0%E7%9A%84%E6%A9%9F%E5%9E%8B%E4%B8%A6%E8%A8%AD%E5%AE%9A%E9%81%B8%E9%A0%85"><span class="nav-number">4.</span> <span class="nav-text">四、選擇你的機型並設定選項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%81%B8%E6%93%87%E5%AE%89%E8%A3%9DpostmarketOS%E5%88%B0%E6%89%8B%E6%A9%9F%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">五、選擇安裝postmarketOS到手機的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%AE%89%E8%A3%9D%E8%87%B3SD%E5%8D%A1"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. 安裝至SD卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E7%94%A8fastboot%E5%88%B7%E5%85%A5"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. 用fastboot刷入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E7%94%A8%E5%88%B7%E6%A9%9F%E5%8C%85%E5%AE%89%E8%A3%9D"><span class="nav-number">5.3.</span> <span class="nav-text">5.3. 用刷機包安裝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AE%89%E8%A3%9D%E4%B9%8B%E5%BE%8C%E7%9A%84%E8%A8%AD%E5%AE%9A"><span class="nav-number">6.</span> <span class="nav-text">六、安裝之後的設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%9B%B8%E9%97%9C%E5%8F%83%E8%80%83%E8%B3%87%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">七、相關參考資源</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ivon Huang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivon Huang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ivons-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/";
+    this.page.identifier = "2021/12/19/postmarketOS通用安裝教學/";
+    this.page.title = "postmarketOS通用安裝教學";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ivons-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
