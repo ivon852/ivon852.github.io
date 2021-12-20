@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.postimg.cc/rm678bQD/Screenshot-20211219-140212-1.png">
 <meta property="og:image" content="https://i.postimg.cc/HxQRj2hB/Screenshot-20211219-140212.png">
 <meta property="article:published_time" content="2021-12-19T13:05:00.000Z">
-<meta property="article:modified_time" content="2021-12-19T13:09:01.465Z">
+<meta property="article:modified_time" content="2021-12-20T16:21:14.740Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
@@ -184,10 +184,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-12-19 21:05:00 / 修改時間：21:09:01" itemprop="dateCreated datePublished" datetime="2021-12-19T21:05:00+08:00">2021-12-19</time>
+              <time title="創建時間：2021-12-19 21:05:00" itemprop="dateCreated datePublished" datetime="2021-12-19T21:05:00+08:00">2021-12-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-21 00:21:14" itemprop="dateModified" datetime="2021-12-21T00:21:14+08:00">2021-12-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -244,7 +250,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 1024 -smp cpus=2 -cpu qemu64 \</span><br><span class="line">  -drive <span class="keyword">if</span>=pflash,format=raw,read-only,file=<span class="variable">$PREFIX</span>/share/qemu/edk2-x86_64-code.fd \</span><br><span class="line">  -netdev user,id=n1,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1 \</span><br><span class="line">  -cdrom alpine-virt-3.12.3-x86_64.iso \</span><br><span class="line">  -nographic alpine.img</span><br></pre></td></tr></table></figure></li>
 <li><p>使用<code>root</code>帳號登入，啟用網路卡。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setup-interfaces</span><br><span class="line"><span class="comment">#Available interfaces are: eth0.</span></span><br><span class="line"><span class="comment">#Enter &#x27;?&#x27; for help on bridges, bonding and vlans.</span></span><br><span class="line"><span class="comment">#Which one do you want to initialize? (or &#x27;?&#x27; or &#x27;done&#x27;) [eth0] </span></span><br><span class="line"><span class="comment">#Ip address for eth0? (or &#x27;dhcp&#x27;, &#x27;none&#x27;, &#x27;?&#x27;) [dhcp] </span></span><br><span class="line"><span class="comment">#Do you want to do any manual network configuration? [no] </span></span><br><span class="line">ifup eth0</span><br></pre></td></tr></table></figure></li>
-<li><p>使用offfnikj準備好的answerfile安裝系統</p>
+<li><p>使用oofnikj準備好的answerfile安裝系統</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://gist.githubusercontent.com/oofnikj/e79aef095cd08756f7f26ed244355d62/raw/answerfile</span><br></pre></td></tr></table></figure></li>
 <li><p>讓開機時能輸出訊息</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i -E <span class="string">&#x27;s/(local kernel_opts)=.*/\1=&quot;console=ttyS0&quot;/&#x27;</span> /sbin/setup-disk</span><br></pre></td></tr></table></figure></li>
@@ -379,7 +385,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
