@@ -30,10 +30,10 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.postimg.cc/RVtZb9rf/DSC-0027.jpg">
 <meta property="article:published_time" content="2021-12-12T01:12:00.000Z">
-<meta property="article:modified_time" content="2021-12-12T13:14:41.810Z">
+<meta property="article:modified_time" content="2021-12-20T01:26:56.228Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.postimg.cc/RVtZb9rf/DSC-0027.jpg">
 
@@ -183,10 +183,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-12-12 09:12:00 / 修改時間：21:14:41" itemprop="dateCreated datePublished" datetime="2021-12-12T09:12:00+08:00">2021-12-12</time>
+              <time title="創建時間：2021-12-12 09:12:00" itemprop="dateCreated datePublished" datetime="2021-12-12T09:12:00+08:00">2021-12-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-20 09:26:56" itemprop="dateModified" datetime="2021-12-20T09:26:56+08:00">2021-12-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -227,14 +233,14 @@
 <span id="more"></span>
 
 <p><img src="https://i.postimg.cc/RVtZb9rf/DSC-0027.jpg"></p>
-<h2 id="編譯＆安裝"><a href="#編譯＆安裝" class="headerlink" title="編譯＆安裝"></a>編譯＆安裝</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用pip安裝pmbootstrap</span></span><br><span class="line">pip3 install --user pmbootstrap</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br><span class="line">sudo apt install python3-argcomplete  </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;&#x27;</span> &gt; ~/.bashrc</span><br><span class="line"><span class="comment">#選擇機型與桌面環境</span></span><br><span class="line">pmbootstrap init</span><br><span class="line"><span class="comment">#使用預設工作目錄 (/home/user/.local/var/pmbootstrap)</span></span><br><span class="line">Work path: Enter</span><br><span class="line">Channel: edge  </span><br><span class="line">Vendor: asus</span><br><span class="line"><span class="comment">#z00t是Zenfone 2 Laser，跟Selfie通用</span></span><br><span class="line">Device codename: z00t</span><br><span class="line">Username: user</span><br><span class="line">User Interface: xfce4</span><br><span class="line"><span class="comment">#剩下全Enter</span></span><br><span class="line"><span class="comment">#開始建立刷機包，過程會要求建立使用者密碼，編譯大約需要10分鐘。</span></span><br><span class="line">pmbootstrap install --android-recovery-zip</span><br><span class="line"><span class="comment">#關閉pmbootstrap</span></span><br><span class="line">pmbootstrap shutdown</span><br><span class="line"><span class="comment">#將建立的刷機包(~/.local/var/pmbootstrap/chroot\_buildroot\_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-asus-z00t.zip)複製到手機，用TWRP刷入。</span></span><br></pre></td></tr></table></figure>
+<h2 id="編譯＆安裝"><a href="#編譯＆安裝" class="headerlink" title="編譯＆安裝"></a>編譯＆安裝</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用pip安裝pmbootstrap</span></span><br><span class="line">pip3 install --user pmbootstrap</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br><span class="line">sudo apt install python3-argcomplete  </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment">#選擇機型與桌面環境</span></span><br><span class="line">pmbootstrap init</span><br><span class="line"><span class="comment">#使用預設工作目錄 (/home/user/.local/var/pmbootstrap)</span></span><br><span class="line">Work path: Enter</span><br><span class="line">Channel: edge  </span><br><span class="line">Vendor: asus</span><br><span class="line"><span class="comment">#z00t是Zenfone 2 Laser，跟Selfie通用</span></span><br><span class="line">Device codename: z00t</span><br><span class="line">Username: user</span><br><span class="line">User Interface: xfce4</span><br><span class="line"><span class="comment">#剩下全Enter</span></span><br><span class="line"><span class="comment">#開始建立刷機包，過程會要求建立使用者密碼，編譯大約需要10分鐘。</span></span><br><span class="line">pmbootstrap install --android-recovery-zip</span><br><span class="line"><span class="comment">#關閉pmbootstrap</span></span><br><span class="line">pmbootstrap shutdown</span><br><span class="line"><span class="comment">#將建立的刷機包(~/.local/var/pmbootstrap/chroot\_buildroot\_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-asus-z00t.zip)複製到手機，用TWRP刷入。</span></span><br></pre></td></tr></table></figure>
 
 <p>預設是安裝到data分區，或者參考<a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Dual_Booting">官方說明</a>安裝至SD卡並用電腦指令啟動。</p>
 <h2 id="一些基本設定"><a href="#一些基本設定" class="headerlink" title="一些基本設定"></a>一些基本設定</h2><p>預設滑鼠可以用觸控操作，在打字的地方會自動彈出鍵盤。<br>這支手機支援WIFI，先用終端機連線上網。或者直接拿OTG接網路線也可以。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看附近的WIFI</span></span><br><span class="line">sudo nmcli device wifi list ifname wlan0</span><br><span class="line"><span class="comment">#連線至WIFI(SSID就是WIFI顯示的名稱，PASSWORD就是密碼，記得要用引號)</span></span><br><span class="line">sudo nmcli device wifi connect <span class="string">&quot;<span class="variable">$SSID</span>&quot;</span> password <span class="string">&quot;<span class="variable">$PASSWORD</span>&quot;</span> ifname <span class="string">&quot;wlan0&quot;</span></span><br><span class="line"><span class="comment">#設定開機自動連線</span></span><br><span class="line">sudo nmcli device <span class="built_in">set</span> <span class="string">&quot;wlan0&quot;</span> autoconnect yes</span><br></pre></td></tr></table></figure>
 
 <p>開機自動啟動ssh服務&amp;關閉DNS:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看本機IP</span></span><br><span class="line">ifconfig</span><br><span class="line">sudo rc-service sshd start</span><br><span class="line"><span class="built_in">echo</span> “UseDNS no” &gt;  /etc/ssh/sshd_config</span><br><span class="line">sudo rc-update add sshd</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看本機IP</span></span><br><span class="line">ifconfig</span><br><span class="line">sudo rc-service sshd start</span><br><span class="line"><span class="built_in">echo</span> “UseDNS no” &gt;&gt;  /etc/ssh/sshd_config</span><br><span class="line">sudo rc-update add sshd</span><br></pre></td></tr></table></figure>
 
 <p>這樣就可以透過電腦連線到手機了。<br>關機指令是<code>sudo poweroff now</code>。</p>
 <h2 id="連線到桌面"><a href="#連線到桌面" class="headerlink" title="連線到桌面"></a>連線到桌面</h2><p>這支MicrosUSB要外接螢幕比較麻煩，所以用桌電VNC Viewer連線到手機比較省事。</p>
@@ -253,8 +259,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         

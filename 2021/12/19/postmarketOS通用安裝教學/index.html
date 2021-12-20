@@ -30,10 +30,10 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.postimg.cc/j5RHc39B/1024px-Postmarket-OS-logo-svg.png">
 <meta property="article:published_time" content="2021-12-19T15:12:00.000Z">
-<meta property="article:modified_time" content="2021-12-19T16:17:09.937Z">
+<meta property="article:modified_time" content="2021-12-20T01:26:41.612Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.postimg.cc/j5RHc39B/1024px-Postmarket-OS-logo-svg.png">
 
@@ -191,7 +191,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-20 00:17:09" itemprop="dateModified" datetime="2021-12-20T00:17:09+08:00">2021-12-20</time>
+                <time title="修改時間：2021-12-20 09:26:41" itemprop="dateModified" datetime="2021-12-20T09:26:41+08:00">2021-12-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
 <li><p>安裝自動補完</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-argcomplete</span><br></pre></td></tr></table></figure></li>
 <li><p>在bash shell的設定檔~/.bashrc加入以下內容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;/ &gt; ~/.bashrc</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="四、選擇你的機型並設定選項"><a href="#四、選擇你的機型並設定選項" class="headerlink" title="四、選擇你的機型並設定選項"></a>四、選擇你的機型並設定選項</h2><ol>
 <li><p>pmbootstrap在安裝時會從Gitlab上下載最新版，裡面包含各種機型的設定檔。首先初始化pmbootstrap:</p>
@@ -298,7 +298,7 @@
 <li><p>設定網路</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看附近的WIFI</span></span><br><span class="line">sudo nmcli device wifi list ifname wlan0</span><br><span class="line"><span class="comment">#連線至WIFI(SSID就是WIFI顯示的名稱，PASSWORD就是密碼，記得要用引號)</span></span><br><span class="line">sudo nmcli device wifi connect <span class="string">&quot;<span class="variable">$SSID</span>&quot;</span> password <span class="string">&quot;<span class="variable">$PASSWORD</span>&quot;</span> ifname <span class="string">&quot;wlan0&quot;</span></span><br><span class="line"><span class="comment">#設定開機自動連線</span></span><br><span class="line">sudo nmcli device <span class="built_in">set</span> <span class="string">&quot;wlan0&quot;</span> autoconnect yes</span><br></pre></td></tr></table></figure></li>
 <li><p>開機自動啟動ssh服務&amp;關閉DNS，這樣就可以透過電腦連線到手機了:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查看本機IP</span><br><span class="line">ifconfig</span><br><span class="line">sudo rc-service sshd start</span><br><span class="line">echo “UseDNS no” &gt;  /etc/ssh/sshd_config</span><br><span class="line">sudo rc-update add sshd</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查看本機IP</span><br><span class="line">ifconfig</span><br><span class="line">sudo rc-service sshd start</span><br><span class="line">echo “UseDNS no” &gt;&gt;  /etc/ssh/sshd_config</span><br><span class="line">sudo rc-update add sshd</span><br></pre></td></tr></table></figure></li>
 <li><p>關機指令:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo poweroff now。</span><br></pre></td></tr></table></figure></li>
 <li><p>設定VNC Server，再用電腦VNC Viewer連線到手機:</p>
@@ -319,8 +319,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         

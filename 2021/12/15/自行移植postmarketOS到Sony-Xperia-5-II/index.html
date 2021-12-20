@@ -31,10 +31,10 @@
 <meta property="og:image" content="https://i.postimg.cc/WzstLfKH/2021-12-14_23-55-23_%E7%9A%84%E8%9E%A2%E5%B9%95%E6%93%B7%E5%9C%96.png">
 <meta property="og:image" content="https://i.postimg.cc/cCTCsBG4/2021-12-15-00-00-11.png">
 <meta property="article:published_time" content="2021-12-15T04:21:00.000Z">
-<meta property="article:modified_time" content="2021-12-19T13:21:04.548Z">
+<meta property="article:modified_time" content="2021-12-20T01:26:07.378Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.postimg.cc/WzstLfKH/2021-12-14_23-55-23_%E7%9A%84%E8%9E%A2%E5%B9%95%E6%93%B7%E5%9C%96.png">
 
@@ -192,7 +192,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-19 21:21:04" itemprop="dateModified" datetime="2021-12-19T21:21:04+08:00">2021-12-19</time>
+                <time title="修改時間：2021-12-20 09:26:07" itemprop="dateModified" datetime="2021-12-20T09:26:07+08:00">2021-12-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,7 +241,7 @@
 <ol>
 <li>需先安裝相關套件:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3 openssl python-pip3 git</span><br></pre></td></tr></table></figure></li>
 <li>用pip安裝pmbootstrap並重新整理:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --user pmbootstrap</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure></li>
-<li>安裝自動補完，加到.bashrc:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-argcomplete</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;&#x27;</span> &gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></li>
+<li>安裝自動補完，加到.bashrc:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-argcomplete</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>如果安裝後輸入<code>pmbootstrap</code>還是顯示找不到指令，可能要先登出再登入。</p>
 <h2 id="設定基本參數"><a href="#設定基本參數" class="headerlink" title="設定基本參數"></a>設定基本參數</h2><ol>
@@ -305,8 +305,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         
