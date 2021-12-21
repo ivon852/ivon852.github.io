@@ -21,30 +21,26 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2021年的E-hentai (e紳士、傷心熊貓)閱讀軟體。">
+  <meta name="description" content="Anbox是Ubuntu母公司Canonical開發的容器程式，可以在Linux系統執行Android APP，支援x86及ARM架構的設備。此外透過轉譯器，即使是x86電腦也能執行ARM的APP。本文介紹如何安裝Anbox ＋ Google Play商店。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS上E-hentai: EhPanda">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/index.html">
+<meta property="og:title" content="Linux電腦跑Android程式: Anbox">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="2021年的E-hentai (e紳士、傷心熊貓)閱讀軟體。">
+<meta property="og:description" content="Anbox是Ubuntu母公司Canonical開發的容器程式，可以在Linux系統執行Android APP，支援x86及ARM架構的設備。此外透過轉譯器，即使是x86電腦也能執行ARM的APP。本文介紹如何安裝Anbox ＋ Google Play商店。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/jdxw84y.png">
-<meta property="og:image" content="https://i.imgur.com/BcQ7LiR.png">
-<meta property="og:image" content="https://i.imgur.com/JWZQDzc.png">
-<meta property="og:image" content="https://i.imgur.com/LmsxyiH.png">
-<meta property="og:image" content="https://i.imgur.com/GK1IVJ3.png">
-<meta property="og:image" content="https://i.imgur.com/PLQ83x3.png">
-<meta property="og:image" content="https://i.imgur.com/73X72tB.png">
-<meta property="og:image" content="https://i.imgur.com/zXvGyh2.png">
-<meta property="og:image" content="https://i.imgur.com/HYB6C0N.png">
-<meta property="article:published_time" content="2021-12-06T18:43:00.000Z">
-<meta property="article:modified_time" content="2021-12-15T05:03:38.930Z">
+<meta property="og:image" content="https://i.postimg.cc/44zNRSPL/1031px-Anbox-logo-svg.png">
+<meta property="og:image" content="https://i.postimg.cc/MG2M6Sy4/2021-12-21-17-00-15.png">
+<meta property="og:image" content="https://i.postimg.cc/zBS0SNwH/2021-12-21-17-17-02.png">
+<meta property="og:image" content="https://i.postimg.cc/GpDMtGHQ/2021-12-21-17-20-07.png">
+<meta property="article:published_time" content="2021-12-21T09:41:00.000Z">
+<meta property="article:modified_time" content="2021-12-21T09:42:51.399Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/jdxw84y.png">
+<meta name="twitter:image" content="https://i.postimg.cc/44zNRSPL/1031px-Anbox-logo-svg.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/">
 
 
 <script id="page-configurations">
@@ -57,7 +53,7 @@
   };
 </script>
 
-  <title>iOS上E-hentai: EhPanda | Ivon's Blog</title>
+  <title>Linux電腦跑Android程式: Anbox | Ivon's Blog</title>
   
 
 
@@ -168,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          iOS上E-hentai: EhPanda
+          Linux電腦跑Android程式: Anbox
         </h1>
 
         <div class="post-meta">
@@ -190,23 +186,17 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-12-07 02:43:00" itemprop="dateCreated datePublished" datetime="2021-12-07T02:43:00+08:00">2021-12-07</time>
+              <time title="創建時間：2021-12-21 17:41:00 / 修改時間：17:42:51" itemprop="dateCreated datePublished" datetime="2021-12-21T17:41:00+08:00">2021-12-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-15 13:03:38" itemprop="dateModified" datetime="2021-12-15T13:03:38+08:00">2021-12-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8B%95%E6%BC%AB/" itemprop="url" rel="index"><span itemprop="name">動漫</span></a>
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
                 </span>
             </span>
 
@@ -219,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/07/在iOS上E-hentai-EhPanda/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/21/Linux電腦跑Android程式-Anbox/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -235,26 +225,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>2021年的E-hentai (e紳士、傷心熊貓)閱讀軟體。<br><img src="https://i.imgur.com/jdxw84y.png"></p>
+        <p>Anbox是Ubuntu母公司Canonical開發的容器程式，可以在Linux系統執行Android APP，支援x86及ARM架構的設備。<br>此外透過轉譯器，即使是x86電腦也能執行ARM的APP。<br>本文介紹如何安裝Anbox ＋ Google Play商店。</p>
+<p><img src="https://i.postimg.cc/44zNRSPL/1031px-Anbox-logo-svg.png"></p>
 <span id="more"></span>
-<p>這個App安裝方式比較簡單，不用越獄，透過AltStore安裝ipa即可。<br>支援中文、歷史紀錄、查看雲端收藏內容，看過的圖片會自動快取到本機，但不能預先下載，只能下載到H&amp;H。如果曾給站方捐款過，則直接用表站的帳號登入就可以；當然也支援裏站，會自動抓取登入後的cookie。</p>
-<p>要求iOS 14以上，即iPhone 6s以後的機型。</p>
-<h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/tatsuz0u/EhPanda">Github</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/tatsuz0u/EhPanda/releases">下載ipa</a></li>
-</ul>
-<p>點開最新版本的“Assets”，下載<code>.ipa</code>結尾的檔案。</p>
-<ol>
-<li><p>請先看如何安裝AltStore: <a href="https://ivon852.github.io/2021/12/06/AltStore%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">AltStore安裝教學</a></p>
+
+<h2 id="安裝Anbox"><a href="#安裝Anbox" class="headerlink" title="安裝Anbox"></a>安裝Anbox</h2><ol>
+<li><p>Ubuntu 20.04不需額外安裝kernel模塊，可直接使用Snap安裝Anbox:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install --devmode --beta anbox</span><br><span class="line">sudo apt install android-tools-adb</span><br></pre></td></tr></table></figure></li>
+<li><p>接著就能在應用程式列表看到Anbox Application Manager，裡面有預先安裝的APP列表。<br><img src="https://i.postimg.cc/MG2M6Sy4/2021-12-21-17-00-15.png"></p>
 </li>
-<li><p>在iPhone上下載ipa檔案，手機連著電腦，確認AltServer有在運作，直接安裝這個ipa檔案。<br><img src="https://i.imgur.com/BcQ7LiR.png"></p>
+<li><p>日後要啟動Application Manage的指令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anbox.appmgr</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Anbox使用指令安裝APK"><a href="#Anbox使用指令安裝APK" class="headerlink" title="Anbox使用指令安裝APK"></a>Anbox使用指令安裝APK</h2><p>安裝之後會出現在系統APP列表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install &lt;my-app.apk&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Anbox安裝Google-Play和ARM轉譯器-houdini"><a href="#Anbox安裝Google-Play和ARM轉譯器-houdini" class="headerlink" title="Anbox安裝Google Play和ARM轉譯器(houdini)"></a>Anbox安裝Google Play和ARM轉譯器(houdini)</h2><ol>
+<li><p>使用<a target="_blank" rel="noopener" href="https://github.com/geeks-r-us/anbox-playstore-installer">geeks-r-us的腳本</a>安裝GAPPS:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lzip</span><br><span class="line">wget https://raw.githubusercontent.com/geeks-r-us/anbox-playstore-installer/master/install-playstore.sh | bash</span><br></pre></td></tr></table></figure></li>
+<li><p>開啟Application Manager，開啟系統設定，將<code>Play商店服務</code>與<code>Play商店</code>要求的權限全部開啟。<br><img src="https://i.postimg.cc/zBS0SNwH/2021-12-21-17-17-02.png"></p>
+</li>
+<li><p>這樣就可以登入Play商店了。不過就算裝了轉譯器，很多APP可能還是開不起來。<br><img src="https://i.postimg.cc/GpDMtGHQ/2021-12-21-17-20-07.png"></p>
 </li>
 </ol>
-<h2 id="功能介紹"><a href="#功能介紹" class="headerlink" title="功能介紹"></a>功能介紹</h2><p>從螢幕左邊喚出設定，點選設定，然後登入帳號。<br><img src="https://i.imgur.com/JWZQDzc.png"></p>
-<p>「搜尋框」可進行篩選<br><img src="https://i.imgur.com/LmsxyiH.png"></p>
-<p>「收藏」可檢視雲端收藏資料夾。「下載」為H&amp;H的下載記錄，「歷史」檢視本機閱讀記錄。<br><img src="https://i.imgur.com/GK1IVJ3.png"></p>
-<p>閱讀介面，使用SwiftUI，挺像App Store的。<br><img src="https://i.imgur.com/PLQ83x3.png"><br><img src="https://i.imgur.com/73X72tB.png"><br><img src="https://i.imgur.com/zXvGyh2.png"></p>
-<p>點選標籤可進行相關搜尋。<br><img src="https://i.imgur.com/HYB6C0N.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://anbox.io/">Anbox官網</a></li>
+</ul>
 
     </div>
 
@@ -264,7 +260,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
           </div>
 
         
@@ -273,12 +270,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/" rel="prev" title="取代KMSPico，改用HWID/KMS38來破解/啟動Windows">
-      <i class="fa fa-chevron-left"></i> 取代KMSPico，改用HWID/KMS38來破解/啟動Windows
+    <a href="/2021/12/21/%E5%AE%89%E8%A3%9DArch-Linux%E7%AD%86%E8%A8%98%E7%B4%80%E9%8C%84/" rel="prev" title="安裝Arch Linux筆記紀錄">
+      <i class="fa fa-chevron-left"></i> 安裝Arch Linux筆記紀錄
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/" rel="next" title="3D硬體加速的Proot Linux">
-      3D硬體加速的Proot Linux <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Waydroid/" rel="next" title="Linux電腦跑Android程式: Waydroid">
+      Linux電腦跑Android程式: Waydroid <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -345,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89"><span class="nav-number">1.</span> <span class="nav-text">下載</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.</span> <span class="nav-text">功能介紹</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DAnbox"><span class="nav-number">1.</span> <span class="nav-text">安裝Anbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anbox%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E5%AE%89%E8%A3%9DAPK"><span class="nav-number">2.</span> <span class="nav-text">Anbox使用指令安裝APK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anbox%E5%AE%89%E8%A3%9DGoogle-Play%E5%92%8CARM%E8%BD%89%E8%AD%AF%E5%99%A8-houdini"><span class="nav-number">3.</span> <span class="nav-text">Anbox安裝Google Play和ARM轉譯器(houdini)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -465,9 +462,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://ivon852.github.io/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/";
-    this.page.identifier = "2021/12/07/在iOS上E-hentai-EhPanda/";
-    this.page.title = "iOS上E-hentai: EhPanda";
+    this.page.url = "https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/";
+    this.page.identifier = "2021/12/21/Linux電腦跑Android程式-Anbox/";
+    this.page.title = "Linux電腦跑Android程式: Anbox";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
