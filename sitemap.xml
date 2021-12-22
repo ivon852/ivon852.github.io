@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2021/12/23/KDE-Connect%EF%BC%8C%E6%89%8B%E6%A9%9F%E5%92%8C%E9%9B%BB%E8%85%A6%E7%84%A1%E7%B7%9A%E4%BA%92%E5%82%B3%E8%B3%87%E6%96%99/</loc>
+    
+    <lastmod>2021-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2021/12/22/%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E8%A6%BA%E5%BE%97Android%E6%AF%94iOS%E9%81%A9%E5%90%88%E6%88%91/</loc>
     
     <lastmod>2021-12-22</lastmod>
@@ -245,14 +254,14 @@
 
   
   <url>
-    <loc>https://ivon852.github.io/tags/Linux/</loc>
+    <loc>https://ivon852.github.io/tags/Android/</loc>
     <lastmod>2021-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/Android/</loc>
+    <loc>https://ivon852.github.io/tags/Linux/</loc>
     <lastmod>2021-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -267,6 +276,13 @@
   
   <url>
     <loc>https://ivon852.github.io/tags/Windows/</loc>
+    <lastmod>2021-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/MacOS/</loc>
     <lastmod>2021-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
