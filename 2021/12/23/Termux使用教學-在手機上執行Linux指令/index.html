@@ -21,26 +21,30 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="AltStore可在iOS裝置安裝未經蘋果審核的第三方APP，例如去廣告的Youtube APP 「Cercube」。">
+  <meta name="description" content="Android作為類Linux系統，卻沒有終端機。而Termux這類終端機模擬器補全了這個缺口，不需要Root指令就可以使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AltStore安裝教學">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/06/AltStore%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/index.html">
+<meta property="og:title" content="Termux使用教學: 在手機上執行Linux指令">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="AltStore可在iOS裝置安裝未經蘋果審核的第三方APP，例如去廣告的Youtube APP 「Cercube」。">
+<meta property="og:description" content="Android作為類Linux系統，卻沒有終端機。而Termux這類終端機模擬器補全了這個缺口，不需要Root指令就可以使用。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/BbVz5C5K/image.png">
-<meta property="og:image" content="https://i.postimg.cc/WbsmSZYD/image.png">
-<meta property="og:image" content="https://i.postimg.cc/ZKybK6BW/IMG-0017.png">
-<meta property="og:image" content="https://i.postimg.cc/JzV1ytZP/IMG-0020.png">
-<meta property="og:image" content="https://i.postimg.cc/dV2JGv9v/IMG-0021.png">
-<meta property="article:published_time" content="2021-12-06T01:15:00.000Z">
-<meta property="article:modified_time" content="2021-12-06T10:24:19.445Z">
+<meta property="og:image" content="https://i.postimg.cc/mZvSbT5P/icon-7j-MZ7-XD80oeucm-GEa-Twkt-IRZex-Lt-GWv-Jf-Kd-VD6-Wu2-SI.png">
+<meta property="og:image" content="https://i.postimg.cc/T1LxY7zV/2021-12-23-185644.png">
+<meta property="og:image" content="https://i.postimg.cc/8P7Bd2QR/Screenshot-20211223-190103.png">
+<meta property="og:image" content="https://i.postimg.cc/gk1yggmf/Screenshot-20211223-190120.png">
+<meta property="og:image" content="https://i.postimg.cc/qRQXQ0vL/Screenshot-20211223-190324.png">
+<meta property="og:image" content="https://i.postimg.cc/4ySvk5tH/Screenshot-20211223-191342.png">
+<meta property="og:image" content="https://i.postimg.cc/RCsLHM8C/Screenshot-20211223-190643.png">
+<meta property="og:image" content="https://i.postimg.cc/ZnRPMg9h/Screenshot-20211223-191529.png">
+<meta property="article:published_time" content="2021-12-23T10:43:00.000Z">
+<meta property="article:modified_time" content="2021-12-23T11:34:48.839Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/BbVz5C5K/image.png">
+<meta name="twitter:image" content="https://i.postimg.cc/mZvSbT5P/icon-7j-MZ7-XD80oeucm-GEa-Twkt-IRZex-Lt-GWv-Jf-Kd-VD6-Wu2-SI.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/06/AltStore%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/">
 
 
 <script id="page-configurations">
@@ -53,7 +57,7 @@
   };
 </script>
 
-  <title>AltStore安裝教學 | Ivon's Blog</title>
+  <title>Termux使用教學: 在手機上執行Linux指令 | Ivon's Blog</title>
   
 
 
@@ -164,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/06/AltStore%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          AltStore安裝教學
+          Termux使用教學: 在手機上執行Linux指令
         </h1>
 
         <div class="post-meta">
@@ -188,7 +192,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-06 09:15:00 / 修改時間：18:24:19" itemprop="dateCreated datePublished" datetime="2021-12-06T09:15:00+08:00">2021-12-06</time>
+              <time title="創建時間：2021-12-23 18:43:00 / 修改時間：19:34:48" itemprop="dateCreated datePublished" datetime="2021-12-23T18:43:00+08:00">2021-12-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,8 +213,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2021/12/06/AltStore%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/06/AltStore安裝教學/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/23/Termux使用教學-在手機上執行Linux指令/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -225,36 +229,77 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>AltStore可在iOS裝置安裝未經蘋果審核的第三方APP，例如去廣告的Youtube APP 「Cercube」。</p>
+        <p>Android作為類Linux系統，卻沒有終端機。而Termux這類終端機模擬器補全了這個缺口，不需要Root指令就可以使用。<br><img src="https://i.postimg.cc/mZvSbT5P/icon-7j-MZ7-XD80oeucm-GEa-Twkt-IRZex-Lt-GWv-Jf-Kd-VD6-Wu2-SI.png"></p>
 <span id="more"></span>
-<p>不需越獄，任何型號的iPhone/iPad皆適用，每7天需要「重簽」，</p>
-<p>該程式支援macOS / Windows 10。</p>
-<h2 id="安裝AltStore到裝置"><a href="#安裝AltStore到裝置" class="headerlink" title="安裝AltStore到裝置"></a>安裝AltStore到裝置</h2><ol>
-<li><p>電腦必須安裝<a target="_blank" rel="noopener" href="https://www.apple.com/tw/itunes/">iTunes</a>和<a target="_blank" rel="noopener" href="https://secure-appldnld.apple.com/windows/061-91601-20200323-974a39d0-41fc-4761-b571-318b7d9205ed/iCloudSetup.exe">iCloud</a>，不要從微軟商店下載。將iOS裝置插上電腦，點選<code>信任此電腦</code>，確認iTunes認得到iOS裝置。</p>
+
+<p>為什麼要在手機上敲指令? 電腦很多東西都透過命令列運作，有的時候手機並沒有對應的APP，你還是可以用終端機來執行操作。舉例來說，Termux可以:</p>
+<ul>
+<li>編譯執行C/C++、Java、Python、NodeJS程式</li>
+<li>文字介面遠端ssh到主機</li>
+<li>手機架設Apache伺服器</li>
+<li>執行QEMU虛擬機</li>
+<li>執行docker</li>
+<li>安裝Proot Ubuntu等Linux發行版 + VNC Server</li>
+<li>破解電信限速</li>
+</ul>
+<p>使用Termux還有一個好處，那就是讓你熟悉各種Linux指令，基本的<code>ls</code>都能夠使用。當然要控制Android系統還是需要root權限。</p>
+<h2 id="安裝Termux"><a href="#安裝Termux" class="headerlink" title="安裝Termux"></a>安裝Termux</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">F-Droid下載</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/termux/termux-app">Github</a></li>
+<li>Google Play</li>
+</ul>
+<p>儘管Google Play有上架，但是更新很慢問題又多，因此建議到F-Droid這個開源商店下載。</p>
+<p>點進F-Droid的連結，點選<code>Download APK</code>下載安裝檔。<br><img src="https://i.postimg.cc/T1LxY7zV/2021-12-23-185644.png"></p>
+<h2 id="Termux初始設定"><a href="#Termux初始設定" class="headerlink" title="Termux初始設定"></a>Termux初始設定</h2><ol>
+<li><p>開啟後就是終端機介面，點一下輸入框鍵盤會自動開啟，螢幕上已有一些鍵盤快捷鍵。<br><img src="https://i.postimg.cc/8P7Bd2QR/Screenshot-20211223-190103.png"></p>
 </li>
-<li><p>下載AltStore (<a target="_blank" rel="noopener" href="https://altstore.io/">https://altstore.io/</a>) ，解壓縮點選<code>AltInstaller.msi</code>安裝到電腦。從開始近安裝的程式找到AltStore，啟動之後會在右下角的系統匣顯示菱形圖示，並在背景執行AltServer。<br><img src="https://i.postimg.cc/BbVz5C5K/image.png"></p>
+<li><p>從通知欄下拉，按<code>Exit</code>會終止Termux，<code>Aquire Wakelock</code>則是讓其保持在背景執行。<br><img src="https://i.postimg.cc/gk1yggmf/Screenshot-20211223-190120.png"></p>
 </li>
-<li><p>按一下AltStore的菱形圖示，按<code>Install AltStore</code>，安裝AltStore到iOS裝置。</p>
+<li><p>從螢幕左側滑進來，按<code>New Session</code>開啟多個終端機，<code>Keyboard</code>喚醒鍵盤。<br><img src="https://i.postimg.cc/qRQXQ0vL/Screenshot-20211223-190324.png"></p>
 </li>
-<li><p>此時會要求登入Apple ID，這是為了註冊開發人員帳號。如果安裝出現錯誤訊息，可移至本文底部查看一些解決方法。<br><img src="https://i.postimg.cc/WbsmSZYD/image.png"></p>
+<li><p>現在可以開始打第一個指令了，為了讓Termux可以存取手機的檔案，必須先設定儲存空間權限，之後同意權限 (在Termux空白處長按可貼上複製的指令)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.postimg.cc/4ySvk5tH/Screenshot-20211223-191342.png"></p>
 </li>
-<li><p>稍後裝置桌面應該就會出現AltStore的圖示，先不要開啟。到<code>系統設定</code>→<code>一般</code>→<code>VPN與裝置管理</code>，信任AltStore的開發者APP，之後就可以開啟AltStore。<br><img src="https://i.postimg.cc/ZKybK6BW/IMG-0017.png"></p>
+<li><p>接著要來更新套件，Termux使用<code>APT</code>和<code>PKG</code>作為套件管理員，要更新就是:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg update</span><br></pre></td></tr></table></figure></li>
+<li><p>更新時可能會問要不要升級，一律輸入<code>y</code>。之後就能開始安裝常用套件了。<br><img src="https://i.postimg.cc/RCsLHM8C/Screenshot-20211223-190643.png"></p>
 </li>
 </ol>
-<h2 id="安裝APP"><a href="#安裝APP" class="headerlink" title="安裝APP"></a>安裝APP</h2><p>安裝APP時建議與電腦上的AltServer保持連線。</p>
-<p>要安裝APP必須要有該APP的IPA檔案，可透過Safari下載IPA檔案後，再從<code>My Apps</code>畫面點選左上角+號，選取IPA檔案，接著登入Apple ID，就會安裝APP。<br><img src="https://i.postimg.cc/JzV1ytZP/IMG-0020.png"></p>
-<h2 id="如何重簽"><a href="#如何重簽" class="headerlink" title="如何重簽"></a>如何重簽</h2><ol>
-<li><p>在已安裝的APP列表會看到APP離需重簽還剩多少天，過期之後APP就會無法啟動。</p>
-</li>
-<li><p>將裝置連接到電腦，點選<code>Refresh All</code>即可重簽。也可以讓裝置與電腦處於同一個網路下，用Wifi重簽。<br><img src="https://i.postimg.cc/dV2JGv9v/IMG-0021.png"></p>
+<h2 id="Termux安裝套件-SSH、Python3"><a href="#Termux安裝套件-SSH、Python3" class="headerlink" title="Termux安裝套件: SSH、Python3"></a>Termux安裝套件: SSH、Python3</h2><p>SSH用於連線到遠端主機，以便存取檔案和管理系統。Python3則是能在終端機輸出訊息。</p>
+<ol>
+<li><p>安裝ssh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install ssh -y</span><br></pre></td></tr></table></figure></li>
+<li><p>連線到遠端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@localhost</span><br></pre></td></tr></table></figure></li>
+<li><p>安裝Python3</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install python3 -y</span><br></pre></td></tr></table></figure></li>
+<li><p>執行一個python程式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;print(&quot;Hello World&quot;)&#x27;</span> &gt;&gt; test.py</span><br><span class="line">python test.py</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.postimg.cc/ZnRPMg9h/Screenshot-20211223-191529.png"></p>
 </li>
 </ol>
-<h2 id="簡單除錯"><a href="#簡單除錯" class="headerlink" title="簡單除錯"></a>簡單除錯</h2><ul>
-<li><p>錯誤訊息: <code>Invalid anisette data. Please close iTunes and iCloud then try again.</code>: 刪除<code>C:\ProgramData\Apple Computer\iTunes\adi</code>資料夾，重新開啟iTunes，再用工作管理員強制停止。AltSever按下<code>Close</code>再重新開啟。</p>
+<h2 id="Termux相關軟體"><a href="#Termux相關軟體" class="headerlink" title="Termux相關軟體"></a>Termux相關軟體</h2><p>在F-Droid商店還有其他Termux相關的插件軟體。</p>
+<ul>
+<li><p>Termux:API: 讓Termux使用更多手機功能，例如傳送簡訊</p>
 </li>
-<li><p>錯誤訊息: <code>Failed to verify code signature of</code>: 請將Windows系統時間調整至正確的時間。</p>
+<li><p>Termux:Boot: 在開機時執行自訂指令</p>
+</li>
+<li><p>Termux:Float: 以懸浮視窗執行Termux</p>
+</li>
+<li><p>Termux:GUI: 使用Python資料繫結撰寫GUI</p>
+</li>
+<li><p>Termux:Styling: 自訂Termux終端機樣式</p>
+</li>
+<li><p>Termux:Tasker: 快速啟動指定任務</p>
+</li>
+<li><p>Termux:Widget: Termux的桌面小工具</p>
+</li>
+<li><p>Termux:X11: 用X11協定顯示圖形介面的插件</p>
 </li>
 </ul>
+<h2 id="更多參考資料"><a href="#更多參考資料" class="headerlink" title="更多參考資料"></a>更多參考資料</h2><p>相關問題到作者的<a href="Github">Github</a>提問。</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.termux.com/wiki/Main_Page">Termux WIKI</a>上亦有許多實用資訊。</p>
 
     </div>
 
@@ -264,7 +309,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
           </div>
 
         
@@ -273,13 +319,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/05/iOS%E4%B8%8AE-hentai-Shinsi2-APP/" rel="prev" title="iOS上E-hentai: Shinsi2 APP">
-      <i class="fa fa-chevron-left"></i> iOS上E-hentai: Shinsi2 APP
+    <a href="/2021/12/23/%E5%9C%A8%E6%89%8B%E6%A9%9F%E7%94%A8Python%E5%AF%AB%E4%B8%80%E5%80%8BGUI%E7%A8%8B%E5%BC%8F/" rel="prev" title="在手機用Python + Termux寫一個GUI程式">
+      <i class="fa fa-chevron-left"></i> 在手機用Python + Termux寫一個GUI程式
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/06/Linux%E5%9F%B7%E8%A1%8CAltServer/" rel="next" title="Linux執行AltServer">
-      Linux執行AltServer <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -345,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DAltStore%E5%88%B0%E8%A3%9D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">安裝AltStore到裝置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DAPP"><span class="nav-number">2.</span> <span class="nav-text">安裝APP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%87%8D%E7%B0%BD"><span class="nav-number">3.</span> <span class="nav-text">如何重簽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E5%96%AE%E9%99%A4%E9%8C%AF"><span class="nav-number">4.</span> <span class="nav-text">簡單除錯</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DTermux"><span class="nav-number">1.</span> <span class="nav-text">安裝Termux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Termux%E5%88%9D%E5%A7%8B%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">Termux初始設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Termux%E5%AE%89%E8%A3%9D%E5%A5%97%E4%BB%B6-SSH%E3%80%81Python3"><span class="nav-number">3.</span> <span class="nav-text">Termux安裝套件: SSH、Python3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Termux%E7%9B%B8%E9%97%9C%E8%BB%9F%E9%AB%94"><span class="nav-number">4.</span> <span class="nav-text">Termux相關軟體</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">更多參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -465,9 +508,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://ivon852.github.io/2021/12/06/AltStore%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/";
-    this.page.identifier = "2021/12/06/AltStore安裝教學/";
-    this.page.title = "AltStore安裝教學";
+    this.page.url = "https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/";
+    this.page.identifier = "2021/12/23/Termux使用教學-在手機上執行Linux指令/";
+    this.page.title = "Termux使用教學: 在手機上執行Linux指令";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
