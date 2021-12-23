@@ -21,25 +21,21 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="DroidCam這款Android APP可以把手機變成電腦視訊鏡頭，支援有線和無線，電腦客戶端支援Windows &#x2F; MacOS &#x2F; Linux。">
+  <meta name="description" content="Linux顯示卡直通(passthrough)給Windows虛擬機，用來執行3D應用程式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/07/Ubuntu%E5%AE%89%E8%A3%9DDroidCam%EF%BC%8C%E6%8A%8A%E6%89%8B%E6%A9%9F%E8%AE%8A%E6%88%90%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A8%8A%E9%8F%A1%E9%A0%AD/index.html">
+<meta property="og:title" content="QEMU安裝Windows 10，開啟&#x2F;關閉顯示卡直通">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/24/QEMU%E5%AE%89%E8%A3%9DWindows-10%EF%BC%8C%E9%96%8B%E5%95%9F-%E9%97%9C%E9%96%89%E9%A1%AF%E7%A4%BA%E5%8D%A1%E7%9B%B4%E9%80%9A/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="DroidCam這款Android APP可以把手機變成電腦視訊鏡頭，支援有線和無線，電腦客戶端支援Windows &#x2F; MacOS &#x2F; Linux。">
+<meta property="og:description" content="Linux顯示卡直通(passthrough)給Windows虛擬機，用來執行3D應用程式。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/bwS05dqm/Screenshot-20211108-212645.png">
-<meta property="og:image" content="https://i.postimg.cc/MT6WnMT5/2021-11-08-21-33-08.png">
-<meta property="og:image" content="https://i.postimg.cc/wxFkySWQ/Screenshot-20211108-213340-1.png">
-<meta property="article:published_time" content="2021-12-06T17:24:00.000Z">
-<meta property="article:modified_time" content="2021-12-07T04:34:36.582Z">
+<meta property="article:published_time" content="2021-12-23T16:53:00.000Z">
+<meta property="article:modified_time" content="2021-12-23T16:56:43.819Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Android">
 <meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/bwS05dqm/Screenshot-20211108-212645.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/07/Ubuntu%E5%AE%89%E8%A3%9DDroidCam%EF%BC%8C%E6%8A%8A%E6%89%8B%E6%A9%9F%E8%AE%8A%E6%88%90%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A8%8A%E9%8F%A1%E9%A0%AD/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/24/QEMU%E5%AE%89%E8%A3%9DWindows-10%EF%BC%8C%E9%96%8B%E5%95%9F-%E9%97%9C%E9%96%89%E9%A1%AF%E7%A4%BA%E5%8D%A1%E7%9B%B4%E9%80%9A/">
 
 
 <script id="page-configurations">
@@ -52,7 +48,7 @@
   };
 </script>
 
-  <title>Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭 | Ivon's Blog</title>
+  <title>QEMU安裝Windows 10，開啟/關閉顯示卡直通 | Ivon's Blog</title>
   
 
 
@@ -174,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/07/Ubuntu%E5%AE%89%E8%A3%9DDroidCam%EF%BC%8C%E6%8A%8A%E6%89%8B%E6%A9%9F%E8%AE%8A%E6%88%90%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A8%8A%E9%8F%A1%E9%A0%AD/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/QEMU%E5%AE%89%E8%A3%9DWindows-10%EF%BC%8C%E9%96%8B%E5%95%9F-%E9%97%9C%E9%96%89%E9%A1%AF%E7%A4%BA%E5%8D%A1%E7%9B%B4%E9%80%9A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -187,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭
+          QEMU安裝Windows 10，開啟/關閉顯示卡直通
         </h1>
 
         <div class="post-meta">
@@ -198,7 +194,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-07 01:24:00 / 修改時間：12:34:36" itemprop="dateCreated datePublished" datetime="2021-12-07T01:24:00+08:00">2021-12-07</time>
+              <time title="創建時間：2021-12-24 00:53:00 / 修改時間：00:56:43" itemprop="dateCreated datePublished" datetime="2021-12-24T00:53:00+08:00">2021-12-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,34 +217,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>DroidCam這款Android APP可以把手機變成電腦視訊鏡頭，支援有線和無線，電腦客戶端支援Windows / MacOS / Linux。</p>
+        <p>Linux顯示卡直通(passthrough)給Windows虛擬機，用來執行3D應用程式。</p>
 <span id="more"></span>
-
-<p>這篇教學參考自官網的說明：<a target="_blank" rel="noopener" href="https://www.dev47apps.com/droidcam/linux/">https://www.dev47apps.com/droidcam/linux/</a></p>
-<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><ol>
-<li><p>Google Play下載APP：<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam">https://play.google.com/store/apps/details?id=com.dev47apps.droidcam</a></p>
+<ul>
+<li><p>Host OS: Ubuntu 20.03</p>
 </li>
-<li><p>接著在電腦上安裝客戶端，在Ubuntu上依序輸入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp/</span><br><span class="line">wget -O droidcam_latest.zip https://files.dev47apps.net/linux/droidcam_1.8.0.zip</span><br><span class="line">unzip droidcam_latest.zip -d droidcam</span><br><span class="line"><span class="built_in">cd</span> droidcam &amp;&amp; sudo ./install-client</span><br></pre></td></tr></table></figure></li>
-<li><p>安裝需要的工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install android-tools-adb android-tools-fastboot libappindicator3-1 linux-headers-`uname -r` gcc make</span><br></pre></td></tr></table></figure></li>
-<li><p>設定影像</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-video</span><br></pre></td></tr></table></figure></li>
-<li><p>設定聲音(不設定的話就是使用電腦的麥克風)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-sound</span><br></pre></td></tr></table></figure></li>
-<li><p>Droidcam安裝之後應會出現在程式列表中，或者用指令執行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">droidcam</span><br></pre></td></tr></table></figure></li>
-<li><p>手機連到電腦，開啟ADB除錯模式。<br>電腦輸入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure></li>
-<li><p>在手機螢幕上同意偵錯。從通知欄將手機USB連接模式改為MIDI。<br><img src="https://i.postimg.cc/bwS05dqm/Screenshot-20211108-212645.png"></p>
+<li><p>Guest OS: Windows 10</p>
 </li>
-<li><p>手機先開啟DroidCam app，右上角可切換前後鏡頭。電腦再開啟Droidcam，點選USB (Android)，接著按下<code>Connect</code>。<br><img src="https://i.postimg.cc/MT6WnMT5/2021-11-08-21-33-08.png"></p>
+<li><p>CPU: Intel i5-7400K (HD630)</p>
 </li>
-<li><p>手機就會出現鏡頭畫面，Droidcam會讓手機螢幕保持最低亮度省電。<br><img src="https://i.postimg.cc/wxFkySWQ/Screenshot-20211108-213340-1.png"></p>
+<li><p>GPU: GTX 1050Ti</p>
+</li>
+</ul>
+<p>建議要準備二個螢幕，或者Host OS的內外顯都要開啟。因為停用Host OS的顯示卡驅動重開機後，顯示卡會無法輸出畫面。</p>
+<p>如果只有一個螢幕，則透過BIOS設定內顯優先，開機後線插在內顯的孔。</p>
+<p>設定好之後，Windows虛擬機的裝置管理員應該會看到直通進去的顯示卡。</p>
+<p>流程：</p>
+<ol>
+<li><p>安裝QEMU，安裝Windows 10要測試的遊戲或程式。</p>
+</li>
+<li><p>內顯和外顯開啟。</p>
+</li>
+<li><p>設定IOMMU，以及輸入顯示卡的PCI 編號、vendor ID 與 device ID， 開啟vfio。</p>
+</li>
+<li><p>在Host OS把顯示卡的驅動程式黑名單，重開機。 </p>
+</li>
+<li><p>在QEMU設定，把顯示卡直通(passthrough)給虛擬機Windows 10。</p>
+</li>
+<li><p>在Guest OS的Windows 10安裝Nvidia GeForce Experience驅動程式，就能玩3D遊戲。</p>
 </li>
 </ol>
-<p>Droidcam會掛在背景執行，因此要在電腦上按<code>Stop</code>，和從通知欄按下<code>Exit</code>退出。</p>
-<p>也可以讓電腦和手機處於同一個網路，透過在電腦上輸入手機Wifi IP的方式來無線傳輸鏡頭畫面。</p>
+<p>參考這二篇文章：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.gtwang.org/linux/ubuntu-linux-kvm-qemu-gpu-passthrough-tutorial/">KVM/QEMU 虛擬機器設定 GPU Passthrough 記錄</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.ptt.cc/bbs/LoL/M.1565890497.A.4CF.html">閒聊 教學：如何在Linux上玩LOL</a></p>
+</li>
+</ul>
+<p>解決QEMU自動縮放：在Windows中安裝SPICE Guest Tools，這樣Windows的畫面才會隨虛擬機視窗縮放。</p>
+<p>如果要取消顯示卡直通，把上面的流程倒著做，取消停用nouvea驅動，關閉IOMMU，更新GRUB後重開機，螢幕線就可以插回顯示卡的孔。</p>
 
     </div>
 
@@ -258,8 +265,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Android/" rel="tag"># Android</a>
               <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
           </div>
 
         
@@ -268,13 +275,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/06/Google%E7%9B%B8%E7%B0%BF%E6%90%AC%E5%AE%B6-%E9%9B%A2%E7%B7%9A%E7%89%88Google%E7%9B%B8%E7%B0%BF%E8%BB%9F%E9%AB%94PhotoPrism/" rel="prev" title="Google相簿搬家 + 離線版Google相簿軟體">
-      <i class="fa fa-chevron-left"></i> Google相簿搬家 + 離線版Google相簿軟體
+    <a href="/2021/12/24/%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A3%9D%E6%9C%89Ubutnu%E7%9A%84%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DWindows-10%E9%9B%99%E7%B3%BB%E7%B5%B1/" rel="prev" title="如何在裝有Ubutnu的電腦安裝Windows 10雙系統">
+      <i class="fa fa-chevron-left"></i> 如何在裝有Ubutnu的電腦安裝Windows 10雙系統
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/" rel="next" title="Sony Xperia 5 II root教學">
-      Sony Xperia 5 II root教學 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -333,7 +337,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">1.</span> <span class="nav-text">安裝</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
