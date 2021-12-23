@@ -21,24 +21,21 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="自從Google相簿全面取消無限空間後，就有了搬家潮。將照片全部下載到電腦，再設定軟體處理照片，類似自幹版NAS，英文稱之為Self-hosted，就是在自己的電腦上搭建一個離線版的Google相簿。本文討論如何快速下載全部的Google相簿照片，將其整理後使用電腦的相簿軟體進行管理。">
+  <meta name="description" content="在入坑艦隊Collection(艦これ)這款遊戲前，必須知道它是網頁遊戲，理論上有瀏覽器就可以玩，不過主要要克服三點:  封鎖日本以外IP 是否需要輔助程式 手機好不好操作 網路穩不穩定，艦隊收藏沒有斷線重連這種東西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Google相簿搬家 + 離線版Google相簿軟體">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/06/Google%E7%9B%B8%E7%B0%BF%E6%90%AC%E5%AE%B6-%E9%9B%A2%E7%B7%9A%E7%89%88Google%E7%9B%B8%E7%B0%BF%E8%BB%9F%E9%AB%94PhotoPrism/index.html">
+<meta property="og:title" content="手機玩艦隊Collection的方法">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/22/%E6%89%8B%E6%A9%9F%E7%8E%A9%E8%89%A6%E9%9A%8ACollection%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="自從Google相簿全面取消無限空間後，就有了搬家潮。將照片全部下載到電腦，再設定軟體處理照片，類似自幹版NAS，英文稱之為Self-hosted，就是在自己的電腦上搭建一個離線版的Google相簿。本文討論如何快速下載全部的Google相簿照片，將其整理後使用電腦的相簿軟體進行管理。">
+<meta property="og:description" content="在入坑艦隊Collection(艦これ)這款遊戲前，必須知道它是網頁遊戲，理論上有瀏覽器就可以玩，不過主要要克服三點:  封鎖日本以外IP 是否需要輔助程式 手機好不好操作 網路穩不穩定，艦隊收藏沒有斷線重連這種東西">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/TYFqD184/image.png">
-<meta property="og:image" content="https://i.postimg.cc/rFvqvmwS/2021-12-06-221846.png">
-<meta property="og:image" content="https://i.postimg.cc/HW6w4GkG/image.png">
-<meta property="article:published_time" content="2021-12-06T14:10:00.000Z">
-<meta property="article:modified_time" content="2021-12-06T16:30:27.473Z">
+<meta property="article:published_time" content="2021-12-22T07:08:00.000Z">
+<meta property="article:modified_time" content="2021-12-23T16:15:09.231Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/TYFqD184/image.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/06/Google%E7%9B%B8%E7%B0%BF%E6%90%AC%E5%AE%B6-%E9%9B%A2%E7%B7%9A%E7%89%88Google%E7%9B%B8%E7%B0%BF%E8%BB%9F%E9%AB%94PhotoPrism/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/22/%E6%89%8B%E6%A9%9F%E7%8E%A9%E8%89%A6%E9%9A%8ACollection%E7%9A%84%E6%96%B9%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -51,7 +48,7 @@
   };
 </script>
 
-  <title>Google相簿搬家 + 離線版Google相簿軟體 | Ivon's Blog</title>
+  <title>手機玩艦隊Collection的方法 | Ivon's Blog</title>
   
 
 
@@ -173,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/06/Google%E7%9B%B8%E7%B0%BF%E6%90%AC%E5%AE%B6-%E9%9B%A2%E7%B7%9A%E7%89%88Google%E7%9B%B8%E7%B0%BF%E8%BB%9F%E9%AB%94PhotoPrism/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/22/%E6%89%8B%E6%A9%9F%E7%8E%A9%E8%89%A6%E9%9A%8ACollection%E7%9A%84%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -186,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Google相簿搬家 + 離線版Google相簿軟體
+          手機玩艦隊Collection的方法
         </h1>
 
         <div class="post-meta">
@@ -196,14 +193,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-12-06 22:10:00" itemprop="dateCreated datePublished" datetime="2021-12-06T22:10:00+08:00">2021-12-06</time>
+              <time title="創建時間：2021-12-22 15:08:00" itemprop="dateCreated datePublished" datetime="2021-12-22T15:08:00+08:00">2021-12-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-07 00:30:27" itemprop="dateModified" datetime="2021-12-07T00:30:27+08:00">2021-12-07</time>
+                <time title="修改時間：2021-12-24 00:15:09" itemprop="dateModified" datetime="2021-12-24T00:15:09+08:00">2021-12-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +208,7 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                  <a href="/categories/%E5%8B%95%E6%BC%AB/" itemprop="url" rel="index"><span itemprop="name">動漫</span></a>
                 </span>
             </span>
 
@@ -226,26 +223,89 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>自從Google相簿全面取消無限空間後，就有了搬家潮。將照片全部下載到電腦，再設定軟體處理照片，類似自幹版NAS，英文稱之為Self-hosted，就是在自己的電腦上搭建一個離線版的Google相簿。<br>本文討論如何快速下載全部的Google相簿照片，將其整理後使用電腦的相簿軟體進行管理。</p>
+        <p>在入坑艦隊Collection(艦これ)這款遊戲前，必須知道它是網頁遊戲，理論上有瀏覽器就可以玩，不過主要要克服三點:</p>
+<ol>
+<li>封鎖日本以外IP</li>
+<li>是否需要輔助程式</li>
+<li>手機好不好操作</li>
+<li>網路穩不穩定，艦隊收藏沒有斷線重連這種東西</li>
+</ol>
 <span id="more"></span>
 
-
-<h2 id="如何下載全部Google相簿照片"><a href="#如何下載全部Google相簿照片" class="headerlink" title="如何下載全部Google相簿照片"></a>如何下載全部Google相簿照片</h2><p>到<a target="_blank" rel="noopener" href="https://takeout.google.com/">Google Takeout</a>，僅勾選「Google相簿」，再選擇下載的壓縮檔大小，建立匯出作業。約幾小時後會收到下載連結。<br><img src="https://i.postimg.cc/TYFqD184/image.png"></p>
-<h2 id="整理照片檔案"><a href="#整理照片檔案" class="headerlink" title="整理照片檔案"></a>整理照片檔案</h2><p>Google相簿下載的檔案解壓縮會有一大堆資料夾，而且每張照片檔案都會跟著一個對應的JSON:<br><img src="https://i.postimg.cc/rFvqvmwS/2021-12-06-221846.png"><br>這樣實在太混亂了，因此透過<a target="_blank" rel="noopener" href="https://github.com/TheLastGimbus/GooglePhotosTakeoutHelper/releases">Google Photos Takeout Helper
-</a>將照片與JSON整合，修正拍照時間後將其全部塞到同一個資料夾。</p>
+<p>並請更新以下過時認知:</p>
 <ol>
-<li>把Google Takeout的壓縮檔解壓縮。</li>
-<li>下載exe執行檔，在該資料夾開啟終端機，輸入:<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./take<span class="built_in">out-helper</span>.exe <span class="literal">-i</span> &lt;解壓縮的照片資料夾&gt; <span class="literal">-o</span> &lt;輸出資料夾&gt;</span><br></pre></td></tr></table></figure>
-於是就會變成這樣，按照JSON資料修正照片拍攝時間。<br><img src="https://i.postimg.cc/HW6w4GkG/image.png"></li>
+<li>現在不用抽選，電腦上的圖文註冊教學參考<a target="_blank" rel="noopener" href="https://home.gamer.com.tw/creationDetail.php?sn=5221564">這裡</a>。</li>
+<li>遊戲已改用HTML5，僅剩官方版APP還是Flash。</li>
+<li>改cookie繞過IP封鎖的方法失效。</li>
 </ol>
-<h2 id="選擇相簿軟體"><a href="#選擇相簿軟體" class="headerlink" title="選擇相簿軟體"></a>選擇相簿軟體</h2><ul>
-<li>Windows 10內建相片app: 會像Google Photo一樣用AI偵測物體並整理，但只是堪用而已。</li>
-<li>Tiat: 可用EXIF排序照片，也能用顏色搜尋和查看圖片的顏色分布。</li>
-<li>Honeyview: 載入速度很快的看圖軟體。</li>
-<li>Nomacs: 跨平台看圖軟體。</li>
-<li>GeoPhoto: 可以像Google相簿一樣在地圖上顯示各個地點的分類照片。</li>
+<p>茲探討在手機平台遊玩的各種方法，包括我自己嘗試過的。電腦有<a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=24698&snA=20700">簡易的免VPN方法</a>，手機只有Android比較容易辦到。</p>
+<p><strong>如果覺得廢話太多，直接看第一段「手機遊玩最佳方案」就好了。</strong></p>
+<p>我的原則是不使用VPN，不要代理伺服器。並能完整於手機正常遊戲，而不單純只是收遠征用。</p>
+<p>我們不是原始人，我們有最新科技.png</p>
+<h2 id="艦これ手機遊玩最佳方案"><a href="#艦これ手機遊玩最佳方案" class="headerlink" title="艦これ手機遊玩最佳方案"></a>艦これ手機遊玩最佳方案</h2><p>務必參考<a target="_blank" rel="noopener" href="https://home.gamer.com.tw/creationDetail.php?sn=5221564">註冊帳號教學</a>進過一次母港後，再來考慮手機端怎麼解決。</p>
+<ul>
+<li>Android: Gotobroswer + Kcanotiy <a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=24698&snA=20700">詳細流程</a></li>
+<li>iOS: iKanColleCommand Tweaked + VPN <a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=24698&snA=20700">詳細流程</a></li>
 </ul>
-<p>如果有餘力，可以把相片儲存空間變成類似NAS，像是安裝PhotoPrism，可構造出類似Google相簿的瀏覽介面，用AI進行圖像識別、分類，全部都在自己的電腦上運算。類似的產品很多，像支援多帳戶的Libre Photos、安裝簡單的Piwigo。詳細比較參考：<a target="_blank" rel="noopener" href="https://rair.dev/google-photos-replacement-roundup">GOOGLE PHOTOS REPLACEMENT ROUNDUP</a></p>
+<p>總的來說，Android會玩得比較舒適，分割螢幕也比較自由。</p>
+<h2 id="Android手機方案探討"><a href="#Android手機方案探討" class="headerlink" title="Android手機方案探討"></a>Android手機方案探討</h2><table>
+<thead>
+<tr>
+<th>APP</th>
+<th>推薦度</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Gotobrowser + Kcanotfiy</td>
+<td><font color=geen>推薦</font></td>
+<td>使用HTML5執行遊戲，配合Kcanotify輔助程式還能查看艦隊數值。</td>
+</tr>
+<tr>
+<td>官方艦これAPP + VPN</td>
+<td><font color=red>不推薦</font></td>
+<td>官方APP仍在使用過時的Flash技術，玩到一半很容易卡死，與手機性能無關。</td>
+</tr>
+<tr>
+<td>瀏覽器 + OOI舰娘在线缓存系统</td>
+<td><font color=red>不推薦</font></td>
+<td>OOI本身是代理伺服器，偶爾會連不上，並且會魔改立繪。</td>
+</tr>
+<tr>
+<td>遠端桌面</td>
+<td><font color=red>不推薦</font></td>
+<td>有延遲問題，螢幕太小，除非是電腦才考慮。</td>
+</tr>
+</tbody></table>
+<h2 id="iOS裝置方案探討"><a href="#iOS裝置方案探討" class="headerlink" title="iOS裝置方案探討"></a>iOS裝置方案探討</h2><table>
+<thead>
+<tr>
+<th>APP</th>
+<th>推薦度</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iKanColleCommand Tweaked</td>
+<td><font color=geen>推薦</font></td>
+<td>內建輔助面板的APP，要透過AltStore安裝。連線目前只能用代理伺服器，有時還是要開VPN。</td>
+</tr>
+<tr>
+<td>Safari + VPN</td>
+<td><font color=green>推薦</font></td>
+<td>次要方案，因為也沒有更好的選擇了。</td>
+</tr>
+<tr>
+<td>Safari + OOI舰娘在线缓存系统</td>
+<td><font color=red>不推薦</font></td>
+<td>OOI本身是代理伺服器，偶爾會連不上，並且會魔改立繪。</td>
+</tr>
+<tr>
+<td>遠端桌面</td>
+<td><font color=red>不推薦</font></td>
+<td>有延遲問題，螢幕太小，iPad或許可以考慮。</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -255,7 +315,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
           </div>
 
         
@@ -264,12 +325,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/06/Linux%E5%9F%B7%E8%A1%8CAltServer/" rel="prev" title="Linux執行AltServer">
-      <i class="fa fa-chevron-left"></i> Linux執行AltServer
+    <a href="/2021/12/22/iSH%EF%BC%9A%E5%9C%A8iOS%E8%A3%9D%E7%BD%AE%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%20Shell/" rel="prev" title="iSH: 在iOS裝置上執行Linux Shell">
+      <i class="fa fa-chevron-left"></i> iSH: 在iOS裝置上執行Linux Shell
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/07/Ubuntu%E5%AE%89%E8%A3%9DDroidCam%EF%BC%8C%E6%8A%8A%E6%89%8B%E6%A9%9F%E8%AE%8A%E6%88%90%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A8%8A%E9%8F%A1%E9%A0%AD/" rel="next" title="Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭">
-      Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/22/%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E8%A6%BA%E5%BE%97Android%E6%AF%94iOS%E9%81%A9%E5%90%88%E6%88%91/" rel="next" title="為什麼我覺得Android比iOS適合我">
+      為什麼我覺得Android比iOS適合我 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -329,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BC%89%E5%85%A8%E9%83%A8Google%E7%9B%B8%E7%B0%BF%E7%85%A7%E7%89%87"><span class="nav-number">1.</span> <span class="nav-text">如何下載全部Google相簿照片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E7%90%86%E7%85%A7%E7%89%87%E6%AA%94%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">整理照片檔案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E7%9B%B8%E7%B0%BF%E8%BB%9F%E9%AB%94"><span class="nav-number">3.</span> <span class="nav-text">選擇相簿軟體</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%89%A6%E3%81%93%E3%82%8C%E6%89%8B%E6%A9%9F%E9%81%8A%E7%8E%A9%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">艦これ手機遊玩最佳方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E6%89%8B%E6%A9%9F%E6%96%B9%E6%A1%88%E6%8E%A2%E8%A8%8E"><span class="nav-number">2.</span> <span class="nav-text">Android手機方案探討</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS%E8%A3%9D%E7%BD%AE%E6%96%B9%E6%A1%88%E6%8E%A2%E8%A8%8E"><span class="nav-number">3.</span> <span class="nav-text">iOS裝置方案探討</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
