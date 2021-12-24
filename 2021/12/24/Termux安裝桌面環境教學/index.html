@@ -21,28 +21,24 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Android手機 + Type C Dock + 螢幕 &#x3D; 簡單文書電腦 本文不使用Android 10實驗性桌面模式，也不是三星的Dex技術。需要Root權限。">
+  <meta name="description" content="Termux可以透過VNC或X11顯示圖形介面(Graphical Environment)，擁有桌面一樣的使用體驗。 注意: 這裡沒有要安裝任何Linux發行版，純粹就是給Termux安裝一個桌面環境而已。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android手機當電腦用，實作與心得">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/24/Second-Screen%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8%E3%80%82%E6%89%8B%E6%A9%9F%E6%8A%95%E5%BD%B1%E5%88%B0%E5%A4%A7%E8%9E%A2%E5%B9%95%E7%9A%84%E5%88%A9%E5%99%A8/index.html">
+<meta property="og:title" content="Termux安裝桌面環境教學">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/24/Termux%E5%AE%89%E8%A3%9D%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="Android手機 + Type C Dock + 螢幕 &#x3D; 簡單文書電腦 本文不使用Android 10實驗性桌面模式，也不是三星的Dex技術。需要Root權限。">
+<meta property="og:description" content="Termux可以透過VNC或X11顯示圖形介面(Graphical Environment)，擁有桌面一樣的使用體驗。 注意: 這裡沒有要安裝任何Linux發行版，純粹就是給Termux安裝一個桌面環境而已。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/VN9scgM8/DSC-0001.jpg">
-<meta property="og:image" content="https://i.postimg.cc/ZR0QLKJM/Screenshot-20211103-232914.png">
-<meta property="og:image" content="https://i.postimg.cc/rpfbWt24/Screenshot-20211103-233248-1.png">
-<meta property="og:image" content="https://i.postimg.cc/g2DBF6J7/Screenshot-20211103-233206.png">
-<meta property="og:image" content="https://i.postimg.cc/ZndD17BP/Screenshot-20211103-233545.png">
-<meta property="og:image" content="https://i.postimg.cc/dtGx6fKw/Screenshot-20211103-233653.png">
-<meta property="og:image" content="https://i.postimg.cc/wxCrhpZw/Screenshot-20211103-234949.png">
-<meta property="article:published_time" content="2021-12-24T01:28:00.000Z">
-<meta property="article:modified_time" content="2021-12-24T01:28:19.700Z">
+<meta property="og:image" content="https://i.postimg.cc/wj4L8NWL/Screenshot-20211224-140606.png">
+<meta property="og:image" content="https://i.postimg.cc/dVVrx69J/Screenshot-20211224-140427.png">
+<meta property="article:published_time" content="2021-12-24T11:19:00.000Z">
+<meta property="article:modified_time" content="2021-12-24T11:21:26.779Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="Termux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/VN9scgM8/DSC-0001.jpg">
+<meta name="twitter:image" content="https://i.postimg.cc/wj4L8NWL/Screenshot-20211224-140606.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/24/Second-Screen%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8%E3%80%82%E6%89%8B%E6%A9%9F%E6%8A%95%E5%BD%B1%E5%88%B0%E5%A4%A7%E8%9E%A2%E5%B9%95%E7%9A%84%E5%88%A9%E5%99%A8/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/24/Termux%E5%AE%89%E8%A3%9D%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
 
 
 <script id="page-configurations">
@@ -55,7 +51,7 @@
   };
 </script>
 
-  <title>Android手機當電腦用，實作與心得 | Ivon's Blog</title>
+  <title>Termux安裝桌面環境教學 | Ivon's Blog</title>
   
 
 
@@ -177,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/Second-Screen%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8%E3%80%82%E6%89%8B%E6%A9%9F%E6%8A%95%E5%BD%B1%E5%88%B0%E5%A4%A7%E8%9E%A2%E5%B9%95%E7%9A%84%E5%88%A9%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/Termux%E5%AE%89%E8%A3%9D%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -190,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Android手機當電腦用，實作與心得
+          Termux安裝桌面環境教學
         </h1>
 
         <div class="post-meta">
@@ -201,16 +197,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-24 09:28:00 / 修改時間：09:28:19" itemprop="dateCreated datePublished" datetime="2021-12-24T09:28:00+08:00">2021-12-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
-                </span>
+              <time title="創建時間：2021-12-24 19:19:00 / 修改時間：19:21:26" itemprop="dateCreated datePublished" datetime="2021-12-24T19:19:00+08:00">2021-12-24</time>
             </span>
 
           
@@ -224,36 +211,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Android手機 + Type C Dock + 螢幕 = 簡單文書電腦</p>
-<p>本文不使用Android 10實驗性桌面模式，也不是三星的Dex技術。需要Root權限。<br><img src="https://i.postimg.cc/VN9scgM8/DSC-0001.jpg"></p>
+        <p>Termux可以透過VNC或X11顯示圖形介面(Graphical Environment)，擁有桌面一樣的使用體驗。</p>
+<p>注意: 這裡沒有要安裝任何Linux發行版，純粹就是給Termux安裝一個桌面環境而已。</p>
+<p><img src="https://i.postimg.cc/wj4L8NWL/Screenshot-20211224-140606.png"></p>
 <span id="more"></span>
 
-<h2 id="需要的硬體"><a href="#需要的硬體" class="headerlink" title="需要的硬體"></a>需要的硬體</h2><ul>
-<li>手機：Sony Xperia 5 II，Android 11，支援Type-C HDMI螢幕畫面輸出。如果不支援可以用Chromecast無線投影。</li>
-<li>Type C Dock，就是給筆電用的擴充插座，上面有USB、HDMI、電源的接口，如上圖。</li>
-</ul>
-<p>建議裝置都以有線為主，當然藍牙鍵鼠也可以。</p>
-<h2 id="需要的軟體"><a href="#需要的軟體" class="headerlink" title="需要的軟體"></a>需要的軟體</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.farmerbb.secondscreen.free">Second Screen</a>: 需要Root權限。調整投影到大螢幕上的解析度和DPI，因為手機21：9畫面在電腦上會有黑邊，或是按鈕太大。</li>
-<li><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.hyperrate.gcinfree">GCIN</a>: 實體鍵盤中文輸入法，Android系統到開發人員選項開啟「將活動強制設為可調整大小」、「啟用自由形式視窗」、「啟用自由形式大小」。不要開啟「強制使用桌面模式」。</li>
-</ul>
-<h2 id="軟體使用情況"><a href="#軟體使用情況" class="headerlink" title="軟體使用情況"></a>軟體使用情況</h2><ol>
-<li><p>在Second Screen設定欲輸出的解析度和DPI，按下<code>Load Monitor</code>。投影的是22吋16：9的螢幕。開啟後將一切硬體都插上。<br><img src="https://i.postimg.cc/ZR0QLKJM/Screenshot-20211103-232914.png"></p>
-</li>
-<li><p>Word會自動切換版面，功能沒有變化。<br><img src="https://i.postimg.cc/rpfbWt24/Screenshot-20211103-233248-1.png"></p>
-</li>
-<li><p>Second Screen有強制Chrome開啟桌面版網站的選項。沒有Root亦可下載Kiwi Browser達到同樣效果。<br><img src="https://i.postimg.cc/g2DBF6J7/Screenshot-20211103-233206.png"></p>
-</li>
-<li><p>在多工畫面點選圖標可讓App進入自由形式，但是同一個app仍無法開多個「視窗」。<br><img src="https://i.postimg.cc/ZndD17BP/Screenshot-20211103-233545.png"></p>
-</li>
-<li><p>Minecraft基岩版，接上實體鍵盤後，把輸入法調成英文的就能無縫切換到電腦版操作。<br><img src="https://i.postimg.cc/dtGx6fKw/Screenshot-20211103-233653.png"></p>
-</li>
-<li><p>Linux Deploy就比較有桌面系統的感覺，但chroot問題也很多。<br><img src="https://i.postimg.cc/wxCrhpZw/Screenshot-20211103-234949.png"></p>
-</li>
+<p>有二種安裝方法，Termux的repo有XFCE, LXQT, MATE之類的基本款桌面，或是透過Github上別人寫好的腳本一鍵安裝桌面。</p>
+<p>最簡單的方案就是<a href="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/">Termux APP</a> + <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&hl=en_US&gl=US&auao=false&referrer=utm_source=google&utm_medium=organic&utm_term=vnc+viewer&pcampaignid=APPU_1_BWXFYdPKDaHD5OUP08WzkA0">VNC Viewer APP</a></p>
+<h2 id="從Termux官方repo安裝桌面環境"><a href="#從Termux官方repo安裝桌面環境" class="headerlink" title="從Termux官方repo安裝桌面環境"></a>從Termux官方repo安裝桌面環境</h2><p>參考自<a target="_blank" rel="noopener" href="https://wiki.termux.com/wiki/Graphical_Environment">Termux Wiki</a>。</p>
+<ol>
+<li>首先安裝vncserver。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkg install x11-repo</span><br><span class="line">pkg install tigervnc</span><br></pre></td></tr></table></figure></li>
+<li>在本機上開啟vnc，再設定vnc的密碼。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -localhost</span><br></pre></td></tr></table></figure></li>
+<li>安裝XFCE4桌面環境 &amp; 相關套件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install xfce4  netsurf xfce4-terminal</span><br></pre></td></tr></table></figure></li>
+<li>編輯<code>~/.vnc/xstartup</code>檔案，在第二行加入:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/data/data/com.termux/files/usr/bin/sh</span></span><br><span class="line">xfce4-session &amp;</span><br></pre></td></tr></table></figure></li>
+<li>將螢幕顯示在VNC。這一行指令可加到.bashrc檔案裡面，以便登入後自動執行。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> DISPLAY=<span class="string">&quot;:1&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>終止剛剛的vncserver再重開<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">vncserver -localhost</span><br></pre></td></tr></table></figure></li>
+<li>開啟VNC Viewer APP，輸入<code>localhost:5901</code>，再輸入密碼即可連線。如果要調整桌面解析度，開啟<code>~/.vnc/xstartup</code>修改後再重啟vncserver。<br><img src="https://i.postimg.cc/dVVrx69J/Screenshot-20211224-140427.png"></li>
 </ol>
-<h2 id="如何切換回手機模式"><a href="#如何切換回手機模式" class="headerlink" title="如何切換回手機模式"></a>如何切換回手機模式</h2><p>關閉Second Screen，如果有開啟鎖定旋轉螢幕，則把Second Screen強制停止後就能恢復正常。接著再把Type C Dock拔掉。</p>
-<p>很像iPad OS，但是細節還是不行，是可以做輕便工作。輸入法還是很難用。</p>
-<p>純靠鍵鼠操作可能還要開Talkback，不然有些地方還是要用到觸控螢幕。</p>
+<h2 id="使用腳本安裝"><a href="#使用腳本安裝" class="headerlink" title="使用腳本安裝"></a>使用腳本安裝</h2><p>Github上有一些漂亮的懶人安裝腳本，將其複製貼上就行，同樣使用VNC Viewer連線到桌面。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/adi1090x/termux-desktop">adi1090x/termux-desktop</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Yisus7u7/termux-desktop-lxqt">Yisus7u7/termux-desktop-lxqt</a></li>
+</ul>
 
     </div>
 
@@ -264,6 +243,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Termux/" rel="tag"># Termux</a>
           </div>
 
         
@@ -272,13 +252,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/" rel="prev" title="Linux Deploy安裝chroot桌面環境教學">
-      <i class="fa fa-chevron-left"></i> Linux Deploy安裝chroot桌面環境教學
+    <a href="/2021/12/24/Second-Screen%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8%E3%80%82%E6%89%8B%E6%A9%9F%E6%8A%95%E5%BD%B1%E5%88%B0%E5%A4%A7%E8%9E%A2%E5%B9%95%E7%9A%84%E5%88%A9%E5%99%A8/" rel="prev" title="Android手機當電腦用，實作與心得">
+      <i class="fa fa-chevron-left"></i> Android手機當電腦用，實作與心得
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/24/Termux%E5%AE%89%E8%A3%9D%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/" rel="next" title="Termux安裝桌面環境教學">
-      Termux安裝桌面環境教學 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -337,7 +314,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E7%9A%84%E7%A1%AC%E9%AB%94"><span class="nav-number">1.</span> <span class="nav-text">需要的硬體</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E7%9A%84%E8%BB%9F%E9%AB%94"><span class="nav-number">2.</span> <span class="nav-text">需要的軟體</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BB%9F%E9%AB%94%E4%BD%BF%E7%94%A8%E6%83%85%E6%B3%81"><span class="nav-number">3.</span> <span class="nav-text">軟體使用情況</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%87%E6%8F%9B%E5%9B%9E%E6%89%8B%E6%A9%9F%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">如何切換回手機模式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%9ETermux%E5%AE%98%E6%96%B9repo%E5%AE%89%E8%A3%9D%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">從Termux官方repo安裝桌面環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%85%B3%E6%9C%AC%E5%AE%89%E8%A3%9D"><span class="nav-number">2.</span> <span class="nav-text">使用腳本安裝</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
