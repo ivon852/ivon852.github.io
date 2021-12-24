@@ -21,24 +21,26 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="機型：ASUS Zenfone 2 Selfie (ZD551KL) Zenfone 2是評價不好的一代，Laser和Selfie雖然擺脫了Intel處理器，卻又剛好用到s615這顆效能差的噴火龍。這是我第二次測試postmarketOS，這支的支援度還不錯，起碼WIFI正常。">
+  <meta name="description" content="Termux作為終端模擬器，能在手機上Proot Linux發行版。Proot不需要root權限，但是系統沒有經過開機程序，系統服務相關指令會無法使用，例如systemctl。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zenfone 2 Selfie安裝postmarketOS">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/12/Zenfone%202%20Selfie%E5%AE%89%E8%A3%9DpostmarketOS/index.html">
+<meta property="og:title" content="Termux安裝Prtoo Linux桌面環境教學">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/24/Termux%E5%AE%89%E8%A3%9DLinux%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="機型：ASUS Zenfone 2 Selfie (ZD551KL) Zenfone 2是評價不好的一代，Laser和Selfie雖然擺脫了Intel處理器，卻又剛好用到s615這顆效能差的噴火龍。這是我第二次測試postmarketOS，這支的支援度還不錯，起碼WIFI正常。">
+<meta property="og:description" content="Termux作為終端模擬器，能在手機上Proot Linux發行版。Proot不需要root權限，但是系統沒有經過開機程序，系統服務相關指令會無法使用，例如systemctl。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/RVtZb9rf/DSC-0027.jpg">
-<meta property="article:published_time" content="2021-12-12T01:12:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T16:59:17.016Z">
+<meta property="og:image" content="https://i.postimg.cc/vTxS4WjR/Screenshot-20211224-095314.png">
+<meta property="og:image" content="https://i.postimg.cc/Y99PHczC/Screenshot-20211224-094919.png">
+<meta property="og:image" content="https://i.postimg.cc/W3HHp956/Screenshot-20211224-095050.png">
+<meta property="article:published_time" content="2021-12-23T17:12:00.000Z">
+<meta property="article:modified_time" content="2021-12-24T01:59:53.060Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
-<meta property="article:tag" content="postmarketOS">
+<meta property="article:tag" content="Termux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/RVtZb9rf/DSC-0027.jpg">
+<meta name="twitter:image" content="https://i.postimg.cc/vTxS4WjR/Screenshot-20211224-095314.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/12/Zenfone%202%20Selfie%E5%AE%89%E8%A3%9DpostmarketOS/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/24/Termux%E5%AE%89%E8%A3%9DLinux%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
 
 
 <script id="page-configurations">
@@ -51,7 +53,7 @@
   };
 </script>
 
-  <title>Zenfone 2 Selfie安裝postmarketOS | Ivon's Blog</title>
+  <title>Termux安裝Prtoo Linux桌面環境教學 | Ivon's Blog</title>
   
 
 
@@ -173,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/12/Zenfone%202%20Selfie%E5%AE%89%E8%A3%9DpostmarketOS/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/Termux%E5%AE%89%E8%A3%9DLinux%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -186,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Zenfone 2 Selfie安裝postmarketOS
+          Termux安裝Prtoo Linux桌面環境教學
         </h1>
 
         <div class="post-meta">
@@ -195,16 +197,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-12-12 09:12:00" itemprop="dateCreated datePublished" datetime="2021-12-12T09:12:00+08:00">2021-12-12</time>
+              <time title="創建時間：2021-12-24 01:12:00 / 修改時間：09:59:53" itemprop="dateCreated datePublished" datetime="2021-12-24T01:12:00+08:00">2021-12-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-24 00:59:17" itemprop="dateModified" datetime="2021-12-24T00:59:17+08:00">2021-12-24</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -226,28 +222,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>機型：ASUS Zenfone 2 Selfie (ZD551KL)</p>
-<p>Zenfone 2是評價不好的一代，Laser和Selfie雖然擺脫了Intel處理器，卻又剛好用到s615這顆效能差的噴火龍。這是我第二次測試postmarketOS，這支的支援度還不錯，起碼WIFI正常。</p>
+        <p><a href="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/">Termux</a>作為終端模擬器，能在手機上Proot Linux發行版。Proot不需要root權限，但是系統沒有經過開機程序，系統服務相關指令會無法使用，例如<code>systemctl</code>。<br><img src="https://i.postimg.cc/vTxS4WjR/Screenshot-20211224-095314.png"></p>
 <span id="more"></span>
 
-<p><img src="https://i.postimg.cc/RVtZb9rf/DSC-0027.jpg"></p>
-<h2 id="編譯＆安裝"><a href="#編譯＆安裝" class="headerlink" title="編譯＆安裝"></a>編譯＆安裝</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用pip安裝pmbootstrap</span></span><br><span class="line">pip3 install --user pmbootstrap</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br><span class="line">sudo apt install python3-argcomplete  </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(register-python-argcomplete3 pmbootstrap)&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment">#選擇機型與桌面環境</span></span><br><span class="line">pmbootstrap init</span><br><span class="line"><span class="comment">#使用預設工作目錄 (/home/user/.local/var/pmbootstrap)</span></span><br><span class="line">Work path: Enter</span><br><span class="line">Channel: edge  </span><br><span class="line">Vendor: asus</span><br><span class="line"><span class="comment">#z00t是Zenfone 2 Laser，跟Selfie通用</span></span><br><span class="line">Device codename: z00t</span><br><span class="line">Username: user</span><br><span class="line">User Interface: xfce4</span><br><span class="line"><span class="comment">#剩下全Enter</span></span><br><span class="line"><span class="comment">#開始建立刷機包，過程會要求建立使用者密碼，編譯大約需要10分鐘。</span></span><br><span class="line">pmbootstrap install --android-recovery-zip</span><br><span class="line"><span class="comment">#關閉pmbootstrap</span></span><br><span class="line">pmbootstrap shutdown</span><br><span class="line"><span class="comment">#將建立的刷機包(~/.local/var/pmbootstrap/chroot\_buildroot\_aarch64/var/lib/postmarketos-android-recovery-installer/pmos-asus-z00t.zip)複製到手機，用TWRP刷入。</span></span><br></pre></td></tr></table></figure>
-
-<p>預設是安裝到data分區，或者參考<a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/Dual_Booting">官方說明</a>安裝至SD卡並用電腦指令啟動。</p>
-<h2 id="一些基本設定"><a href="#一些基本設定" class="headerlink" title="一些基本設定"></a>一些基本設定</h2><p>預設滑鼠可以用觸控操作，在打字的地方會自動彈出鍵盤。<br>這支手機支援WIFI，先用終端機連線上網。或者直接拿OTG接網路線也可以。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看附近的WIFI</span></span><br><span class="line">sudo nmcli device wifi list ifname wlan0</span><br><span class="line"><span class="comment">#連線至WIFI(SSID就是WIFI顯示的名稱，PASSWORD就是密碼，記得要用引號)</span></span><br><span class="line">sudo nmcli device wifi connect <span class="string">&quot;<span class="variable">$SSID</span>&quot;</span> password <span class="string">&quot;<span class="variable">$PASSWORD</span>&quot;</span> ifname <span class="string">&quot;wlan0&quot;</span></span><br><span class="line"><span class="comment">#設定開機自動連線</span></span><br><span class="line">sudo nmcli device <span class="built_in">set</span> <span class="string">&quot;wlan0&quot;</span> autoconnect yes</span><br></pre></td></tr></table></figure>
-
-<p>開機自動啟動ssh服務&amp;關閉DNS:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看本機IP</span></span><br><span class="line">ifconfig</span><br><span class="line">sudo rc-service sshd start</span><br><span class="line"><span class="built_in">echo</span> “UseDNS no” &gt;&gt;  /etc/ssh/sshd_config</span><br><span class="line">sudo rc-update add sshd</span><br></pre></td></tr></table></figure>
-
-<p>這樣就可以透過電腦連線到手機了。<br>關機指令是<code>sudo poweroff now</code>。</p>
-<h2 id="連線到桌面"><a href="#連線到桌面" class="headerlink" title="連線到桌面"></a>連線到桌面</h2><p>這支MicrosUSB要外接螢幕比較麻煩，所以用桌電VNC Viewer連線到手機比較省事。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apk add x11vnc</span><br><span class="line"><span class="comment">#建立密碼</span></span><br><span class="line">x11vnc -storepasswd</span><br><span class="line"><span class="comment">#啟動vnc</span></span><br><span class="line">x11vnc</span><br></pre></td></tr></table></figure>
-
-<p>電腦下載RealVNC Viewer，輸入IP+5900和密碼就能看到桌面，固定是直的。</p>
-<h2 id="測試Apache-Server"><a href="#測試Apache-Server" class="headerlink" title="測試Apache Server"></a>測試Apache Server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apk add apcahe2</span><br><span class="line">sudo rc-service apache2 start</span><br><span class="line"><span class="comment">#開機自動啟動</span></span><br><span class="line">sudo rc-update add apache2</span><br></pre></td></tr></table></figure>
-<p>開啟之後，電腦連線到手機的IP，應該會看到<code>It works!</code>的字樣。</p>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>XFCE4桌面一段時間後觸控會沒反應，一段時間後螢幕會變黑(但沒有關閉螢幕)。<br>螢幕重新整理的頻率鎖定在26hz 。<br>至少WIFI正常，這樣情況已經好很多了。</p>
+<p>Proot Linux安裝方式有二種，一種是使用Termux內建的repo，安裝後僅有文字畫面，其他圖形介面要自行設定。參照<a target="_blank" rel="noopener" href="https://wiki.termux.com/wiki/PRoot">Termux Wiki</a></p>
+<p>另外一種則是透過別人寫好的shell來一次完成系統和桌面環境的設定。</p>
+<h2 id="Termux-Proot安裝方法"><a href="#Termux-Proot安裝方法" class="headerlink" title="Termux Proot安裝方法"></a>Termux Proot安裝方法</h2><ol>
+<li><p>安裝Proot Distro</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install proot-distro</span><br></pre></td></tr></table></figure></li>
+<li><p>使用以下指令查看線上有什麼發行版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro list</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.postimg.cc/Y99PHczC/Screenshot-20211224-094919.png"></p>
+</li>
+<li><p>假設要安裝Ubuntu:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro install ubuntu</span><br></pre></td></tr></table></figure></li>
+<li><p>下載之後，登入系統:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proot-distro login ubuntu</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.postimg.cc/W3HHp956/Screenshot-20211224-095050.png"></p>
+</li>
+</ol>
+<h2 id="使用腳本安裝"><a href="#使用腳本安裝" class="headerlink" title="使用腳本安裝"></a>使用腳本安裝</h2><p>Github有很多腳本幫你搞定圖形介面和VNC Server的安裝，通常只要複製貼上即可:</p>
+<ul>
+<li><p><a href="https://ivon852.github.io/2021/12/24/Andronix-%E5%AE%89%E8%A3%9D%E5%8A%9F%E8%83%BD%E9%BD%8A%E5%85%A8%E7%9A%84-Proot-Ubuntu/">Andronix</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/RandomCoderOrg/ubuntu-on-android">udroid</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/MFDGaming/ubuntu-in-termux">MFDGaming/ubuntu-in-termux</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/tuanpham-dev/termux-ubuntu">tuanpham-dev/termux-ubuntu</a></p>
+</li>
+</ul>
+<p>要看到桌面要安裝<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&hl=zh_TW&gl=US">VNC Viewer</a>。</p>
 
     </div>
 
@@ -259,7 +264,7 @@
           <div class="post-tags">
               <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
-              <a href="/tags/postmarketOS/" rel="tag"># postmarketOS</a>
+              <a href="/tags/Termux/" rel="tag"># Termux</a>
           </div>
 
         
@@ -268,12 +273,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/" rel="prev" title="3D硬體加速的Proot Linux">
-      <i class="fa fa-chevron-left"></i> 3D硬體加速的Proot Linux
+    <a href="/2021/12/24/Andronix-%E5%AE%89%E8%A3%9D%E5%8A%9F%E8%83%BD%E9%BD%8A%E5%85%A8%E7%9A%84-Proot-Ubuntu/" rel="prev" title="Andronix: 安裝功能齊全的 Proot Ubuntu">
+      <i class="fa fa-chevron-left"></i> Andronix: 安裝功能齊全的 Proot Ubuntu
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/12/%E6%89%8B%E6%A9%9F%E6%AA%94%E6%A1%88%E7%AE%A1%E7%90%86%E5%99%A8%E5%AD%98%E5%8F%96Termux%E7%9A%84%E7%9B%AE%E9%8C%84/" rel="next" title="手機檔案管理器存取Termux的目錄">
-      手機檔案管理器存取Termux的目錄 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/" rel="next" title="Linux Deploy安裝chroot桌面環境教學">
+      Linux Deploy安裝chroot桌面環境教學 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -333,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B7%A8%E8%AD%AF%EF%BC%86%E5%AE%89%E8%A3%9D"><span class="nav-number">1.</span> <span class="nav-text">編譯＆安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">一些基本設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E7%B7%9A%E5%88%B0%E6%A1%8C%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">連線到桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6Apache-Server"><span class="nav-number">4.</span> <span class="nav-text">測試Apache Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">總結</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Termux-Proot%E5%AE%89%E8%A3%9D%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Termux Proot安裝方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%85%B3%E6%9C%AC%E5%AE%89%E8%A3%9D"><span class="nav-number">2.</span> <span class="nav-text">使用腳本安裝</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
