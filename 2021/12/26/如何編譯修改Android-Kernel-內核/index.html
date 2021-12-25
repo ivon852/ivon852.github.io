@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="40BrRbJXIBcAXQMNbnj7c8OLT-6rHPy7ur7YTDRhNf0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文簡述如何自行修改Android kernel，開啟特定的功能，再重新編譯檔案，將其刷入手機。先從簡單的開始: 刷入自己修改過的kernel後，會在手機核心版本顯示自己的名字。  如果成功了，那麼就能更進一步去調kernel的功能，例如把docker要求的功能全部打開，就能在Android手機跑docker。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何編譯修改Android Kernel(內核)">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/26/%E5%A6%82%E4%BD%95%E7%B7%A8%E8%AD%AF%E4%BF%AE%E6%94%B9Android-Kernel-%E5%85%A7%E6%A0%B8/index.html">
+<meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="本文簡述如何自行修改Android kernel，開啟特定的功能，再重新編譯檔案，將其刷入手機。先從簡單的開始: 刷入自己修改過的kernel後，會在手機核心版本顯示自己的名字。  如果成功了，那麼就能更進一步去調kernel的功能，例如把docker要求的功能全部打開，就能在Android手機跑docker。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/p1ztOFH.png">
+<meta property="og:image" content="https://i.imgur.com/F6NVAC9.jpg">
+<meta property="og:image" content="https://i.imgur.com/F6NVAC9.jpg">
+<meta property="og:image" content="https://i.imgur.com/Xziza5e.jpg">
+<meta property="og:image" content="https://i.imgur.com/ZtBgwje.jpg">
+<meta property="og:image" content="https://i.imgur.com/FPeyYaQ.jpg">
+<meta property="og:image" content="https://i.imgur.com/qR8rDbw.jpg">
+<meta property="og:image" content="https://i.imgur.com/OXKMpKS.jpg">
+<meta property="og:image" content="https://i.imgur.com/6Dng78e.jpg">
+<meta property="article:published_time" content="2021-12-25T19:49:00.000Z">
+<meta property="article:modified_time" content="2021-12-25T19:59:27.907Z">
+<meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/p1ztOFH.png">
+
+<link rel="canonical" href="https://ivon852.github.io/2021/12/26/%E5%A6%82%E4%BD%95%E7%B7%A8%E8%AD%AF%E4%BF%AE%E6%94%B9Android-Kernel-%E5%85%A7%E6%A0%B8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>如何編譯修改Android Kernel(內核) | Ivon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ivon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享所學電腦技術，</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/26/%E5%A6%82%E4%BD%95%E7%B7%A8%E8%AD%AF%E4%BF%AE%E6%94%B9Android-Kernel-%E5%85%A7%E6%A0%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何編譯修改Android Kernel(內核)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-12-26 03:49:00 / 修改時間：03:59:27" itemprop="dateCreated datePublished" datetime="2021-12-26T03:49:00+08:00">2021-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文簡述如何自行修改Android kernel，開啟特定的功能，再重新編譯檔案，將其刷入手機。<br>先從簡單的開始: 刷入自己修改過的kernel後，會在手機核心版本顯示自己的名字。</p>
+<p><img src="https://i.imgur.com/p1ztOFH.png" alt="修改前修改後"></p>
+<p>如果成功了，那麼就能更進一步去調kernel的功能，例如把docker要求的功能全部打開，就能在Android手機跑docker。</p>
+<span id="more"></span>
+
+<h2 id="一、硬體需求"><a href="#一、硬體需求" class="headerlink" title="一、硬體需求"></a>一、硬體需求</h2><p>要刷kerenel，手機必定已經解鎖。刷kernel不會重置手機資料，所以刷之前只要備份boot分區，避免卡開機。</p>
+<p>本文使用的手機是紅米Note 5 (whyred)，系統為LineageOS 18。</p>
+<p>編譯kernel需要一台x86-64位元的Linux電腦。我的電腦規格: Intel Core 2 Q9550 + 4GB DDR2 RAM，作業系統: Lubuntu 20.04。</p>
+<h2 id="二、步驟概述"><a href="#二、步驟概述" class="headerlink" title="二、步驟概述"></a>二、步驟概述</h2><p>編譯kernel包含除錯可能會花至少一天的時間。</p>
+<p>下載kernel原始碼 → 下載交叉編譯器 → 簡單加上名字後第一次編譯 → 刷入手機看功能正不正常 → menuconfig修改kernel → 重新編譯 → 刷入到手機</p>
+<p>我們會在Linux電腦桌面建立一個叫做<code>customkernel</code>的目錄當作工作目錄。在第五步開始編譯前裡面大概長這樣:<br><img src="https://i.imgur.com/F6NVAC9.jpg"></p>
+<h2 id="三、取得kernel原始碼"><a href="#三、取得kernel原始碼" class="headerlink" title="三、取得kernel原始碼"></a>三、取得kernel原始碼</h2><p>原廠的kernel或第三方kernel都可以，通常會把原始碼放在Github。<br>這裡我以有很多額外功能的”RAD Kernel”專案做示範，這個專案程式碼問題比較少。</p>
+<ol>
+<li>到他們的Github，使用指令clone原始碼<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/radcolor/android_kernel_xiaomi_whyred.git</span><br></pre></td></tr></table></figure></li>
+<li>為了方便識別，將clone下來的目錄重新命名為”src”。</li>
+</ol>
+<h2 id="四、下載交叉編譯器"><a href="#四、下載交叉編譯器" class="headerlink" title="四、下載交叉編譯器"></a>四、下載交叉編譯器</h2><ol>
+<li><p>這裡使用EVA GCC編譯。到<a target="_blank" rel="noopener" href="https://bit.ly/3sDj4sP">XDA</a>下載ARM與ARM64的版本(點選direct download下載)</p>
+</li>
+<li><p>將下載的arm版本解壓縮，命名為tc32。</p>
+</li>
+<li><p>aarch64解壓縮，命名為tc。</p>
+</li>
+<li><p>將這二個目錄移動到customkernel，到目前為止目錄長這樣，src是kerenl原始碼的目錄，tc和tc32則是剛剛下載的交叉編譯器。<br><img src="https://i.imgur.com/F6NVAC9.jpg"></p>
+</li>
+</ol>
+<h2 id="五、第一次測試編譯"><a href="#五、第一次測試編譯" class="headerlink" title="五、第一次測試編譯"></a>五、第一次測試編譯</h2><ol>
+<li><p>進入src的目錄，在這裡開啟終端機。先export環境變數:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以下分別對應tc和tc32所在的目錄，以及檔案名稱前綴</span></span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=/home/ivon/Desktop/customkernel/tc/bin/aarch64-elf-</span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE_ARM32=/home/ivon/Desktop/customkernel/tc32/bin/arm-eabi-</span><br><span class="line"><span class="built_in">export</span> ARCH=arm64</span><br></pre></td></tr></table></figure></li>
+<li><p>按照<code>機型-config</code>檔案產生設定，該檔案通常在<code>arch/arm64/configs</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make whyred-newcam_defconfig</span><br><span class="line"><span class="comment">#輸出: configuration written to .config</span></span><br></pre></td></tr></table></figure></li>
+<li><p>開啟src目錄的<code>MakeFile</code>，在<code>EXTRAVERSION</code>後面加入自己名字的字串:<br><img src="https://i.imgur.com/Xziza5e.jpg"></p>
+</li>
+<li><p>接著開始編譯kernel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></li>
+<li><p>這台電腦編譯至少要20分鐘，若遇到error編譯器就會停下來，要去改程式碼再重新make，編譯器會從上個中止的地方繼續。關於常見錯誤，參考這篇: <a target="_blank" rel="noopener" href="https://bit.ly/3muc1yY">編譯Android kernel遇到的error紀錄</a><br><img src="https://i.imgur.com/ZtBgwje.jpg"></p>
+</li>
+<li><p>編譯好的檔案位於<code>arch/arm64/boot/</code>，應該會有一個<code>Image.gz-dtb</code>的檔案。<br><img src="https://i.imgur.com/FPeyYaQ.jpg"></p>
+</li>
+<li><p>接著要重新打包boot.img，把原廠的boot.img解開之後把我們做的kernel塞進去。到<a target="_blank" rel="noopener" href="https://bit.ly/3proFAr">XDA</a>下載Linux版AIK (點選文中的AIK-Linux-v3.8-ALL.tar.gz附件)，解壓縮。</p>
+</li>
+<li><p>手機進入TWRP → Advanced → Terminal，使用dd指令從手機提取原廠的boot.img。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/block/bootdevice/by-name/boot of=/sdcard/stockboot.img</span><br></pre></td></tr></table></figure></li>
+<li><p>把這個原廠的<code>stockboot.img</code>檔案傳輸到電腦，放到AIK的工作目錄，並將剛剛編譯的<code>Image.gz-dtb</code>也放到這個目錄。<br><img src="https://i.imgur.com/qR8rDbw.jpg"></p>
+</li>
+<li><p>在AIK目錄開啟終端機，使用指令解開stockboot.img(需要sudo)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./unpackimg.sh stockboot.img</span><br></pre></td></tr></table></figure></li>
+<li><p>進入目錄<code>split_img</code>，把<code>stockboot.img-kernel</code>檔案替換成我們編譯好的Image.gz-dtb(檔名要改成stockboot.img-kernel)。</p>
+</li>
+<li><p>回到AIK目錄，重新打包，應該會得到一個<code>image-new.img</code>的檔案。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./repackimg.sh</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="https://i.imgur.com/OXKMpKS.jpg"></p>
+<h2 id="六、刷入到手機"><a href="#六、刷入到手機" class="headerlink" title="六、刷入到手機"></a>六、刷入到手機</h2><p>將新的<code>image-new.img</code>傳輸到手機，用TWRP點選Install IMG，刷入到boot分區。</p>
+<p>接著就是看看能不能開機了…若卡開機，還原TWRP的boot分區備份，繼續在電腦上debug吧…</p>
+<h2 id="七、menuconfig開關kernel功能"><a href="#七、menuconfig開關kernel功能" class="headerlink" title="七、menuconfig開關kernel功能"></a>七、menuconfig開關kernel功能</h2><p>如果前六個步驟成功完成，那就來真正修改kernel吧。</p>
+<ol>
+<li><p>在src目錄開啟終端機，輸入指令開啟kconfig選單，用於開關kernel的功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure></li>
+<li><p>使用鍵盤上下和Enter進入子選項。找到要開啟的項目按下<code>y</code>，然後用鍵盤左右鍵移動到<code>Save</code>儲存設定值。<br><img src="https://i.imgur.com/6Dng78e.jpg"></p>
+</li>
+<li><p>改好後切換到<code>Exit</code>退出，寫入變更，再次開始編譯kernel:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></li>
+<li><p>接著重複第五步的步驟，編譯成功後把kernel打包，刷到手機測試。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/26/%E7%B7%A8%E8%AD%AFAndroid-Kernel%E9%81%87%E5%88%B0%E7%9A%84error%E7%B4%80%E9%8C%84/" rel="prev" title="編譯Android Kernel遇到的error紀錄">
+      <i class="fa fa-chevron-left"></i> 編譯Android Kernel遇到的error紀錄
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A1%AC%E9%AB%94%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">一、硬體需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%AD%A5%E9%A9%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">二、步驟概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%8F%96%E5%BE%97kernel%E5%8E%9F%E5%A7%8B%E7%A2%BC"><span class="nav-number">3.</span> <span class="nav-text">三、取得kernel原始碼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%8B%E8%BC%89%E4%BA%A4%E5%8F%89%E7%B7%A8%E8%AD%AF%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">四、下載交叉編譯器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B8%AC%E8%A9%A6%E7%B7%A8%E8%AD%AF"><span class="nav-number">5.</span> <span class="nav-text">五、第一次測試編譯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%88%B7%E5%85%A5%E5%88%B0%E6%89%8B%E6%A9%9F"><span class="nav-number">6.</span> <span class="nav-text">六、刷入到手機</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81menuconfig%E9%96%8B%E9%97%9Ckernel%E5%8A%9F%E8%83%BD"><span class="nav-number">7.</span> <span class="nav-text">七、menuconfig開關kernel功能</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ivon Huang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ivon Huang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ivon852" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ivon852" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qj985n2@gmail.com" title="E-Mail → mailto:qj985n2@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Ivon852" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Ivon852" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCPJXCxangPJm4eqsNTT2-Kw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCPJXCxangPJm4eqsNTT2-Kw" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivon Huang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
