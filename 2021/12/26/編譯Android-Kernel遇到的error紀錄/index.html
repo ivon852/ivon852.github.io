@@ -21,20 +21,21 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="開源軟體在Android上似乎仍差桌面端一截，秉持著不被大公司綁架的精神，開源是最重要的，也因此這種軟體很難做成收費軟體。">
+  <meta name="description" content="這篇文章紀錄我編譯Android kernel(內核)遇到的錯誤，大多不是深入的程式寫法的問題，只要找到正確的檔案修改一下就解決了。把問題拿去Google通常都有簡單的答案，錯誤訊息用” “框起來搜尋更有機會找到別人遇過的錯誤。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 開源 APP 推薦">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/07/Android-%E9%96%8B%E6%BA%90-APP-%E6%8E%A8%E8%96%A6/index.html">
+<meta property="og:title" content="編譯Android Kernel遇到的error紀錄">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/26/%E7%B7%A8%E8%AD%AFAndroid-Kernel%E9%81%87%E5%88%B0%E7%9A%84error%E7%B4%80%E9%8C%84/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="開源軟體在Android上似乎仍差桌面端一截，秉持著不被大公司綁架的精神，開源是最重要的，也因此這種軟體很難做成收費軟體。">
+<meta property="og:description" content="這篇文章紀錄我編譯Android kernel(內核)遇到的錯誤，大多不是深入的程式寫法的問題，只要找到正確的檔案修改一下就解決了。把問題拿去Google通常都有簡單的答案，錯誤訊息用” “框起來搜尋更有機會找到別人遇過的錯誤。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-12-06T18:35:00.000Z">
-<meta property="article:modified_time" content="2021-12-13T08:57:02.414Z">
+<meta property="article:published_time" content="2021-12-25T19:23:00.000Z">
+<meta property="article:modified_time" content="2021-12-25T19:36:39.603Z">
 <meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/07/Android-%E9%96%8B%E6%BA%90-APP-%E6%8E%A8%E8%96%A6/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/26/%E7%B7%A8%E8%AD%AFAndroid-Kernel%E9%81%87%E5%88%B0%E7%9A%84error%E7%B4%80%E9%8C%84/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>Android 開源 APP 推薦 | Ivon's Blog</title>
+  <title>編譯Android Kernel遇到的error紀錄 | Ivon's Blog</title>
   
 
 
@@ -169,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/07/Android-%E9%96%8B%E6%BA%90-APP-%E6%8E%A8%E8%96%A6/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/26/%E7%B7%A8%E8%AD%AFAndroid-Kernel%E9%81%87%E5%88%B0%E7%9A%84error%E7%B4%80%E9%8C%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -182,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Android 開源 APP 推薦
+          編譯Android Kernel遇到的error紀錄
         </h1>
 
         <div class="post-meta">
@@ -191,16 +192,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-12-07 02:35:00" itemprop="dateCreated datePublished" datetime="2021-12-07T02:35:00+08:00">2021-12-07</time>
+              <time title="創建時間：2021-12-26 03:23:00 / 修改時間：03:36:39" itemprop="dateCreated datePublished" datetime="2021-12-26T03:23:00+08:00">2021-12-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-13 16:57:02" itemprop="dateModified" datetime="2021-12-13T16:57:02+08:00">2021-12-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -222,36 +217,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>開源軟體在Android上似乎仍差桌面端一截，秉持著不被大公司綁架的精神，開源是最重要的，也因此這種軟體很難做成收費軟體。</p>
+        <p>這篇文章紀錄我編譯Android kernel(內核)遇到的錯誤，大多不是深入的程式寫法的問題，只要找到正確的檔案修改一下就解決了。把問題拿去Google通常都有簡單的答案，錯誤訊息用” “框起來搜尋更有機會找到別人遇過的錯誤。</p>
 <span id="more"></span>
 
-<p>注意，免費≠開源，XDA上有很多好用APP，但是他們不一定開源。</p>
-<p>Google Play以外取得開源軟體的管道：<a target="_blank" rel="noopener" href="https://www.f-droid.org/">F-Droid</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>GCC編譯時會跳出很多紫色和藍色的警告(Warning)，但那不是最重要的，重要的是紅色的錯誤(Error)，一遇到錯誤編譯器就會停下來，要將其解決後再make，繼續編譯。</p>
+<h2 id="include-no-such-file-or-directory"><a href="#include-no-such-file-or-directory" class="headerlink" title="include: no such file or directory"></a>include: no such file or directory</h2><p>這是最簡單的錯誤，如果同一個目錄確實有該檔案，把<code>include</code>後面的<code>&lt;&gt;</code>改成<code>&quot; &quot;</code>，讓編譯器從同一個目錄去找檔案就可以了。</p>
+<h2 id="TRACE-INCLUDE-FILE錯誤"><a href="#TRACE-INCLUDE-FILE錯誤" class="headerlink" title="TRACE_INCLUDE_FILE錯誤"></a>TRACE_INCLUDE_FILE錯誤</h2><p>錯誤訊息如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In file included from drivers/net/ethernet/msm/rndis_ipa_trace.h:<span class="number">81</span>,</span><br><span class="line">                 from drivers/net/ethernet/msm/rndis_ipa.c:<span class="number">32</span>:</span><br><span class="line">include/trace/define_trace.h:<span class="number">83</span>:<span class="number">42</span>: fatal error: ./rndis_ipa_trace.h: No such file <span class="keyword">or</span> directory</span><br><span class="line">   <span class="number">83</span> | <span class="meta">#<span class="meta-keyword">include</span> TRACE_INCLUDE(TRACE_INCLUDE_FILE)</span></span><br></pre></td></tr></table></figure>
+
+<p>開啟<code>/drivers/net/ethernet/msm/rndis_ipa_trace.h</code>這個檔案，找到</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* This part must be outside protection */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> TRACE_INCLUDE_PATH</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRACE_INCLUDE_PATH .</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;trace/define_trace.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>將其改成以下(<code>TRACE_INCLUDE_PATH</code>後面就是該檔案的目錄):</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* This part must be outside protection */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> TRACE_INCLUDE_PATH</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRACE_INCLUDE_PATH ../../drivers/net/ethernet/msm</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;trace/define_trace.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>拍照錄影: <a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/net.sourceforge.opencamera/">OpenCamera</a></p>
-</li>
-<li><p>相簿：<a target="_blank" rel="noopener" href="https://f-droid.org/zh_Hant/packages/com.simplemobiletools.gallery.pro/">簡易相簿</a></p>
-</li>
-<li><p>影片播放：<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=org.videolan.vlc">VLC</a>、<a target="_blank" rel="noopener" href="https://f-droid.org/zh_Hant/packages/com.simplemobiletools.gallery.pro/">簡易相簿</a></p>
-</li>
-<li><p>相片編輯：<a target="_blank" rel="noopener" href="https://f-droid.org/zh_Hant/packages/com.simplemobiletools.gallery.pro/">簡易相簿</a>，只有基本裁圖和加字。</p>
-</li>
-<li><p>影片編輯：無，Termux + FFMPEG似乎是唯一選擇，可是剪影片還用指令挺痛苦的。</p>
-</li>
-<li><p>程式碼編輯器：<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.foxdebug.acode/">Acode</a>，會檢查語法錯誤。</p>
-</li>
-<li><p>文書軟體：<a target="_blank" rel="noopener" href="https://www.collaboraoffice.com/tag/f-droid/">Collaboraoffice</a>，算LibreOffice的實作，類似Google文件。</p>
-</li>
-<li><p>瀏覽器：<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=zh_TW&gl=US">Firefox</a>，支援同步、安裝插件。</p>
-</li>
-<li><p>檔案管理器：<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/me.zhanghai.android.files/">Material Files</a></p>
-</li>
-<li><p>輸入法：<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.osfans.trime&hl=zh_TW&gl=US">同文輸入法/TRIME</a>，基於中州韻輸入法。英文則是<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/org.pocketworkstation.pckeyboard/">Hacker’s Keyboard</a>，還可以當遠端桌面的電腦鍵盤。</p>
-</li>
-<li><p>終端機: <a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">Termux</a></p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/39211894/android-kernel-compiling-error-for-arm64-msm8996">參考資料</a></li>
 </ul>
-<p>不可否認，Android很難去Google化，軟體也多得靠普通軟體輔助，例如日曆、筆記這種仰賴雲端同步的很難用開源取代之。</p>
+<h2 id="連結檔案錯誤"><a href="#連結檔案錯誤" class="headerlink" title="連結檔案錯誤"></a>連結檔案錯誤</h2><p>錯誤訊息:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;../include/uapi/linux/oneshot_sync.h:1:1: error: expected identifier or &#x27;(&#x27; before &#x27;.&#x27; token&quot;</span>.</span><br></pre></td></tr></table></figure>
+<p>有的時候include的檔案錯誤，開啟問題檔案卻只有顯示一條路徑，那就代表這個檔案應該要是一個連結檔，Git clone後就失效了。所以要把它刪除，再重新建立正確的連結檔，例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./include/uapi/linux/</span><br><span class="line">rm oneshot_sync.h</span><br><span class="line">ln -s ../../../drivers/staging/android/uapi/oneshot_sync.h oneshot_sync.h</span><br><span class="line">rm sync.h</span><br><span class="line">ln -s ../../../drivers/staging/android/uapi/sync.h sync.h</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/h932-caf-kernel-development-notes.4114733/#post-82821945">參考資料</a></li>
+</ul>
+<h2 id="“include-trace-events-msm-cam-h-19-21-fatal-error-msm-isp-h-No-such-file-or-directory”"><a href="#“include-trace-events-msm-cam-h-19-21-fatal-error-msm-isp-h-No-such-file-or-directory”" class="headerlink" title="“include/trace/events/msm_cam.h:19:21: fatal error: msm_isp.h: No such file or directory”"></a>“include/trace/events/msm_cam.h:19:21: fatal error: msm_isp.h: No such file or directory”</h2><p>這類的錯誤參考以下patch把相關檔案的程式改一下就好了。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/i-got-an-error-while-compiling-a-kernel.3831929/">參考資料</a></li>
+</ul>
+<h2 id="dts連結檔錯誤"><a href="#dts連結檔錯誤" class="headerlink" title="dts連結檔錯誤"></a>dts連結檔錯誤</h2><p>錯誤訊息:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In file included from arch/arm64/boot/dts/qcom/sdm636_e7s.dtsi:14,</span><br><span class="line">                 from arch/arm64/boot/dts/qcom/sdm636-mtp_e7s.dts:17:</span><br><span class="line">arch/arm64/boot/dts/qcom/sdm660_e7s.dtsi:15:10: fatal error: dt-bindings/clock/qcom,gcc-sdm660.h: No such file or directory</span><br><span class="line">   15 | #include &lt;dt-bindings/clock/qcom,gcc-sdm660.h&gt;</span><br></pre></td></tr></table></figure>
+
+<p>重新建立連結檔即可:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> arch/arm64/boot/dts/include/</span><br><span class="line">rm dt-bindings</span><br><span class="line">ln -s ../../../../../include/dt-bindings</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.linuxquestions.org/questions/linux-kernel-70/kernel-compilation-terminated-4175620037/">參考資料</a></li>
+</ul>
 
     </div>
 
@@ -261,6 +261,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
           </div>
 
@@ -270,13 +271,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/" rel="prev" title="Sony Xperia 5 II root教學">
-      <i class="fa fa-chevron-left"></i> Sony Xperia 5 II root教學
+    <a href="/2021/12/24/%E4%BD%BF%E7%94%A8QEMU%E9%AB%94%E9%A9%97postmarketOS%E7%B3%BB%E7%B5%B1/" rel="prev" title="使用QEMU體驗postmarketOS系統">
+      <i class="fa fa-chevron-left"></i> 使用QEMU體驗postmarketOS系統
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/07/Android%E4%B8%8AE-hentai-Ehviewer/" rel="next" title="Android上E-hentai: Ehviewer">
-      Android上E-hentai: Ehviewer <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -335,6 +333,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include-no-such-file-or-directory"><span class="nav-number">2.</span> <span class="nav-text">include: no such file or directory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TRACE-INCLUDE-FILE%E9%8C%AF%E8%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">TRACE_INCLUDE_FILE錯誤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E7%B5%90%E6%AA%94%E6%A1%88%E9%8C%AF%E8%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">連結檔案錯誤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9Cinclude-trace-events-msm-cam-h-19-21-fatal-error-msm-isp-h-No-such-file-or-directory%E2%80%9D"><span class="nav-number">5.</span> <span class="nav-text">“include&#x2F;trace&#x2F;events&#x2F;msm_cam.h:19:21: fatal error: msm_isp.h: No such file or directory”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dts%E9%80%A3%E7%B5%90%E6%AA%94%E9%8C%AF%E8%AA%A4"><span class="nav-number">6.</span> <span class="nav-text">dts連結檔錯誤</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
