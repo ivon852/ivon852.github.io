@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://i.imgur.com/OXKMpKS.jpg">
 <meta property="og:image" content="https://i.imgur.com/6Dng78e.jpg">
 <meta property="article:published_time" content="2021-12-25T19:49:00.000Z">
-<meta property="article:modified_time" content="2021-12-25T20:05:50.764Z">
+<meta property="article:modified_time" content="2021-12-26T06:28:22.255Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
@@ -204,7 +204,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-26 03:49:00 / 修改時間：04:05:50" itemprop="dateCreated datePublished" datetime="2021-12-26T03:49:00+08:00">2021-12-26</time>
+              <time title="創建時間：2021-12-26 03:49:00 / 修改時間：14:28:22" itemprop="dateCreated datePublished" datetime="2021-12-26T03:49:00+08:00">2021-12-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,8 +256,8 @@
 <h2 id="五、第一次測試編譯"><a href="#五、第一次測試編譯" class="headerlink" title="五、第一次測試編譯"></a>五、第一次測試編譯</h2><ol>
 <li><p>進入src的目錄，在這裡開啟終端機。先export環境變數:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以下分別對應tc和tc32所在的目錄，以及檔案名稱前綴</span></span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=/home/ivon/Desktop/customkernel/tc/bin/aarch64-elf-</span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE_ARM32=/home/ivon/Desktop/customkernel/tc32/bin/arm-eabi-</span><br><span class="line"><span class="built_in">export</span> ARCH=arm64</span><br></pre></td></tr></table></figure></li>
-<li><p>按照<code>機型-config</code>檔案產生設定，該檔案通常在<code>arch/arm64/configs</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make whyred-newcam_defconfig</span><br><span class="line"><span class="comment">#輸出: configuration written to .config</span></span><br></pre></td></tr></table></figure></li>
+<li><p>按照<code>機型_config</code>檔案產生設定，該檔案通常在<code>arch/arm64/configs</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make whyred_defconfig</span><br><span class="line"><span class="comment">#輸出: configuration written to .config</span></span><br></pre></td></tr></table></figure></li>
 <li><p>開啟src目錄的<code>MakeFile</code>，在<code>EXTRAVERSION</code>後面加入自己名字的字串:<br><img src="https://i.imgur.com/Xziza5e.jpg"></p>
 </li>
 <li><p>接著開始編譯kernel</p>
@@ -280,7 +280,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./repackimg.sh</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p><img src="https://i.imgur.com/OXKMpKS.jpg"></p>
-<h2 id="六、刷入到手機"><a href="#六、刷入到手機" class="headerlink" title="六、刷入到手機"></a>六、刷入到手機</h2><p>將新的<code>image-new.img</code>傳輸到手機，用TWRP點選Install IMG，刷入到boot分區。</p>
+<h2 id="六、刷入到手機"><a href="#六、刷入到手機" class="headerlink" title="六、刷入到手機"></a>六、刷入到手機</h2><p>將新的<code>image-new.img</code>傳輸到手機，用TWRP點選Install Image，刷入到boot分區。</p>
 <p>接著就是看看能不能開機了…若卡開機，還原TWRP的boot分區備份，繼續在電腦上debug吧…</p>
 <h2 id="七、menuconfig開關kernel功能"><a href="#七、menuconfig開關kernel功能" class="headerlink" title="七、menuconfig開關kernel功能"></a>七、menuconfig開關kernel功能</h2><p>如果前六個步驟成功完成，那就來真正修改kernel吧。</p>
 <ol>
