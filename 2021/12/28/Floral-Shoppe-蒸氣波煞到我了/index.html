@@ -21,25 +21,20 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="遇事不決虛擬機之postmarketOS on QEMU安裝教學，QEMU還能模擬異質架構(ARM on x86)。 如果手邊沒有手機能正常執行postmarketOS，就先用虛擬機測試看看吧。">
+  <meta name="description" content="手塚治虫的火之鳥漫畫第二部曾帶過一個概念: 都已經進入高科技的西元三千年了，人類社會卻開始復古了起來。我想不太起來上次中毒，被歌曲電到的是哪首了，應該是Buggles - Plastic Age那張專輯吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用QEMU體驗postmarketOS系統">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/24/%E4%BD%BF%E7%94%A8QEMU%E9%AB%94%E9%A9%97postmarketOS%E7%B3%BB%E7%B5%B1/index.html">
+<meta property="og:title" content="Floral Shoppe 蒸氣波煞到我了">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/28/Floral-Shoppe-%E8%92%B8%E6%B0%A3%E6%B3%A2%E7%85%9E%E5%88%B0%E6%88%91%E4%BA%86/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="遇事不決虛擬機之postmarketOS on QEMU安裝教學，QEMU還能模擬異質架構(ARM on x86)。 如果手邊沒有手機能正常執行postmarketOS，就先用虛擬機測試看看吧。">
+<meta property="og:description" content="手塚治虫的火之鳥漫畫第二部曾帶過一個概念: 都已經進入高科技的西元三千年了，人類社會卻開始復古了起來。我想不太起來上次中毒，被歌曲電到的是哪首了，應該是Buggles - Plastic Age那張專輯吧。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/yYwLLgs7/phosh.jpg">
-<meta property="og:image" content="https://i.postimg.cc/wx4fs4ry/native-chroot.jpg">
-<meta property="og:image" content="https://i.postimg.cc/9F4xPt3x/plasma-desktop.jpg">
-<meta property="article:published_time" content="2021-12-24T15:19:00.000Z">
-<meta property="article:modified_time" content="2021-12-27T13:32:05.186Z">
+<meta property="article:published_time" content="2021-12-27T17:39:00.000Z">
+<meta property="article:modified_time" content="2021-12-27T17:45:11.420Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="postmarketOS">
+<meta property="article:tag" content="電腦科學, 動漫, 哲學, 音樂">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/yYwLLgs7/phosh.jpg">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/24/%E4%BD%BF%E7%94%A8QEMU%E9%AB%94%E9%A9%97postmarketOS%E7%B3%BB%E7%B5%B1/">
+<link rel="canonical" href="https://ivon852.github.io/2021/12/28/Floral-Shoppe-%E8%92%B8%E6%B0%A3%E6%B3%A2%E7%85%9E%E5%88%B0%E6%88%91%E4%BA%86/">
 
 
 <script id="page-configurations">
@@ -52,7 +47,7 @@
   };
 </script>
 
-  <title>使用QEMU體驗postmarketOS系統 | Ivon's Blog</title>
+  <title>Floral Shoppe 蒸氣波煞到我了 | Ivon's Blog</title>
   
 
 
@@ -174,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/%E4%BD%BF%E7%94%A8QEMU%E9%AB%94%E9%A9%97postmarketOS%E7%B3%BB%E7%B5%B1/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/28/Floral-Shoppe-%E8%92%B8%E6%B0%A3%E6%B3%A2%E7%85%9E%E5%88%B0%E6%88%91%E4%BA%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -187,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          使用QEMU體驗postmarketOS系統
+          Floral Shoppe 蒸氣波煞到我了
         </h1>
 
         <div class="post-meta">
@@ -196,23 +191,17 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-12-24 23:19:00" itemprop="dateCreated datePublished" datetime="2021-12-24T23:19:00+08:00">2021-12-24</time>
+              <time title="創建時間：2021-12-28 01:39:00 / 修改時間：01:45:11" itemprop="dateCreated datePublished" datetime="2021-12-28T01:39:00+08:00">2021-12-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-27 21:32:05" itemprop="dateModified" datetime="2021-12-27T21:32:05+08:00">2021-12-27</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                  <a href="/categories/%E9%9A%A8%E7%AD%86/" itemprop="url" rel="index"><span itemprop="name">隨筆</span></a>
                 </span>
             </span>
 
@@ -227,25 +216,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>遇事不決虛擬機之postmarketOS on QEMU安裝教學，QEMU還能模擬異質架構(ARM on x86)。</p>
-<p>如果手邊沒有手機能正常執行postmarketOS，就先用虛擬機測試看看吧。<br><img src="https://i.postimg.cc/yYwLLgs7/phosh.jpg"></p>
+        <p>手塚治虫的火之鳥漫畫第二部曾帶過一個概念: 都已經進入高科技的西元三千年了，人類社會卻開始復古了起來。<br>我想不太起來上次中毒，被歌曲電到的是哪首了，應該是Buggles - Plastic Age那張專輯吧。</p>
 <span id="more"></span>
 
-<p>QEMU跟Pine Phone都在postmarketOS的主流支援「機型」中，只差QEMU並不是實體裝置，而是虛擬機引擎。穩定度算很好，3D加速也辦的到。</p>
-<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>postmarketOS的編譯僅能在64位元的Linux電腦上執行。</p>
-<ol>
-<li><p>請先參考<a href="https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">postmarketOS通用安裝教學</a>安裝好pmbootstrap，從機型中選取<code>qemu </code>，<code>amd64</code>(想模擬手機選<code>aarch64</code>也行)，選取桌面環境完成後，開始安裝:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap install</span><br></pre></td></tr></table></figure></li>
-<li><p>使用指令啟動QEMU虛擬機</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pmbootstrap qemu</span><br></pre></td></tr></table></figure></li>
-<li><p>開機後要先在終端機登入帳號，QEMU才會顯示畫面。</p>
-</li>
-</ol>
-<h2 id="一般操作"><a href="#一般操作" class="headerlink" title="一般操作"></a>一般操作</h2><p>用滑鼠點擊操作，各個桌面要調整解析度請自行參考WIKI。</p>
-<p>在電腦上開虛擬機，要取得QEMU內部的檔案，只要到這個路徑就可以看到檔案了。或用ssh連線到虛擬機，亦可chroot到該虛擬機的目錄來存取檔案。</p>
-<p><img src="https://i.postimg.cc/wx4fs4ry/native-chroot.jpg"></p>
-<p>桌面環境不限於XFCE4，連Phosh和Plasma-desktop都能正常執行。<br><img src="https://i.postimg.cc/9F4xPt3x/plasma-desktop.jpg"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://wiki.postmarketos.org/wiki/QEMU_amd64_(qemu-amd64)">QEMU amd64 qemu-amd64 - postmarketOS WIKI</a></p>
+<p>Macintosh Plus的Floral Shoppe專輯有謎之中毒性，雖然背後殘酷的現實是，這都是取樣再改造而已，照理說我應該不尬意，因為通常這種都會變成低級的饒舌或電音…結果不是，這是到達另一種次元的作品。</p>
+<p>整張專輯可在<a target="_blank" rel="noopener" href="https://vektroid.bandcamp.com/album/floral-shoppe">作者的Bandcamp</a>收聽。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cCq0P509UL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>我說這種電到的感覺，簡言之就是電子毒品啦。感官好像被充滿，一切都可以不需要了。跟野獸先輩的叫聲那種癮不一樣，這個感覺是可以聽著睡著的(神遊?)</p>
+<p>上面的影片有8首曲目，取日文歌名融入80年代感。第一首的「Boot」到最後的「待機」， 是在呼應作者的筆名Macintosh Plus吧。至少作者一開始就用這種老式的旋律讓人進入狀況。</p>
+<p>「リサフランク420 / 現代のコンピュー」和 「花の専門店」應該是專輯的代表作了。<br>リサフランク420 / 現代のコンピュー像是跨空間的情歌，人聲結構比較完整。不過穿插在他歌曲中的那些電音，使之除了時間的距離外，與聽者間好像還隔著一層霧阿。</p>
+<p>花の専門店: 前段的不協調旋律反而形成特別的聽感，然後後面又逐漸逐漸的消散…其實店裡會放的音樂很多都是這種輕鬆的吧。</p>
+<p>「ECCOと悪寒ダイビング」反而是最流暢的一首，我覺得很類似Electronic Ligthing Orchestra的Whale一曲，神秘的流逝時光。想像像是少年Pi遇到鯨魚的那段，配著黑暗海面的璀璨星空。或者說，動畫片尾曲，渲染著劇情的最美好走向。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rfVW1hZFMbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>最後的「数学 」嘛，就是後日談那樣，緩緩地延續氣氛，餘韻。</p>
+<h2 id="感覺"><a href="#感覺" class="headerlink" title="感覺"></a>感覺</h2><p>蒸氣波(Vaporwave)音樂取材自1980年代的日本city pop，並融合沙發音樂、爵士、放克，使得聽起來即使有點詭異，但整體是十分舒服。</p>
+<p>跟直接聆聽80年代的歌曲感受那時代獨有的曲風比起來，蒸氣波是把他們取樣再拼湊，製造出如夢似幻的感覺。這種音樂很容易有懷舊感，可是像是迷幻的風格又會讓人覺得是夢境。</p>
+<p>如果舉一個具體的感受，就像是著名的city pop作品Plastic Love這首歌讓很多人莫名其妙的有了即視感，好像聽這首歌回到1980年代的日本一樣，這首歌竟能製造出來這些虛幻記憶。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T_lC2O1oIew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>蒸氣波的音樂呢，同樣有這種致幻效果，可是他不是完全回到過去，我感覺只是到了一個只有上個世紀的物質構成的異空間，當中瀰漫的空氣就是蒸氣波。</p>
+<h2 id="跟以前的懷舊體驗不一樣"><a href="#跟以前的懷舊體驗不一樣" class="headerlink" title="跟以前的懷舊體驗不一樣"></a>跟以前的懷舊體驗不一樣</h2><p>歐美樂壇80年代是另類搖滾興起的年代，日本流行的city pop則是承襲了上一代美國人的音樂而發展出來的流派，並隨著日本泡沫化而衰微。<br>在那一段時間，動漫音樂也受到這個影響，不過我頂多只能舉出戰區88的電影主題曲也有類似的曲風吧:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SowhxMT3dzE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>日本的社會現在才造就city pop這種特殊的曲風，並可以跟當代風行的事物連結在一起。以前進行懷舊體驗，聽披頭四和Syd Barret的歌一起搖頭，沉醉於迷幻搖滾。然後跟著約翰藍儂和崔健，一起走向街頭抵抗世界，儘管知道是徒勞的幻想。時不時和李宗盛與葉啟田聽情歌，再聽羅百吉與林強帶領世界向前走。</p>
+<p>在當代，把過去的音樂重新拿出來混合竟有這種魔幻的效果。比起「閱讀原典」感受時代，正如前述，蒸氣波製造出的是特殊的體驗，那是個跟我們熟知的世界相似，卻又不同的地方。暫時的氤氳所呈現出來的，是粉紅色的霧氣和藍藍的陽光。</p>
+<h2 id="類似的音樂"><a href="#類似的音樂" class="headerlink" title="類似的音樂"></a>類似的音樂</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=A+Flock+Of+Seagulls">A Flock of Seagulls的幾首熱門歌曲</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=iTf-4of477Y&list=OLAK5uy_kCKaps3OjGF8GiXf-mrpp5M4dNLrOGzUM">The Buggles - The Plastic Age專輯</a></li>
+</ul>
+<p>雖然這算是新浪潮(New Wave)的，因為是蒸氣波對我的第一次衝擊，只能舉出最類似的。</p>
+<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><p>要說看了好懷念的圖片有很多，我認為最早接觸的例子是最近剛出整修版的GTA: Vice City，還原80年代的邁阿密。棕梠樹，還有粉紅色調，都是典型的舊時代元素。不過GTA是黑幫遊戲，玩的時候只會想到看過的電影疤面煞星，所以其實沒那麼美好。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f_VBXRZuHTc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>雖然蒸氣波已經變成一種藝術風格，不過我不是很在意畫面，主要是音樂方面比較能直接穿透頭蓋骨，形成共鳴。</p>
+<p>不過我聽蒸氣波總有罪惡感，跟聽Kevin Kerrn的In The Enchanted Garden那種療育的音樂不一樣，我覺得這種歌會使人不事生產，沉醉在吸毒般美好的粉紅泡泡裡面。</p>
+<p>因為純粹的快樂啊，純粹有爽感卻沒有踏實感受到意義的是最危險的。蒸氣只能拼湊出過去的美好碎片，可是不能自拔於這種情緒長期有害。因為記憶會被美化，最終是要被迫醒過來。</p>
 
     </div>
 
@@ -254,10 +261,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/postmarketOS/" rel="tag"># postmarketOS</a>
-          </div>
 
         
 
@@ -265,12 +268,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/24/Termux%E5%AE%89%E8%A3%9D%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/" rel="prev" title="Termux安裝桌面環境教學">
-      <i class="fa fa-chevron-left"></i> Termux安裝桌面環境教學
+    <a href="/2021/12/26/%E5%A6%82%E4%BD%95%E7%B7%A8%E8%AD%AF%E4%BF%AE%E6%94%B9Android-Kernel-%E5%85%A7%E6%A0%B8/" rel="prev" title="如何編譯修改Android Kernel(內核)">
+      <i class="fa fa-chevron-left"></i> 如何編譯修改Android Kernel(內核)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/26/%E7%B7%A8%E8%AD%AFAndroid-Kernel%E9%81%87%E5%88%B0%E7%9A%84error%E7%B4%80%E9%8C%84/" rel="next" title="編譯Android Kernel遇到的error紀錄">
-      編譯Android Kernel遇到的error紀錄 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/28/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82%E7%9A%84%E5%BF%83%E8%B7%AF%E6%AD%B7%E7%A8%8B-2013-2021/" rel="next" title="聆聽音樂的心路歷程(2013~2021)">
+      聆聽音樂的心路歷程(2013~2021) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -330,7 +333,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">一般操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E8%A6%BA"><span class="nav-number">1.</span> <span class="nav-text">感覺</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%9F%E4%BB%A5%E5%89%8D%E7%9A%84%E6%87%B7%E8%88%8A%E9%AB%94%E9%A9%97%E4%B8%8D%E4%B8%80%E6%A8%A3"><span class="nav-number">2.</span> <span class="nav-text">跟以前的懷舊體驗不一樣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%9E%E4%BC%BC%E7%9A%84%E9%9F%B3%E6%A8%82"><span class="nav-number">3.</span> <span class="nav-text">類似的音樂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E6%80%9D"><span class="nav-number">4.</span> <span class="nav-text">反思</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
