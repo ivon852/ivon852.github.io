@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="40BrRbJXIBcAXQMNbnj7c8OLT-6rHPy7ur7YTDRhNf0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Docker之所以不能直接在Android配合Termux跑，就是因為kernel(內核)缺乏相關功能，那麼只要自行編譯手機kerenl把缺少的功能打開就可以了。另外docker在Termux的repo也可以下載的到。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以原生效能在手機上跑docker">
+<meta property="og:url" content="https://ivon852.github.io/2021/12/28/%E4%BB%A5%E5%8E%9F%E7%94%9F%E6%95%88%E8%83%BD%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91docker/index.html">
+<meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="Docker之所以不能直接在Android配合Termux跑，就是因為kernel(內核)缺乏相關功能，那麼只要自行編譯手機kerenl把缺少的功能打開就可以了。另外docker在Termux的repo也可以下載的到。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.postimg.cc/jjtppyjd/screen.jpg">
+<meta property="og:image" content="https://i.postimg.cc/1RkwGvTV/screen4.jpg">
+<meta property="og:image" content="https://i.postimg.cc/2yZjjFFP/scree2n.jpg">
+<meta property="og:image" content="https://i.postimg.cc/c1gftpDN/screen3.jpg">
+<meta property="og:image" content="https://i.postimg.cc/MHbSYmhq/Screenshot-20211228-232245-Termux.png">
+<meta property="article:published_time" content="2021-12-28T12:49:00.000Z">
+<meta property="article:modified_time" content="2021-12-30T13:52:14.657Z">
+<meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.postimg.cc/jjtppyjd/screen.jpg">
+
+<link rel="canonical" href="https://ivon852.github.io/2021/12/28/%E4%BB%A5%E5%8E%9F%E7%94%9F%E6%95%88%E8%83%BD%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91docker/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>以原生效能在手機上跑docker | Ivon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ivon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享所學電腦技術，</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/28/%E4%BB%A5%E5%8E%9F%E7%94%9F%E6%95%88%E8%83%BD%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以原生效能在手機上跑docker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-12-28 20:49:00" itemprop="dateCreated datePublished" datetime="2021-12-28T20:49:00+08:00">2021-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-30 21:52:14" itemprop="dateModified" datetime="2021-12-30T21:52:14+08:00">2021-12-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/12/28/%E4%BB%A5%E5%8E%9F%E7%94%9F%E6%95%88%E8%83%BD%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91docker/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/28/以原生效能在手機上跑docker/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Docker之所以不能直接在Android配合Termux跑，就是因為kernel(內核)缺乏相關功能，那麼只要自行編譯手機kerenl把缺少的功能打開就可以了。另外docker在Termux的repo也可以下載的到。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XDvDYRxtZHY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><span id="more"></span>
+
+<p>刷kernel的小常識: Android刷kerenl不會刪除手機資料。不過為避免卡開機，最好用TWRP先備份原廠的boot分區再操作。</p>
+<ul>
+<li>手機: 紅米Note 5(whyred)，已Root，系統為Lineage OS 18。</li>
+</ul>
+<p>如果你的機型跟我一樣，可到<a target="_blank" rel="noopener" href="https://github.com/ivon852/android_kernel_xiaomi_whyred_docker">Github</a>下載我做好的boot.img直接刷入。此kerenl基於RAD Kernel，以GPL v2授權釋出。僅於LineageOS測試。</p>
+<h2 id="一、檢查運作條件"><a href="#一、檢查運作條件" class="headerlink" title="一、檢查運作條件"></a>一、檢查運作條件</h2><ol>
+<li><p>手機開啟Termux，下載執行Moby的腳本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pkg install wget</span><br><span class="line">wget https://raw.githubusercontent.com/moby/moby/master/contrib/check-config.sh</span><br><span class="line">chmod +x check-config.sh</span><br><span class="line">sed -i &#x27;1s_.*_#!/data/data/com.termux/files/usr/bin/bash_&#x27; check-config.sh</span><br><span class="line">sudo ./check-config.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>看看目前手機的kernel缺少哪些功能，把紅字<code>missing</code>部分記錄下來。最主要是<code>General Necessary</code>下的項目要全部開啟。<br><img src="https://i.postimg.cc/jjtppyjd/screen.jpg"></p>
+</li>
+</ol>
+<h2 id="二、尋找kernel-amp-測試編譯"><a href="#二、尋找kernel-amp-測試編譯" class="headerlink" title="二、尋找kernel &amp; 測試編譯"></a>二、尋找kernel &amp; 測試編譯</h2><p>我的思路是這樣: 找一個穩定的第三方kernel專案，確認能順利在自己電腦編譯，刷到手機也正常，再以此為基礎進行進入深入修改。</p>
+<ul>
+<li>完整編譯&amp;刷內核步驟，看完這篇再往下看: <a href="https://ivon852.github.io/2021/12/26/%E5%A6%82%E4%BD%95%E7%B7%A8%E8%AD%AF%E4%BF%AE%E6%94%B9Android-Kernel-%E5%85%A7%E6%A0%B8/">如何編譯修改Android Kernel(內核)</a></li>
+</ul>
+<h2 id="三、修改kernel"><a href="#三、修改kernel" class="headerlink" title="三、修改kernel"></a>三、修改kernel</h2><ol>
+<li><p>在用機型defconfig建立<code>.config</code>之後，使用<code>make menuconfig</code>開啟kconfig介面，按照剛剛手機顯示<code>missing</code>的項目，將其一一開啟。<br><img src="https://i.postimg.cc/1RkwGvTV/screen4.jpg"></p>
+</li>
+<li><p>例如我要開啟<code>CONFIG_OVERLAY_FS</code>這個選項，就在menuconfig的介面按下「/」<br><img src="https://i.postimg.cc/2yZjjFFP/scree2n.jpg"></p>
+</li>
+<li><p>輸入名稱搜尋，menuconfig會告訴你設定值的大約位置。<br><img src="https://i.postimg.cc/c1gftpDN/screen3.jpg"></p>
+</li>
+<li><p>鍵盤上下鍵找到該選項，按下<code>y</code>啟用。</p>
+</li>
+<li><p>用鍵盤左右鍵，移動到<code>Save</code>，儲存設定值。移動到<code>Exit</code>按下Enter離開。</p>
+</li>
+<li><p>根據FreddieOliveira的說明，還要修改kernel專案目錄下的二個檔案: <code>kernel/Makefile</code>和<code>net/netfilter/xt_qtaguid.c</code>。</p>
+</li>
+</ol>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/kernel/Makefile b/kernel/Makefile</span></span><br><span class="line"><span class="comment">index d5c1115..2dea801 100644</span></span><br><span class="line"><span class="comment">--- a/kernel/Makefile</span></span><br><span class="line"><span class="comment">+++ b/kernel/Makefile</span></span><br><span class="line"><span class="meta">@@ -121,7 +121,7 @@</span> $(obj)/configs.o: $(obj)/config_data.h</span><br><span class="line"># config_data.h contains the same information as ikconfig.h but gzipped.</span><br><span class="line"># Info from config_data can be extracted from /proc/config*</span><br><span class="line">targets += config_data.gz</span><br><span class="line"><span class="deletion">-$(obj)/config_data.gz: arch/arm64/configs/lavender_stock-defconfig FORCE</span></span><br><span class="line"><span class="addition">+$(obj)/config_data.gz: $(KCONFIG_CONFIG) FORCE</span></span><br><span class="line">    $(call if_changed,gzip)</span><br><span class="line"></span><br><span class="line">    filechk_ikconfiggz = (echo &quot;static const char kernel_config_data[] __used = MAGIC_START&quot;; cat $&lt; | scripts/basic/bin2c; echo &quot;MAGIC_END;&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- orig/net/netfilter/xt_qtaguid.c     2020-05-12 12:13:14.000000000 +0300</span></span><br><span class="line"><span class="comment">+++ my/net/netfilter/xt_qtaguid.c       2019-09-15 23:56:45.000000000 +0300</span></span><br><span class="line"><span class="meta">@@ -737,7 +737,7 @@</span></span><br><span class="line">&#123;</span><br><span class="line">        struct proc_iface_stat_fmt_info *p = m-&gt;private;</span><br><span class="line">        struct iface_stat *iface_entry;</span><br><span class="line"><span class="deletion">-       struct rtnl_link_stats64 dev_stats, *stats;</span></span><br><span class="line"><span class="addition">+       struct rtnl_link_stats64 *stats;</span></span><br><span class="line">        struct rtnl_link_stats64 no_dev_stats = &#123;0&#125;;  </span><br><span class="line"><span class="meta">@@ -745,13 +745,8 @@</span></span><br><span class="line">        current-&gt;pid, current-&gt;tgid, from_kuid(&amp;init_user_ns, current_fsuid()));</span><br><span class="line">        iface_entry = list_entry(v, struct iface_stat, list);</span><br><span class="line"><span class="addition">+       stats = &amp;no_dev_stats;</span></span><br><span class="line"><span class="deletion">-       if (iface_entry-&gt;active) &#123;</span></span><br><span class="line"><span class="deletion">-               stats = dev_get_stats(iface_entry-&gt;net_dev,</span></span><br><span class="line"><span class="deletion">-                                     &amp;dev_stats);</span></span><br><span class="line"><span class="deletion">-       &#125; else &#123;</span></span><br><span class="line"><span class="deletion">-               stats = &amp;no_dev_stats;</span></span><br><span class="line"><span class="deletion">-       &#125;</span></span><br><span class="line">        /*</span><br><span class="line">         * If the meaning of the data changes, then update the fmtX</span><br><span class="line">         * string.</span><br></pre></td></tr></table></figure>
+
+
+<p>重新編譯一次kernel。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>用AIK重新打包檔案，用TWRP刷到手機。</p>
+<p>開機後會顯示「你的裝置發生內部問題」，屬於正常現象。</p>
+<p>這支紅米Note 5開機後還要再使用以下指令才能正常掛載cgroup:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t tmpfs -o uid=0,gid=0,mode=0755 cgroup /sys/fs/cgroup</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="四、手機安裝docker"><a href="#四、手機安裝docker" class="headerlink" title="四、手機安裝docker"></a>四、手機安裝docker</h2><ol>
+<li><p>用Moby的腳本再次確認kernel相容性之後，透過Termux的root repo下載docker。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install root-repo &amp;&amp; pkg install docker</span><br></pre></td></tr></table></figure></li>
+<li><p>Termux左邊滑出來可以開第二個終端機。先啟動docker daemon。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dockerd --iptables=<span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>另一個終端機啟動docker容器，例如Hello World:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure></li>
+<li><p>測試Apache伺服器:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d -p 80:80 --name myapache --net=host --dns=8.8.8.8 httpd</span><br></pre></td></tr></table></figure></li>
+<li><p>這樣docker算是正常執行了，一些關於網路的詳細設定請到【參考資料】處查詢。<br><img src="https://i.postimg.cc/MHbSYmhq/Screenshot-20211228-232245-Termux.png"></p>
+</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>感謝Freddie Oliveira提供詳盡的解釋。<br><a target="_blank" rel="noopener" href="https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27#41-kernel-patches">https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27#41-kernel-patches</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/28/%E8%A9%95Pink-Floyd%E7%9A%84%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2-The-Drakside-of-The-Moon/" rel="prev" title="評Pink Floyd的月之暗面 (The Darkside of The Moon)">
+      <i class="fa fa-chevron-left"></i> 評Pink Floyd的月之暗面 (The Darkside of The Moon)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/29/Android%E5%9F%BA%E6%9C%AC%E5%88%B7%E6%A9%9F%E6%B5%81%E7%A8%8B/" rel="next" title="Android基本刷機流程">
+      Android基本刷機流程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%AA%A2%E6%9F%A5%E9%81%8B%E4%BD%9C%E6%A2%9D%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">一、檢查運作條件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B0%8B%E6%89%BEkernel-amp-%E6%B8%AC%E8%A9%A6%E7%B7%A8%E8%AD%AF"><span class="nav-number">2.</span> <span class="nav-text">二、尋找kernel &amp; 測試編譯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%AE%E6%94%B9kernel"><span class="nav-number">3.</span> <span class="nav-text">三、修改kernel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%89%8B%E6%A9%9F%E5%AE%89%E8%A3%9Ddocker"><span class="nav-number">4.</span> <span class="nav-text">四、手機安裝docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ivon Huang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ivon Huang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ivon852" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ivon852" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qj985n2@gmail.com" title="E-Mail → mailto:qj985n2@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Ivon852" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Ivon852" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCPJXCxangPJm4eqsNTT2-Kw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCPJXCxangPJm4eqsNTT2-Kw" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivon Huang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ivons-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ivon852.github.io/2021/12/28/%E4%BB%A5%E5%8E%9F%E7%94%9F%E6%95%88%E8%83%BD%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91docker/";
+    this.page.identifier = "2021/12/28/以原生效能在手機上跑docker/";
+    this.page.title = "以原生效能在手機上跑docker";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ivons-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
