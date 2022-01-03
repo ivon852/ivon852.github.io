@@ -21,20 +21,29 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="HWID&#x2F;KMS38是KMSPico的替代品，支援Windows 10 &#x2F; Windows 11。 破解Windows，達到啟用盜版的目的工具，通常會被當成病毒。而成功啟動Windows後真的會釋放木馬病毒的，就是大名鼎鼎的KMSPico。所以播破解完後要馬上重開防毒軟體把病毒殺掉。 相較之下，HWID的技術在Github上是開源的，使用上也十分簡單。 到Github按下綠色的Code下載zip:">
+  <meta name="description" content="幾年前俄羅斯公司ElTechs發表的Exagear，能夠將X86翻譯成ARM的指令，配合Wine就能在手機執行電腦程式，不需要root。(Wine是讓Linux電腦能夠執行Windows exe的軟體)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="取代KMSPico，改用HWID&#x2F;KMS38來破解&#x2F;啟動Windows">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/index.html">
+<meta property="og:title" content="在手機上跑Windows exe程式 (Exagear + Wine)">
+<meta property="og:url" content="https://ivon852.github.io/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="HWID&#x2F;KMS38是KMSPico的替代品，支援Windows 10 &#x2F; Windows 11。 破解Windows，達到啟用盜版的目的工具，通常會被當成病毒。而成功啟動Windows後真的會釋放木馬病毒的，就是大名鼎鼎的KMSPico。所以播破解完後要馬上重開防毒軟體把病毒殺掉。 相較之下，HWID的技術在Github上是開源的，使用上也十分簡單。 到Github按下綠色的Code下載zip:">
+<meta property="og:description" content="幾年前俄羅斯公司ElTechs發表的Exagear，能夠將X86翻譯成ARM的指令，配合Wine就能在手機執行電腦程式，不需要root。(Wine是讓Linux電腦能夠執行Windows exe的軟體)">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-12-06T18:41:00.000Z">
-<meta property="article:modified_time" content="2021-12-11T10:01:06.694Z">
+<meta property="og:image" content="https://i.imgur.com/xJNI0ZM.png">
+<meta property="og:image" content="https://i.imgur.com/NAKHy3Z.png">
+<meta property="og:image" content="https://i.imgur.com/ONgXTmO.png">
+<meta property="og:image" content="https://i.imgur.com/1ipVQ9v.png">
+<meta property="og:image" content="https://i.imgur.com/Zr6epCU.png">
+<meta property="og:image" content="https://i.imgur.com/frPh4fv.png">
+<meta property="article:published_time" content="2022-01-03T05:36:00.000Z">
+<meta property="article:modified_time" content="2022-01-03T05:58:33.871Z">
 <meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
 <meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/xJNI0ZM.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/">
+<link rel="canonical" href="https://ivon852.github.io/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/">
 
 
 <script id="page-configurations">
@@ -47,7 +56,7 @@
   };
 </script>
 
-  <title>取代KMSPico，改用HWID/KMS38來破解/啟動Windows | Ivon's Blog</title>
+  <title>在手機上跑Windows exe程式 (Exagear + Wine) | Ivon's Blog</title>
   
 
 
@@ -169,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -182,7 +191,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          取代KMSPico，改用HWID/KMS38來破解/啟動Windows
+          在手機上跑Windows exe程式 (Exagear + Wine)
         </h1>
 
         <div class="post-meta">
@@ -191,16 +200,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-12-07 02:41:00" itemprop="dateCreated datePublished" datetime="2021-12-07T02:41:00+08:00">2021-12-07</time>
+              <time title="創建時間：2022-01-03 13:36:00 / 修改時間：13:58:33" itemprop="dateCreated datePublished" datetime="2022-01-03T13:36:00+08:00">2022-01-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-11 18:01:06" itemprop="dateModified" datetime="2021-12-11T18:01:06+08:00">2021-12-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -220,8 +223,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/07/取代KMSPico，改用HWID-KMS38來破解-啟動Windows/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/03/在手機上跑Windows-exe程式-Exagear-Wine/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -236,14 +239,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>HWID/KMS38是KMSPico的替代品，支援Windows 10 / Windows 11。</p>
-<p>破解Windows，達到啟用盜版的目的工具，通常會被當成病毒。而成功啟動Windows後真的會釋放木馬病毒的，就是大名鼎鼎的KMSPico。所以播破解完後要馬上重開防毒軟體把病毒殺掉。</p>
-<p>相較之下，HWID的技術在Github上是開源的，使用上也十分簡單。</p>
-<p>到Github按下綠色的<code>Code</code>下載zip:</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/luzeadev/winactivate">https://github.com/luzeadev/winactivate</a></p>
-<p>解壓縮，以系統管理員執行<code>winactive.cmd</code></p>
-<p>之後Windows就成功啟用了。</p>
-<p>因為程式碼Github上可以看到，不用擔心有病毒。至於Windows 7還是只能用KMSPico來啟用。</p>
+        <p>幾年前俄羅斯公司ElTechs發表的Exagear，能夠將X86翻譯成ARM的指令，配合Wine就能在手機執行電腦程式，不需要root。(Wine是讓Linux電腦能夠執行Windows exe的軟體)</p>
+<span id="more"></span>
+
+<p>雖然後來Exagear的技術被華為買走(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263519125">相關討論</a>)，不過Github有俄羅斯人釋出內含Exagear的Termux Proot版。主要原理是在Termux安裝<font color=red>32位元</font>的Debian Proot環境，再用Wine執行<font color=red>32位元</font>的Windows exe。</p>
+<p>測試能跑的程式:</p>
+<p>遊戲Fate/stay night<br><img src="https://i.imgur.com/xJNI0ZM.png"></p>
+<p>foobar2000<br><img src="https://i.imgur.com/NAKHy3Z.png"></p>
+<p>Notepad++<br><img src="https://i.imgur.com/ONgXTmO.png"></p>
+<p>HoneyView<br><img src="https://i.imgur.com/1ipVQ9v.png"></p>
+<p>Chrome可攜版<br><img src="https://i.imgur.com/Zr6epCU.png"></p>
+<h2 id="安裝教學"><a href="#安裝教學" class="headerlink" title="安裝教學"></a>安裝教學</h2><ul>
+<li>手機: Sony Xperia 5 II，Android 11</li>
+<li>需要APP: Termux (<a href="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/">使用教學</a>)、VNC Viewer</li>
+</ul>
+<ol>
+<li><p>開啟Termux安裝套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg update -y &amp;&amp; pkg install tar git -y</span><br></pre></td></tr></table></figure></li>
+<li><p>clone這個repo，並加入submodule</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/ZhymabekRoman/Exagear-For-Termux ~/ExaTermux</span><br><span class="line"><span class="built_in">cd</span> ~/ExaTermux</span><br><span class="line">git submodule init</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure></li>
+<li><p>下載解壓縮Debian 10檔案系統</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/termux/proot-distro/releases/download/v1.1-debian-rootfs/debian-buster-i386-2020.12.05.tar.gz</span><br><span class="line"><span class="comment">#解壓縮</span></span><br><span class="line">mkdir exagear-fs/ &amp;&amp; tar -C exagear-fs/ --warning=no-unknown-keyword --delay-directory-restore --preserve-permissions --strip=0 -xvf debian-buster-i386-2020.12.05.tar.gz --exclude=<span class="string">&#x27;dev&#x27;</span>||: &amp;&amp; <span class="built_in">cd</span> exagear-fs/ &amp;&amp; mv debian-buster-i386-2020.12.05/* ./ &amp;&amp; rm -rfv debian-buster-i386-2020.12.05/ &amp;&amp; <span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure></li>
+<li><p>使用腳本登入系統(加old參數是因為有時候登入會無法開啟終端機)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start-exagear.sh</span><br><span class="line">./start-exagear.sh login --old --shared-tmp</span><br></pre></td></tr></table></figure></li>
+<li><p>這樣32位元的Debian環境就設定好了。首先進行更新</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade -y</span><br></pre></td></tr></table></figure></li>
+<li><p>安裝XFCE4桌面環境和常用工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install vim fonts-noto-cjk xfce4* tigervnc* -y</span><br></pre></td></tr></table></figure></li>
+<li><p>如果APT安裝出現<code>E: Sub-process /usr/bin/dpkg returned an error code (1)</code>，執行:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/lib/dpkg/</span><br><span class="line">mv info info.bk</span><br><span class="line">mkdir info</span><br><span class="line">apt update</span><br><span class="line">apt -f install</span><br><span class="line"><span class="built_in">cd</span> info</span><br><span class="line">mv ./* ../info.bk</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">rm -rf info</span><br><span class="line">mv info.bk info</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure></li>
+<li><p>安裝Wine</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -nc https://dl.winehq.org/wine-builds/winehq.key</span><br><span class="line">apt-key add winehq.key</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://dl.winehq.org/wine-builds/debian/ buster main&quot;</span> &gt;&gt;  /etc/apt/sources.list</span><br><span class="line">apt update</span><br><span class="line">apt install winehq-staging winetricks zenity -y</span><br></pre></td></tr></table></figure></li>
+<li><p>啟動Vncserver，第一次啟動會要求設定六位數密碼。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver</span><br></pre></td></tr></table></figure></li>
+<li><p>開啟VNC Viewer，輸入<code>localhost:1</code>連線</p>
+</li>
+<li><p>從右上角應用程式按<code>Run Program</code>，搜尋<code>winetricks --gui</code>，執行後Wine會進行更新，再安裝mono，大約5分鐘。<br><img src="https://i.imgur.com/frPh4fv.png"></p>
+</li>
+<li><p>如果Debian沒有聲音，請參考下方Bilibili文章安裝PulseAudio。</p>
+</li>
+<li><p>接著就可以來試試各種32位元Widnows程式了！<br>如果想知道如何免Root存取Termux的內部目錄，請看這篇: <a target="_blank" rel="noopener" href="https://reurl.cc/6E2aor">手機檔案管理器存取Termux的目錄</a></p>
+</li>
+</ol>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>跟Box86/Box64 + Wine比起來，雖然Exagear只能執行32位元的程式，但至少Termux本身是64位元的情況下可以直接裝32位元的Debian，不需要整個重裝32位元版的Termux。</p>
+<p>Exagear唯一的缺點是閉源收費，導致網路上流傳的版本似乎都是盜版，包括這個Debian的版本，並且Proot的速度很慢。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ZhymabekRoman/Exagear-For-Termux">Exagear For Termux - Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13733747">ExaGear for Termux 教程及恢复包 - Bilibili</a></li>
+</ul>
 
     </div>
 
@@ -253,6 +296,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
               <a href="/tags/Windows/" rel="tag"># Windows</a>
           </div>
 
@@ -262,13 +307,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/07/Android%E4%B8%8AE-hentai-Ehviewer/" rel="prev" title="Android上E-hentai: Ehviewer">
-      <i class="fa fa-chevron-left"></i> Android上E-hentai: Ehviewer
+    <a href="/2021/12/29/Android%E5%9F%BA%E6%9C%AC%E5%88%B7%E6%A9%9F%E6%B5%81%E7%A8%8B/" rel="prev" title="Android基本刷機流程">
+      <i class="fa fa-chevron-left"></i> Android基本刷機流程
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/" rel="next" title="iOS上E-hentai: EhPanda">
-      iOS上E-hentai: EhPanda <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -334,6 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8"><span class="nav-number">1.</span> <span class="nav-text">安裝教學</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -486,9 +529,9 @@ if (document.querySelectorAll('pre.mermaid').length) {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://ivon852.github.io/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/";
-    this.page.identifier = "2021/12/07/取代KMSPico，改用HWID-KMS38來破解-啟動Windows/";
-    this.page.title = "取代KMSPico，改用HWID/KMS38來破解/啟動Windows";
+    this.page.url = "https://ivon852.github.io/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/";
+    this.page.identifier = "2022/01/03/在手機上跑Windows-exe程式-Exagear-Wine/";
+    this.page.title = "在手機上跑Windows exe程式 (Exagear + Wine)";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
