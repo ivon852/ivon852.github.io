@@ -21,16 +21,24 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ivon&#39;s Blog">
-<meta property="og:url" content="https://ivon852.github.io/archives/2021/page/4/index.html">
+  <meta name="description" content="Box86&#x2F;Box64可以將x86的Linux程式轉譯成ARM的指令，並使用Dynamic recompilation提升轉換效率，使得ARM平台也能夠執行x86程式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="x86指令集轉ARM的程式: Box86">
+<meta property="og:url" content="https://ivon852.github.io/2022/01/04/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E8%BD%89ARM%E7%9A%84%E7%A8%8B%E5%BC%8F-Box86/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="Box86&#x2F;Box64可以將x86的Linux程式轉譯成ARM的指令，並使用Dynamic recompilation提升轉換效率，使得ARM平台也能夠執行x86程式。">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/dObYjE8.png">
+<meta property="og:image" content="https://i.imgur.com/EacC29t.png">
+<meta property="article:published_time" content="2022-01-04T12:47:00.000Z">
+<meta property="article:modified_time" content="2022-01-04T12:50:00.239Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="電腦科學, 動漫, 哲學, 音樂">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/dObYjE8.png">
 
-<link rel="canonical" href="https://ivon852.github.io/archives/2021/page/4/">
+<link rel="canonical" href="https://ivon852.github.io/2022/01/04/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E8%BD%89ARM%E7%9A%84%E7%A8%8B%E5%BC%8F-Box86/">
 
 
 <script id="page-configurations">
@@ -38,12 +46,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>歸檔 | Ivon's Blog</title>
+  <title>x86指令集轉ARM的程式: Box86 | Ivon's Blog</title>
   
 
 
@@ -158,240 +166,139 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/04/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E8%BD%89ARM%E7%9A%84%E7%A8%8B%E5%BC%8F-Box86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          x86指令集轉ARM的程式: Box86
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-04 20:47:00 / 修改時間：20:50:00" itemprop="dateCreated datePublished" datetime="2022-01-04T20:47:00+08:00">2022-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">好! 目前共有 52 篇文章。 繼續努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/01/04/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E8%BD%89ARM%E7%9A%84%E7%A8%8B%E5%BC%8F-Box86/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/04/x86指令集轉ARM的程式-Box86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
+        <p>Box86/Box64可以將x86的Linux程式轉譯成ARM的指令，並使用Dynamic recompilation提升轉換效率，使得ARM平台也能夠執行x86程式。</p>
+<p><img src="https://i.imgur.com/dObYjE8.png" alt="logo"></p>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>有什麼Linux程式一定要用x86版的? Wine就是一個例子。</p>
+<p>(註: 為方便討論，這邊「x86」為電腦CPU架構，「x86_64」等同amd64、x64)</p>
+<h2 id="Box86-Box64的應用"><a href="#Box86-Box64的應用" class="headerlink" title="Box86/Box64的應用"></a>Box86/Box64的應用</h2><p>Wine雖能執行Windows exe程式，但也是僅限x86架構的裝置能執行。若在ARM架構的裝置，如樹莓派或手機要跑ARM版Wine也是可以，但是只能執行「ARM版的Windows exe」，因為Wine不包含跨架構模擬。</p>
+<p>因此安裝Box86/Box64充當轉譯器，翻譯x86版Wine的指令，這樣就可以在ARM平台透過Wine執行Windows的程式。</p>
+<h2 id="實際執行模式探討"><a href="#實際執行模式探討" class="headerlink" title="實際執行模式探討"></a>實際執行模式探討</h2><p>box + wine的指令如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box86 wine &lt;exe&gt;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box64 wine64 &lt;exe&gt;</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-14T01:27:00+08:00"
-              content="2021-12-14">
-          12-14
-        </time>
-      </div>
+<p>Wine主要是執行32位元的Windows exe，針對64位元exe另有Wine64。儘管Wine64相容Wine32，但是bug很多不該混用。</p>
+<p>Box86/Box64亦是如此，執行時後面要接對應位元的Linux程式才能正確執行。</p>
+<p>也就是說，假設有一個64位元的notepad.exe，指令就應該是:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box64 wine64 notepad.exe</span><br></pre></td></tr></table></figure>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/14/%E8%AB%96%E6%88%91%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%83%E9%96%8B%E5%A7%8B%E5%AD%B8%E5%AF%AB%E7%A8%8B%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">論我為什麼會開始學寫程式</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-12T21:16:00+08:00"
-              content="2021-12-12">
-          12-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/12/%E6%89%8B%E6%A9%9F%E6%AA%94%E6%A1%88%E7%AE%A1%E7%90%86%E5%99%A8%E5%AD%98%E5%8F%96Termux%E7%9A%84%E7%9B%AE%E9%8C%84/" itemprop="url">
-            <span itemprop="name">手機檔案管理器存取Termux的目錄</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-12T09:12:00+08:00"
-              content="2021-12-12">
-          12-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/12/Zenfone%202%20Selfie%E5%AE%89%E8%A3%9DpostmarketOS/" itemprop="url">
-            <span itemprop="name">Zenfone 2 Selfie安裝postmarketOS</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-10T02:45:00+08:00"
-              content="2021-12-10">
-          12-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/10/3D%E7%A1%AC%E9%AB%94%E5%8A%A0%E9%80%9F%E7%9A%84Proot-Linux/" itemprop="url">
-            <span itemprop="name">3D硬體加速的Proot Linux</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-07T02:43:00+08:00"
-              content="2021-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/07/%E5%9C%A8iOS%E4%B8%8AE-hentai-EhPanda/" itemprop="url">
-            <span itemprop="name">iOS上E-hentai: EhPanda</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-07T02:41:00+08:00"
-              content="2021-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/07/%E5%8F%96%E4%BB%A3KMSPico%EF%BC%8C%E6%94%B9%E7%94%A8HWID-KMS38%E4%BE%86%E7%A0%B4%E8%A7%A3-%E5%95%9F%E5%8B%95Windows/" itemprop="url">
-            <span itemprop="name">取代KMSPico，改用HWID/KMS38來破解/啟動Windows</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-07T02:40:00+08:00"
-              content="2021-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/07/Android%E4%B8%8AE-hentai-Ehviewer/" itemprop="url">
-            <span itemprop="name">Android上E-hentai: Ehviewer</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-07T02:35:00+08:00"
-              content="2021-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/07/Android-%E9%96%8B%E6%BA%90-APP-%E6%8E%A8%E8%96%A6/" itemprop="url">
-            <span itemprop="name">Android 開源 APP 推薦</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-07T01:31:00+08:00"
-              content="2021-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/07/Sony-Xperia-5-II-root%E6%95%99%E5%AD%B8/" itemprop="url">
-            <span itemprop="name">Sony Xperia 5 II root教學</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-07T01:24:00+08:00"
-              content="2021-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/07/Ubuntu%E5%AE%89%E8%A3%9DDroidCam%EF%BC%8C%E6%8A%8A%E6%89%8B%E6%A9%9F%E8%AE%8A%E6%88%90%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A8%8A%E9%8F%A1%E9%A0%AD/" itemprop="url">
-            <span itemprop="name">Ubuntu安裝DroidCam，把手機變成電腦視訊鏡頭</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+<p>圖: 在Android手機上的Proot Ubuntu透過Box64 + Wine執行Notepad++<br><img src="https://i.imgur.com/EacC29t.png"></p>
+<h2 id="Box86-Box64的限制"><a href="#Box86-Box64的限制" class="headerlink" title="Box86/Box64的限制"></a>Box86/Box64的限制</h2><p>因為嚴格對應位元的原因，因此64位元的系統若要編譯Box86，需要使用chroot或者啟用MultiArch，不然的話Box86就只能在32位元系統運作。</p>
+<p>同樣，Wine本身開不起來的exe，透過Box86或Box64也是一樣開不起來。</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>儘管模擬效能會損失，但這是補足ARM平台軟體的一個解決方案。通常Linux軟體不會只釋出一種架構，但若真碰到了，Box86/Box64或許能幫得上忙。</p>
+<p>順帶一提，類似的x86轉ARM專案還有Wine官方的Hangover、Eltech的Exagear、蘋果的Rosetta 2、微軟的x86模擬器等等。</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/04/%E6%89%8B%E6%A9%9F%E5%9F%B7%E8%A1%8CWindows-EXE%E7%A8%8B%E5%BC%8F-Box64-Wine64/" rel="prev" title="手機執行Windows exe程式: Box64 + Wine64">
+      <i class="fa fa-chevron-left"></i> 手機執行Windows exe程式: Box64 + Wine64
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2021/page/3/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/archives/2021/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2021/page/5/">5</a><a class="extend next" rel="next" href="/archives/2021/page/5/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -438,6 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Box86-Box64%E7%9A%84%E6%87%89%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Box86&#x2F;Box64的應用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E5%9F%B7%E8%A1%8C%E6%A8%A1%E5%BC%8F%E6%8E%A2%E8%A8%8E"><span class="nav-number">2.</span> <span class="nav-text">實際執行模式探討</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Box86-Box64%E7%9A%84%E9%99%90%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">Box86&#x2F;Box64的限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">4.</span> <span class="nav-text">結語</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -587,6 +495,26 @@ if (document.querySelectorAll('pre.mermaid').length) {
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ivon852.github.io/2022/01/04/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E8%BD%89ARM%E7%9A%84%E7%A8%8B%E5%BC%8F-Box86/";
+    this.page.identifier = "2022/01/04/x86指令集轉ARM的程式-Box86/";
+    this.page.title = "x86指令集轉ARM的程式: Box86";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ivons-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
 </body>
