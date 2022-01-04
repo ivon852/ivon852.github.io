@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.imgur.com/dObYjE8.png">
 <meta property="og:image" content="https://i.imgur.com/EacC29t.png">
 <meta property="article:published_time" content="2022-01-04T12:47:00.000Z">
-<meta property="article:modified_time" content="2022-01-04T13:19:47.211Z">
+<meta property="article:modified_time" content="2022-01-04T16:03:45.465Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Windows">
@@ -195,10 +195,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2022-01-04 20:47:00 / 修改時間：21:19:47" itemprop="dateCreated datePublished" datetime="2022-01-04T20:47:00+08:00">2022-01-04</time>
+              <time title="創建時間：2022-01-04 20:47:00" itemprop="dateCreated datePublished" datetime="2022-01-04T20:47:00+08:00">2022-01-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-01-05 00:03:45" itemprop="dateModified" datetime="2022-01-05T00:03:45+08:00">2022-01-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,7 +248,8 @@
 <p>(註: 為方便討論，這邊「x86」為電腦CPU架構，「x86_64」等同amd64、x64)</p>
 <h2 id="Box86-Box64的應用"><a href="#Box86-Box64的應用" class="headerlink" title="Box86/Box64的應用"></a>Box86/Box64的應用</h2><p>Wine雖能執行Windows exe程式，但也是僅限x86架構的裝置能執行。若在ARM架構的裝置，如樹莓派或手機要跑ARM版Wine也是可以，但是只能執行「ARM版的Windows exe」，因為Wine不包含跨架構模擬。</p>
 <p>因此安裝Box86/Box64充當轉譯器，翻譯x86版Wine的指令，這樣就可以在ARM平台透過Wine執行Windows的程式。</p>
-<h2 id="實際執行模式探討"><a href="#實際執行模式探討" class="headerlink" title="實際執行模式探討"></a>實際執行模式探討</h2><p>box + wine的指令如下:</p>
+<h2 id="實際執行模式探討"><a href="#實際執行模式探討" class="headerlink" title="實際執行模式探討"></a>實際執行模式探討</h2><p>Box86/Box64從<a target="_blank" rel="noopener" href="https://github.com/ptitSeb/box86">Github</a> clone下來編譯後就能使用。</p>
+<p>box + wine的指令如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box86 wine &lt;exe&gt;</span><br></pre></td></tr></table></figure>
 <p>或者</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box64 wine64 &lt;exe&gt;</span><br></pre></td></tr></table></figure>
