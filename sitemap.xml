@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2022/01/05/%E8%AB%96%E4%BF%A1%E4%BB%B0/</loc>
+    
+    <lastmod>2022-01-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2022/01/04/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E8%BD%89ARM%E7%9A%84%E7%A8%8B%E5%BC%8F-Box86/</loc>
     
     <lastmod>2022-01-04</lastmod>
@@ -506,7 +515,7 @@
 
   
   <url>
-    <loc>https://ivon852.github.io/tags/iOS/</loc>
+    <loc>https://ivon852.github.io/tags/Linux/</loc>
     <lastmod>2022-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -520,14 +529,14 @@
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/Linux/</loc>
+    <loc>https://ivon852.github.io/tags/Termux/</loc>
     <lastmod>2022-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/Termux/</loc>
+    <loc>https://ivon852.github.io/tags/iOS/</loc>
     <lastmod>2022-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
