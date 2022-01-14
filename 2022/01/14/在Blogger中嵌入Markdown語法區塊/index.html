@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="40BrRbJXIBcAXQMNbnj7c8OLT-6rHPy7ur7YTDRhNf0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="用jQuery來讓Blogger能顯示Markdown語法具體作法是用&lt;pre class&#x3D;&quot;markdown&quot;&gt;&lt;&#x2F;pre&gt;把markdown語法區塊包在裡面，這樣blogger文章可自由控制何時要使用markdwon語法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Blogger中嵌入Markdown語法區塊">
+<meta property="og:url" content="https://ivon852.github.io/2022/01/14/%E5%9C%A8Blogger%E4%B8%AD%E5%B5%8C%E5%85%A5Markdown%E8%AA%9E%E6%B3%95%E5%8D%80%E5%A1%8A/index.html">
+<meta property="og:site_name" content="Ivon&#39;s Blog">
+<meta property="og:description" content="用jQuery來讓Blogger能顯示Markdown語法具體作法是用&lt;pre class&#x3D;&quot;markdown&quot;&gt;&lt;&#x2F;pre&gt;把markdown語法區塊包在裡面，這樣blogger文章可自由控制何時要使用markdwon語法。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/yyoqLVr.png">
+<meta property="og:image" content="https://i.imgur.com/yssawHA.png">
+<meta property="article:published_time" content="2022-01-14T12:59:00.000Z">
+<meta property="article:modified_time" content="2022-01-14T13:06:29.920Z">
+<meta property="article:author" content="Ivon Huang">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/yyoqLVr.png">
+
+<link rel="canonical" href="https://ivon852.github.io/2022/01/14/%E5%9C%A8Blogger%E4%B8%AD%E5%B5%8C%E5%85%A5Markdown%E8%AA%9E%E6%B3%95%E5%8D%80%E5%A1%8A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>在Blogger中嵌入Markdown語法區塊 | Ivon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ivon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享所學電腦技術，</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/14/%E5%9C%A8Blogger%E4%B8%AD%E5%B5%8C%E5%85%A5Markdown%E8%AA%9E%E6%B3%95%E5%8D%80%E5%A1%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Blogger中嵌入Markdown語法區塊
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-14 20:59:00 / 修改時間：21:06:29" itemprop="dateCreated datePublished" datetime="2022-01-14T20:59:00+08:00">2022-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/01/14/%E5%9C%A8Blogger%E4%B8%AD%E5%B5%8C%E5%85%A5Markdown%E8%AA%9E%E6%B3%95%E5%8D%80%E5%A1%8A/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/14/在Blogger中嵌入Markdown語法區塊/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>用jQuery來讓Blogger能顯示Markdown語法<br>具體作法是用<code>&lt;pre class=&quot;markdown&quot;&gt;&lt;/pre&gt;</code>把markdown語法區塊包在裡面，這樣blogger文章可自由控制何時要使用markdwon語法。</p>
+<p><img src="https://i.imgur.com/yyoqLVr.png"></p>
+<span id="more"></span>
+
+<p>呈現結果：<br><img src="https://i.imgur.com/yssawHA.png"></p>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>這裡使用的是@cs905s在<a target="_blank" rel="noopener" href="https://github.com/cs905s/md-in-blogger">Github上的專案</a>。</p>
+<ol>
+<li><p>在網誌的範本<code>&lt;/head&gt;</code>前面插入:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>然後在<code>&lt;/body&gt;</code>前面插入(放的位置不恰當會導致網頁載入速度變慢):</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag"><span class="attr">src</span>=<span class="string">&#x27;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag"><span class="attr">src</span>=<span class="string">&#x27;//cdnjs.cloudflare.com/ajax/libs/showdown/1.6.2/showdown.min.js&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;//mxp22.surge.sh/markdown-highlight-in-blogger.js&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>這樣若要寫文章，就是把markdown原始碼貼到html<code>&lt;pre class=&quot;markdown&quot;&gt;&lt;/pre&gt;</code>中間。</p>
+</li>
+</ol>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>不方便的點在於，markdown只能另外用編輯器寫，再直接貼到blogger的html編輯器。此外插入程式碼後，不要隨便切換到blogger撰寫模式，免得編輯器把html語法混入到markdown的區塊。</p>
+<p>而且圖片全部寫在markdwon區塊的話，blogger沒辦法自動為文章抓縮圖，要另外區隔。</p>
+<p>但這麼做的好處是，要把文章貼到其他網站時就不用處理格式和連結問題，頂多轉成html就可以了。</p>
+<p>而現在用Hexo架站，完全都是用markdown寫作~</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/html/" rel="tag"># html</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/09/%E6%96%87%E7%B5%84%E7%9A%84%E5%83%B9%E5%80%BC/" rel="prev" title="文組的價值: 辯駁能力">
+      <i class="fa fa-chevron-left"></i> 文組的價值: 辯駁能力
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/14/%E9%9B%BB%E8%85%A6%E9%96%8B%E5%95%9F%E5%85%A7%E5%A4%96%E9%A1%AF%E5%90%8C%E6%99%82%E8%BC%B8%E5%87%BA/" rel="next" title="電腦開啟內外顯同時輸出">
+      電腦開啟內外顯同時輸出 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">總結</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ivon Huang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ivon Huang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ivon852" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ivon852" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qj985n2@gmail.com" title="E-Mail → mailto:qj985n2@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Ivon852" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Ivon852" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCPJXCxangPJm4eqsNTT2-Kw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCPJXCxangPJm4eqsNTT2-Kw" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivon Huang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ivons-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ivon852.github.io/2022/01/14/%E5%9C%A8Blogger%E4%B8%AD%E5%B5%8C%E5%85%A5Markdown%E8%AA%9E%E6%B3%95%E5%8D%80%E5%A1%8A/";
+    this.page.identifier = "2022/01/14/在Blogger中嵌入Markdown語法區塊/";
+    this.page.title = "在Blogger中嵌入Markdown語法區塊";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ivons-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
