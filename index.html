@@ -164,6 +164,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/17/%E7%94%A8docker%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8Cexe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ivon Huang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivon's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/17/%E7%94%A8docker%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8Cexe/" class="post-title-link" itemprop="url">用docker容器在手機上執行exe</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-01-17 14:56:00 / 修改時間：15:02:45" itemprop="dateCreated datePublished" datetime="2022-01-17T14:56:00+08:00">2022-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/01/17/%E7%94%A8docker%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8Cexe/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/17/用docker在手機上執行exe/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>也許未來能執行Steam，但現在還沒到那個階段。</p>
+<p><img src="https://i.postimg.cc/jjgMnwcY/Screenshot-20220117-035741-VNC-Viewer.png"></p>
+<p>編譯能夠<a href="https://ivon852.github.io/2021/12/28/%E4%BB%A5%E5%8E%9F%E7%94%9F%E6%95%88%E8%83%BD%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91docker/">執行docker的手機內核</a>後，執行32位元的Ubuntu容器，接著編譯Box86這個x86轉ARM的轉譯器，再來執行Wine。</p>
+<p>其實用<a href="https://ivon852.github.io/2022/01/04/%E6%89%8B%E6%A9%9F%E5%9F%B7%E8%A1%8CWindows-EXE%E7%A8%8B%E5%BC%8F-Box64-Wine64/">32位元Termux建立Proot環境</a>就好了，那為何要用容器呢? 因為方便部屬，這樣我不用一直重裝Termux，我可以在64位元的手機跑32位元或64位元的Ubuntu容器，分別執行Box64和Box86。</p>
+<ol>
+<li><p>執行容器，使用Ubuntu arm32的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -ti \</span><br><span class="line">    --net=<span class="string">&quot;host&quot;</span> \</span><br><span class="line">    --dns=<span class="string">&quot;8.8.8.8&quot;</span> \</span><br><span class="line">    -e DISPLAY=<span class="variable">$DISPLAY</span> \</span><br><span class="line">    -w /root \</span><br><span class="line">    -v <span class="variable">$TMPDIR</span>/.X11-unix:/tmp/.X11-unix \</span><br><span class="line">    -v <span class="variable">$HOME</span>/.Xauthority:/root/.Xauthority \</span><br><span class="line">    --platform=linux/arm \</span><br><span class="line">    arm32v7/ubuntu</span><br></pre></td></tr></table></figure></li>
+<li><p>安裝TigerVNC</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;APT::Sandbox::User &quot;root&quot;;&#x27;</span> &gt; /etc/apt/apt.conf</span><br><span class="line">apt update</span><br><span class="line">apt install tigervnc-standalone-server tigervnc-common sudo vim</span><br></pre></td></tr></table></figure></li>
+<li><p>安裝xfce4</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils</span><br><span class="line">sudo apt install xfce4-terminal</span><br><span class="line">sudo update-alternatives --config x-terminal-emulator</span><br><span class="line"><span class="comment">#選擇xfce4的終端機</span></span><br></pre></td></tr></table></figure></li>
+<li><p>設定vncserver啟動腳本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">touch <span class="variable">$HOME</span>/.vnc/xstartup</span><br><span class="line">vim <span class="variable">$HOME</span>/.vnc/xstartup</span><br><span class="line"><span class="comment">#填入:</span></span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">startxfce4 &amp;</span><br><span class="line">[ -x /etc/vnc/xstartup ] &amp;&amp; <span class="built_in">exec</span> /etc/vnc/xstartup</span><br><span class="line">[ -r <span class="variable">$HOME</span>/.Xresources ] &amp;&amp; xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line">chmod +x <span class="variable">$HOME</span>/.vnc/xstartup</span><br></pre></td></tr></table></figure></li>
+<li><p>啟動vncserver (不設定密碼是因為會崩潰)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> DISPLAY=:1</span><br><span class="line">vncserver  -localhost no -geometry 1280x720 -SecurityTypes none --I-KNOW-THIS-IS-INSECURE</span><br></pre></td></tr></table></figure></li>
+<li><p>編譯box86</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apt install git wget cmake build-essential python3 gcc-arm-linux-gnueabihf</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/ptitSeb/box86</span><br><span class="line"><span class="built_in">cd</span> box86</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake .. -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo</span><br><span class="line">make -j$(nproc)</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
+<li><p>安裝32位元的Wine</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span></span><br><span class="line">mkdir wine &amp;&amp; <span class="built_in">cd</span> wine</span><br><span class="line">wget https://www.playonlinux.com/wine/binaries/phoenicis/upstream-linux-x86/PlayOnLinux-wine-6.18-upstream-linux-x86.tar.gz</span><br><span class="line">tar -xvf PlayOnLinux-wine-6.18-upstream-linux-x86.tar.gz</span><br><span class="line"><span class="comment">#環境變數</span></span><br><span class="line"><span class="built_in">export</span> BOX86_PATH=~/wine/bin/</span><br><span class="line"><span class="built_in">export</span> BOX86_LD_LIBRARY_PATH=~/wine/lib/</span><br><span class="line"><span class="built_in">export</span> BOX86_LOG=1</span><br><span class="line">ln -s ~/wine/bin/wine /usr/<span class="built_in">local</span>/bin/wine</span><br><span class="line"><span class="comment">#雖然不建議用root執行wine</span></span><br><span class="line">mkdir .wine</span><br><span class="line">box86 wine winecfg</span><br><span class="line"><span class="comment">#更新完後執行任意exe</span></span><br></pre></td></tr></table></figure></li>
+<li><p>測試完後，將這個容器儲存成本機映像檔，約2GB。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br><span class="line">sudo docker commit -a=<span class="string">&#x27;Ivon&#x27;</span> -m=<span class="string">&#x27;XFCE4 insatlled&#x27;</span> [id]  arm32v7/ubuntu:v2</span><br><span class="line">日後以此為基礎執行:</span><br><span class="line"> sudo docker run -ti \</span><br><span class="line">    --net=<span class="string">&quot;host&quot;</span> \</span><br><span class="line">    --dns=<span class="string">&quot;8.8.8.8&quot;</span> \</span><br><span class="line">    -e DISPLAY=<span class="variable">$DISPLAY</span> \</span><br><span class="line">    -w /root \</span><br><span class="line">    -v <span class="variable">$TMPDIR</span>/.X11-unix:/tmp/.X11-unix \</span><br><span class="line">    -v <span class="variable">$HOME</span>/.Xauthority:/root/.Xauthority \</span><br><span class="line">    --platform=linux/arm \</span><br><span class="line">    arm32v7/ubuntu:v2</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>附註: 如果儲存空間不夠，刪除全部docker資料後重試。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker system df</span><br><span class="line">sudo docker system prune -af</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27">https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/evan_one/article/details/118059926">https://blog.csdn.net/evan_one/article/details/118059926</a><br><a target="_blank" rel="noopener" href="https://www.wongwonggoods.com/linux/docker/save-load-container/">https://www.wongwonggoods.com/linux/docker/save-load-container/</a><br><a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/image/commit">https://yeasy.gitbook.io/docker_practice/image/commit</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/14/E-hentai%E8%A7%80%E7%9C%8B%E9%9A%B1%E8%97%8F%E5%85%A7%E5%AE%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -974,95 +1082,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ivon Huang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ivon's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/" class="post-title-link" itemprop="url">在手機上跑Windows exe程式 (Exagear + Wine)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
-
-              <time title="創建時間：2022-01-03 13:36:00 / 修改時間：13:58:33" itemprop="dateCreated datePublished" datetime="2022-01-03T13:36:00+08:00">2022-01-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">電腦科學</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/03/在手機上跑Windows-exe程式-Exagear-Wine/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>幾年前俄羅斯公司ElTechs發表的Exagear，能夠將X86翻譯成ARM的指令，配合Wine就能在手機執行電腦程式，不需要root。(Wine是讓Linux電腦能夠執行Windows exe的軟體)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/03/%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E8%B7%91Windows-exe%E7%A8%8B%E5%BC%8F-Exagear-Wine/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1134,7 +1153,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
