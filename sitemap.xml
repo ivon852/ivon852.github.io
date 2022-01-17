@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/</loc>
+    <loc>https://ivon852.github.io/2022/01/17/%E7%94%A8docker%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8Cexe/</loc>
     
     <lastmod>2022-01-17</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/2022/01/17/%E7%94%A8docker%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8Cexe/</loc>
+    <loc>https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2022-01-17</lastmod>
     
@@ -614,7 +614,7 @@
 
   
   <url>
-    <loc>https://ivon852.github.io/tags/iOS/</loc>
+    <loc>https://ivon852.github.io/tags/Linux/</loc>
     <lastmod>2022-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -628,14 +628,14 @@
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/Linux/</loc>
+    <loc>https://ivon852.github.io/tags/Termux/</loc>
     <lastmod>2022-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/Termux/</loc>
+    <loc>https://ivon852.github.io/tags/iOS/</loc>
     <lastmod>2022-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
