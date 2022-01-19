@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，因為有root，功能比較多。 缺點是內建的發行版比較舊，並且Android 11以上執行會有點小問題。">
+  <meta name="description" content="Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，包含Ubuntu、Alpine、Arch、Debian、Kali、Fedora、CentOS、Gentoo、Slackware，要用自己的rootfs安裝也行。 因為有root，功能比較多。缺點是內建的發行版比較舊，並且Android 11以上執行會有點小問題。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux Deploy安裝chroot桌面環境教學">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/index.html">
+<meta property="og:url" content="https://ivon852.github.io/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，因為有root，功能比較多。 缺點是內建的發行版比較舊，並且Android 11以上執行會有點小問題。">
+<meta property="og:description" content="Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，包含Ubuntu、Alpine、Arch、Debian、Kali、Fedora、CentOS、Gentoo、Slackware，要用自己的rootfs安裝也行。 因為有root，功能比較多。缺點是內建的發行版比較舊，並且Android 11以上執行會有點小問題。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.postimg.cc/MpPvdVHf/unnamed.png">
 <meta property="og:image" content="https://i.postimg.cc/d06v4BD8/Screenshot-20211224-090730.png">
@@ -35,15 +35,15 @@
 <meta property="og:image" content="https://i.postimg.cc/Kz6Qy6qn/Screenshot-20211031-170027.png">
 <meta property="og:image" content="https://i.postimg.cc/TPHCtLnN/Screenshot-20211031-170646.png">
 <meta property="og:image" content="https://i.postimg.cc/QdxTtjzj/Screenshot-20211031-171652.png">
-<meta property="article:published_time" content="2021-12-24T01:21:00.000Z">
-<meta property="article:modified_time" content="2021-12-24T01:21:22.147Z">
+<meta property="article:published_time" content="2022-01-19T01:21:00.000Z">
+<meta property="article:modified_time" content="2022-01-19T11:50:18.821Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.postimg.cc/MpPvdVHf/unnamed.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
+<link rel="canonical" href="https://ivon852.github.io/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
 
 
 <script id="page-configurations">
@@ -178,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -202,7 +202,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-24 09:21:00 / 修改時間：09:21:22" itemprop="dateCreated datePublished" datetime="2021-12-24T09:21:00+08:00">2021-12-24</time>
+              <time title="創建時間：2022-01-19 09:21:00 / 修改時間：19:50:18" itemprop="dateCreated datePublished" datetime="2022-01-19T09:21:00+08:00">2022-01-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,8 +223,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/24/Linux-Deploy安裝chroot桌面環境教學/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/19/Linux-Deploy安裝chroot桌面環境教學/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -239,12 +239,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，因為有root，功能比較多。</p>
-<p>缺點是內建的發行版比較舊，並且Android 11以上執行會有點小問題。<br><img src="https://i.postimg.cc/MpPvdVHf/unnamed.png"></p>
+        <p>Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，包含Ubuntu、Alpine、Arch、Debian、Kali、Fedora、CentOS、Gentoo、Slackware，要用自己的rootfs安裝也行。</p>
+<p>因為有root，功能比較多。缺點是內建的發行版比較舊，並且Android 11以上執行會有點小問題。<br><img src="https://i.postimg.cc/MpPvdVHf/unnamed.png"></p>
 <span id="more"></span>
 
 <h2 id="安裝Busybox"><a href="#安裝Busybox" class="headerlink" title="安裝Busybox"></a>安裝Busybox</h2><p>下載<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=stericson.busybox&hl=zh_TW&gl=US">Busybox</a>，點選安裝至<code>/system/xbin</code>或者<code>/system/bin</code>。<br><img src="https://i.postimg.cc/d06v4BD8/Screenshot-20211224-090730.png"></p>
-<h2 id="安裝Ubuntu-18"><a href="#安裝Ubuntu-18" class="headerlink" title="安裝Ubuntu 18"></a>安裝Ubuntu 18</h2><ol>
+<h2 id="安裝Ubuntu-18"><a href="#安裝Ubuntu-18" class="headerlink" title="安裝Ubuntu 18"></a>安裝Ubuntu 18</h2><p>Linux Deploy在設定choot時很容易下載錯誤。確保網路要順暢，4G或WIFI都試試看，或者把下載的來源網址改成台灣伺服器。不然一個套件下載失敗，VNC都無法啟動，整個系統就要重裝。</p>
+<ol>
 <li><p>安裝<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=ru.meefik.linuxdeploy&hl=zh_TW&gl=US">Linux Deploy</a>，啟動後點選右下角的選項，選擇<code>Distribution</code>為Ubuntu。<br><img src="https://i.postimg.cc/P5T3Jkty/Screenshot-20211031-165601.png"></p>
 </li>
 <li><p>往下滑，把<code>User</code>和<code>User Password</code>改成自己喜歡的，登入和VNC就是用這個。勾選GUI，選擇要使用的桌面環境(GUI)。<br><img src="https://i.postimg.cc/JzxTBd0L/Screenshot-20211031-165627.png"></p>
@@ -255,7 +256,7 @@
 </li>
 </ol>
 <h2 id="使用VNC-Viewer查看桌面"><a href="#使用VNC-Viewer查看桌面" class="headerlink" title="使用VNC Viewer查看桌面"></a>使用VNC Viewer查看桌面</h2><ol>
-<li><p>下載<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&hl=zh_TW&gl=US">VNC Viewer</a>，新增連線，IP填寫<code>localhost</code>，連線進去的密碼就是在Linux deploy設定裡的密碼。<br><img src="https://i.postimg.cc/TPHCtLnN/Screenshot-20211031-170646.png"></p>
+<li><p>下載<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android&hl=zh_TW&gl=US">VNC Viewer</a>，新增連線，IP填寫<code>localhost</code>，連線進去的密碼就是在Linux Deploy設定使用者的密碼。<br><img src="https://i.postimg.cc/TPHCtLnN/Screenshot-20211031-170646.png"></p>
 </li>
 <li><p>正常顯示桌面，安裝Firefox瀏覽器成功。<br><img src="https://i.postimg.cc/QdxTtjzj/Screenshot-20211031-171652.png"></p>
 </li>
@@ -279,12 +280,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/24/Termux%E5%AE%89%E8%A3%9DLinux%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/" rel="prev" title="Termux安裝Proot Linux桌面環境教學">
-      <i class="fa fa-chevron-left"></i> Termux安裝Proot Linux桌面環境教學
+    <a href="/2022/01/17/%E7%94%A8docker%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8Cexe/" rel="prev" title="用docker容器在手機上執行exe">
+      <i class="fa fa-chevron-left"></i> 用docker容器在手機上執行exe
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/24/Second-Screen%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8%E3%80%82%E6%89%8B%E6%A9%9F%E6%8A%95%E5%BD%B1%E5%88%B0%E5%A4%A7%E8%9E%A2%E5%B9%95%E7%9A%84%E5%88%A9%E5%99%A8/" rel="next" title="Android手機當電腦用，實作與心得">
-      Android手機當電腦用，實作與心得 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/01/19/Linux-Deploy-Ubuntu-18-04%E5%A6%82%E4%BD%95%E5%8D%87%E7%B4%9A%E8%87%B320-04/" rel="next" title="Linux Deploy Ubuntu 18.04如何升級至20.04">
+      Linux Deploy Ubuntu 18.04如何升級至20.04 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -367,7 +368,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -504,8 +505,8 @@ if (document.querySelectorAll('pre.mermaid').length) {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://ivon852.github.io/2021/12/24/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/";
-    this.page.identifier = "2021/12/24/Linux-Deploy安裝chroot桌面環境教學/";
+    this.page.url = "https://ivon852.github.io/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/";
+    this.page.identifier = "2022/01/19/Linux-Deploy安裝chroot桌面環境教學/";
     this.page.title = "Linux Deploy安裝chroot桌面環境教學";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
