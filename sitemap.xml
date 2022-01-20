@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2022/01/21/chroot%E5%AE%89%E8%A3%85Box86-Wine-Box64-Wine64/</loc>
+    
+    <lastmod>2022-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/</loc>
     
     <lastmod>2022-01-20</lastmod>
