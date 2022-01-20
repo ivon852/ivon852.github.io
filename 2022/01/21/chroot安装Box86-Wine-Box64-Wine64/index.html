@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.postimg.cc/3NLY6q1B/Screenshot-20220121-025146.png">
 <meta property="article:published_time" content="2022-01-20T19:35:00.000Z">
-<meta property="article:modified_time" content="2022-01-20T20:27:25.645Z">
+<meta property="article:modified_time" content="2022-01-20T20:36:54.976Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
@@ -196,7 +196,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2022-01-21 03:35:00 / 修改時間：04:27:25" itemprop="dateCreated datePublished" datetime="2022-01-21T03:35:00+08:00">2022-01-21</time>
+              <time title="創建時間：2022-01-21 03:35:00 / 修改時間：04:36:54" itemprop="dateCreated datePublished" datetime="2022-01-21T03:35:00+08:00">2022-01-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +237,7 @@
 <p>(左邊32位元彈珠檯，右邊64位元播放器)<br><img src="https://i.postimg.cc/3NLY6q1B/Screenshot-20220121-025146.png"></p>
 <span id="more"></span>
 
-<p>前3個段落討論如何設定環境，第4段和第5段討論Wine執行策略:如何不要讓32位元和64位元互相干擾。</p>
+<p>前3個段落討論如何設定環境，第4段和第5段討論Wine執行策略:如何不要讓32位元和64位元互相干擾。此外chroot執行成功率較高，proot問題有點多。</p>
 <h2 id="安裝chroot並開啟多架構支援。"><a href="#安裝chroot並開啟多架構支援。" class="headerlink" title="安裝chroot並開啟多架構支援。"></a>安裝chroot並開啟多架構支援。</h2><p>首先<a href="https://ivon852.github.io/2022/01/19/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/">用Linux Deploy在手機安裝64位元Ubuntu</a>，升級至Ubuntu 20.04。</p>
 <ol>
 <li><p>開啟多架構支援:</p>
@@ -248,7 +248,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install git build-essential cmake wget gcc-arm-linux-gnueabihf zenity:armhf libasound*:armhf libstdc++6:armhf mesa*:armhf</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="編譯Box86和下載Wine"><a href="#編譯Box86和下載Wine" class="headerlink" title="編譯Box86和下載Wine"></a>編譯Box86和下載Wine</h2><ol>
-<li><p>使用樹莓派的參數編譯Box86</p>
+<li><p>使用樹莓派4的參數編譯Box86</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/ptitSeb/box86</span><br><span class="line"><span class="built_in">cd</span> box86</span><br><span class="line">mkdir build; <span class="built_in">cd</span> build; cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo</span><br><span class="line">make -j$(nproc)</span><br><span class="line">sudo make install</span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line">rm -rf box86</span><br></pre></td></tr></table></figure></li>
 <li><p>下載Wine 7.0-rc5</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir wine</span><br><span class="line"><span class="built_in">cd</span> wine</span><br><span class="line">wget https://www.playonlinux.com/wine/binaries/phoenicis/upstream-linux-x86/PlayOnLinux-wine-7.0-rc5-upstream-linux-x86.tar.gz</span><br><span class="line">tar -xvf *.tar.gz</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure></li>
@@ -270,13 +270,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> BOX86_PATH=/home/android/wine/bin/</span><br><span class="line"><span class="built_in">export</span> BOX86_LD_LIBRARY_PATH=/home/android/wine/lib/wine/i386-unix/:/lib/i386-linux-gnu:/lib/aarch64-linux-gnu/ </span><br><span class="line">box86 wine *.exe</span><br></pre></td></tr></table></figure>
 
 <p>如果是<strong>64位元</strong>的Box64 + Wine64:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#結合前面所提的WINEPREFIX，新建一個目錄.wine64給Wine64儲存資料，跟預設的Wine分開</span></span><br><span class="line"><span class="built_in">export</span> WINEPREFIX=/home/android/.wine64</span><br><span class="line"><span class="built_in">export</span> BOX86_PATH=/home/android/wine/bin/</span><br><span class="line"><span class="built_in">export</span> BOX86_LD_LIBRARY_PATH=/home/android/wine/lib/wine/i386-unix/:/lib/i386-linux-gnu:/lib/aarch64-linux-gnu/ </span><br><span class="line">box64 wine64 *.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#結合前面所提的WINEPREFIX，新建一個目錄.wine64給Wine64儲存資料，跟預設的Wine分開</span></span><br><span class="line"><span class="built_in">export</span> WINEPREFIX=/home/android/.wine64</span><br><span class="line"><span class="built_in">export</span> WINEARCH=win64</span><br><span class="line"><span class="built_in">export</span> BOX86_PATH=/home/android/wine/bin/</span><br><span class="line"><span class="built_in">export</span> BOX86_LD_LIBRARY_PATH=/home/android/wine/lib/wine/i386-unix/:/lib/i386-linux-gnu:/lib/aarch64-linux-gnu/ </span><br><span class="line">box64 wine64 *.exe</span><br></pre></td></tr></table></figure>
 
 <p>注意這些環境變數是暫時的，開新的終端機頁面就會失效。</p>
 <h2 id="來執行exe吧"><a href="#來執行exe吧" class="headerlink" title="來執行exe吧"></a>來執行exe吧</h2><p>實際執行影片(彈珠台)</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pqjpbsLE6iU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h2 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h2><p>即使Box86和Box64二者共存，winetrciks還是無法正常執行。參考<a target="_blank" rel="noopener" href="https://github.com/ptitSeb/box86/blob/master/docs/COMPILE.md">官方的做法</a>建立符號連結也不行，Winetricks會混亂。</p>
+<h2 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h2><p>即使Box86和Box64二者共存，Winetrciks還是無法正常執行。參考<a target="_blank" rel="noopener" href="https://github.com/ptitSeb/box86/blob/master/docs/COMPILE.md">官方的做法</a>建立符號連結也不行，Winetricks會混亂。</p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv14867076">https://www.bilibili.com/read/cv14867076</a><br><a target="_blank" rel="noopener" href="https://github.com/ptitSeb/box86/blob/master/docs/COMPILE.md">https://github.com/ptitSeb/box86/blob/master/docs/COMPILE.md</a></p>
 
     </div>
