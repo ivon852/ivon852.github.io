@@ -21,25 +21,27 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="電腦同一個硬碟上裝有Windows 10，再安裝Linux會比較方便，尤其是Ubutnu，還會幫你調整好雙重開機的設定。因為雙系統最主要就是由GRUB控制，開機時會有選單決定要進入哪個系統。 但如果先裝Ubuntu再裝Windows就麻煩一點，因為Windows 10一旦裝上去後就會蓋掉GRUB，要再用Live USB重新設定，所以準備二個隨身碟會比較妥當。">
+  <meta name="description" content="如果有root權限，喜歡刷機的，為了避免刷到開不了機，可以先用第三方Recovery “TWRP”或”Orangefox”製作整機備份。這樣就算刷壞了，只要Recovery還進得去，就可以完全還原到刷機前的狀態。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在裝有Ubuntu的電腦安裝Windows 10雙系統">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/24/%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A3%9D%E6%9C%89Ubutnu%E7%9A%84%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DWindows-10%E9%9B%99%E7%B3%BB%E7%B5%B1/index.html">
+<meta property="og:title" content="使用TWRP&#x2F;Orangefox給Android整機備份">
+<meta property="og:url" content="https://ivon852.github.io/2022/01/22/%E4%BD%BF%E7%94%A8TWRP-Orangefox%E7%B5%A6Android%E6%95%B4%E6%A9%9F%E5%82%99%E4%BB%BD/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="電腦同一個硬碟上裝有Windows 10，再安裝Linux會比較方便，尤其是Ubutnu，還會幫你調整好雙重開機的設定。因為雙系統最主要就是由GRUB控制，開機時會有選單決定要進入哪個系統。 但如果先裝Ubuntu再裝Windows就麻煩一點，因為Windows 10一旦裝上去後就會蓋掉GRUB，要再用Live USB重新設定，所以準備二個隨身碟會比較妥當。">
+<meta property="og:description" content="如果有root權限，喜歡刷機的，為了避免刷到開不了機，可以先用第三方Recovery “TWRP”或”Orangefox”製作整機備份。這樣就算刷壞了，只要Recovery還進得去，就可以完全還原到刷機前的狀態。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/W3cJb0j5/2021-11-15-20-17-297.png">
-<meta property="og:image" content="https://i.postimg.cc/4dvHKnxs/2021-11-15-20-17-27.png">
-<meta property="og:image" content="https://i.postimg.cc/MGQQS9kc/2021-11-15-20-17-27.png">
-<meta property="article:published_time" content="2021-12-23T16:29:00.000Z">
-<meta property="article:modified_time" content="2021-12-25T19:39:04.828Z">
+<meta property="og:image" content="https://i.postimg.cc/1zbpzhP3/image.jpg">
+<meta property="og:image" content="https://i.postimg.cc/85CQ4dDf/tbackup.png">
+<meta property="og:image" content="https://i.postimg.cc/FKNQd5BZ/obackup.png">
+<meta property="og:image" content="https://i.postimg.cc/xdDLLgvg/image.png">
+<meta property="og:image" content="https://i.postimg.cc/tTm0M1CS/trestore.png">
+<meta property="og:image" content="https://i.postimg.cc/MG5J13k8/orestore.png">
+<meta property="article:published_time" content="2022-01-22T08:44:00.000Z">
+<meta property="article:modified_time" content="2022-01-22T09:47:11.162Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/W3cJb0j5/2021-11-15-20-17-297.png">
+<meta name="twitter:image" content="https://i.postimg.cc/1zbpzhP3/image.jpg">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/24/%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A3%9D%E6%9C%89Ubutnu%E7%9A%84%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DWindows-10%E9%9B%99%E7%B3%BB%E7%B5%B1/">
+<link rel="canonical" href="https://ivon852.github.io/2022/01/22/%E4%BD%BF%E7%94%A8TWRP-Orangefox%E7%B5%A6Android%E6%95%B4%E6%A9%9F%E5%82%99%E4%BB%BD/">
 
 
 <script id="page-configurations">
@@ -52,7 +54,7 @@
   };
 </script>
 
-  <title>如何在裝有Ubuntu的電腦安裝Windows 10雙系統 | Ivon's Blog</title>
+  <title>使用TWRP/Orangefox給Android整機備份 | Ivon's Blog</title>
   
 
 
@@ -174,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/24/%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A3%9D%E6%9C%89Ubutnu%E7%9A%84%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DWindows-10%E9%9B%99%E7%B3%BB%E7%B5%B1/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/22/%E4%BD%BF%E7%94%A8TWRP-Orangefox%E7%B5%A6Android%E6%95%B4%E6%A9%9F%E5%82%99%E4%BB%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -187,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何在裝有Ubuntu的電腦安裝Windows 10雙系統
+          使用TWRP/Orangefox給Android整機備份
         </h1>
 
         <div class="post-meta">
@@ -196,16 +198,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-12-24 00:29:00" itemprop="dateCreated datePublished" datetime="2021-12-24T00:29:00+08:00">2021-12-24</time>
+              <time title="創建時間：2022-01-22 16:44:00 / 修改時間：17:47:11" itemprop="dateCreated datePublished" datetime="2022-01-22T16:44:00+08:00">2022-01-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-26 03:39:04" itemprop="dateModified" datetime="2021-12-26T03:39:04+08:00">2021-12-26</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -225,8 +221,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2021/12/24/%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A3%9D%E6%9C%89Ubutnu%E7%9A%84%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DWindows-10%E9%9B%99%E7%B3%BB%E7%B5%B1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/24/如何在裝有Ubutnu的電腦安裝Windows-10雙系統/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/01/22/%E4%BD%BF%E7%94%A8TWRP-Orangefox%E7%B5%A6Android%E6%95%B4%E6%A9%9F%E5%82%99%E4%BB%BD/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/22/使用TWRP-Orangefox給Android整機備份/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -241,55 +237,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>電腦同一個硬碟上裝有Windows 10，再安裝Linux會比較方便，尤其是Ubutnu，還會幫你調整好雙重開機的設定。因為雙系統最主要就是由GRUB控制，開機時會有選單決定要進入哪個系統。</p>
-<p>但如果<strong>先裝Ubuntu再裝Windows</strong>就麻煩一點，因為Windows 10一旦裝上去後就會蓋掉GRUB，要再用Live USB重新設定，所以<strong>準備二個隨身碟會比較妥當</strong>。</p>
+        <p>如果有root權限，喜歡刷機的，為了避免刷到開不了機，可以先用第三方Recovery “TWRP”或”Orangefox”製作整機備份。這樣就算刷壞了，只要Recovery還進得去，就可以完全還原到刷機前的狀態。<br><img src="https://i.postimg.cc/1zbpzhP3/image.jpg"></p>
 <span id="more"></span>
 
+<p>*Orangefox是基於TWRP的第三方recovery，功能類似。</p>
+<p>*每支手機各有專用的TWRP，請自行到XDA尋找。</p>
+<h2 id="TWRP-Orangefox可以備份的項目"><a href="#TWRP-Orangefox可以備份的項目" class="headerlink" title="TWRP/Orangefox可以備份的項目"></a>TWRP/Orangefox可以備份的項目</h2><p>以Android 11來說，TWRP預設是備份到內部儲存空間((Internal Storage, 路徑:<code>/sdcard</code>)，如果容量夠大也可以放SD卡/OTG。備份前你的手機容量應該還要有一半以上。</p>
+<p>以下分區全部備份的話就幾乎等同整機備份了，有些手機data以外的分區會合併顯示成”super”，常見的有以下幾種:</p>
+<ul>
+<li>boot分區</li>
+<li>recovery分區</li>
+<li>system分區</li>
+<li>data分區</li>
+</ul>
+<p>不過還是有例外，<font color=red><strong>手機內部儲存空間TWRP不會備份</strong></font>，因為TWRP會把備份檔案儲存到<code>/sdcard/TWRP</code>。此外還原系統後螢幕鎖定密碼可能會被清除，某些APP可能也會無法運作。</p>
+<p>因此製作好備份後，你應該把備份檔案移動到外部空間: 電腦或者隨身碟，免得後來刷機清除該分區把資料一起洗掉了。</p>
+<h2 id="如何使用TWRP-Orangefox備份系統"><a href="#如何使用TWRP-Orangefox備份系統" class="headerlink" title="如何使用TWRP/Orangefox備份系統"></a>如何使用TWRP/Orangefox備份系統</h2><p>預估備份檔案大小: 手機開機時顯示共使用100GB，備份後的檔案大小約50GB。</p>
+<p>如果你是TWRP: 開機進入畫面，點選Backup，全部分區都打勾，滑動Swipe to Backup。<br><img src="https://i.postimg.cc/85CQ4dDf/tbackup.png"></p>
+<p>如果你是Orangefox: 開機進入畫面，點選Backups→New Backup，全部分區都打勾，滑動Swipe to Backup。<br><img src="https://i.postimg.cc/FKNQd5BZ/obackup.png"></p>
+<p>備份後的檔案預設會儲存至<code>/sdcard/TWRP</code>或<code>/sdcard/Fox</code>。</p>
+<h2 id="妥善保存備份檔案"><a href="#妥善保存備份檔案" class="headerlink" title="妥善保存備份檔案"></a>妥善保存備份檔案</h2><p>將處在Recovery模式的手機接上電腦，用MTP把檔案傳輸到電腦；或者用OTG傳輸到隨身碟。</p>
+<p>如果嫌MTP太不穩，可以下載<a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">ADB</a>，用ADB指令搬移會比較穩定點:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /sdcard/TWRP &lt;電腦上的路徑&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="製作Ubuntu和Windows的開機碟"><a href="#製作Ubuntu和Windows的開機碟" class="headerlink" title="製作Ubuntu和Windows的開機碟"></a>製作Ubuntu和Windows的開機碟</h2><ol>
-<li><p>下載官方的Ubuntu開機碟製作程式，按照指示製作Ubuntu 20.04的Live USB。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install usb-creator-gtk</span><br><span class="line">usb-creator-gtk</span><br></pre></td></tr></table></figure></li>
-<li><p>如何在Linux製作Windows 10的開機碟? 首先從官方網站下載：<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-tw/software-download/windows10">https://www.microsoft.com/zh-tw/software-download/windows10</a></p>
-</li>
-<li><p>Ubuntu有內建「磁碟」工具，先按右上角將隨身碟格式化成MBR。<br><img src="https://i.postimg.cc/W3cJb0j5/2021-11-15-20-17-297.png"></p>
-</li>
-<li><p>再來按齒輪，格式化分割區勾選其他，選擇exFAT檔案系統。<br><img src="https://i.postimg.cc/4dvHKnxs/2021-11-15-20-17-27.png"></p>
-</li>
-</ol>
-<ol start="5">
-<li>接著對下載Win10 ISO按右鍵，將其用磁碟映像管理器開啟。將Win10 ISO裡面的檔案全部右鍵複製到隨身碟。<br><img src="https://i.postimg.cc/MGQQS9kc/2021-11-15-20-17-27.png"></li>
-</ol>
-<h2 id="分割硬碟-amp-amp-安裝Windows"><a href="#分割硬碟-amp-amp-安裝Windows" class="headerlink" title="分割硬碟 &amp;&amp; 安裝Windows"></a>分割硬碟 &amp;&amp; 安裝Windows</h2><p>用Ubuntu Live USB開機後，點<code>試用Ubuntu</code>，開啟內建的<code>Gparted</code>程式。</p>
-<ol>
-<li><p>點選Ubuntu所在的分割區，右鍵按下<code>調整大小（Resize）</code>，New Size的部分填入71680 MB，代表保留給Linux的70GB空間，剩下的400GB都給Windows。再按下<code>Resize</code>。</p>
-</li>
-<li><p>之後會多出<code>unallocated</code>的空間，右鍵<code>New</code>，<code>Create as</code>選擇<code>Primary，Files System</code>，選擇<code>NTFS</code>，再點選<code>Add</code>。</p>
-</li>
-<li><p>最後記得要按下綠色的打勾<code>Apply All Operations</code>，對硬碟的變更才會生效，處理時間依硬碟大小而定，500GB SSD約10分鐘。</p>
-</li>
-<li><p>這樣Gparted顯示的掛載情形應該會變成:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda1 EFI boot</span><br><span class="line">/dev/sda2 ext4 Linux</span><br><span class="line">/dev/sda3 ntfs  <span class="comment">#這個就是給Windows的</span></span><br></pre></td></tr></table></figure></li>
-<li><p>使用Windows開機碟開機，點選自訂安裝，將系統安裝至剛剛切割出來的400GB分割區，Windows安裝畫面應會顯示:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">磁碟機 0 磁碟分割 3</span><br></pre></td></tr></table></figure></li>
-<li><p>安裝好進入桌面，安裝完Windows更新之後重開機會直接進入Windows。此時Ubuntu不是被刪除，只是缺少GRUB罷了。</p>
-</li>
-</ol>
-<h2 id="重新安裝GRUB"><a href="#重新安裝GRUB" class="headerlink" title="重新安裝GRUB"></a>重新安裝GRUB</h2><ol>
-<li><p>因此再度用Ubuntu Live USB開機，安裝Boot Repair:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:yannubuntu/</span><br><span class="line">sudo apt install boot-repair</span><br><span class="line">boot-repair</span><br></pre></td></tr></table></figure></li>
-<li><p> 點選<code>Recommend Repair</code>，重新安裝GRUB。</p>
-</li>
-<li><p>之後開機進入Ubuntu，輸入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure></li>
-<li><p>於是開機時進入Ubuntu的開機選單，就會有<code>Windows Boot Manager</code>的選項了。</p>
-</li>
-<li><p>如果要調整預設選擇的系統，編輯以下檔案:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/grub</span><br><span class="line"><span class="comment">#將GRUB_DEFAULT值改成Windows Boot Manager在開機選單中的排序（從0開始算）</span></span><br></pre></td></tr></table></figure></li>
-<li><p>再更新一次GRUB:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure></li>
-<li><p>最後將硬體時鐘做為Ubuntu的時間標準，免得雙系統時間不同步:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-local-rtc 1</span><br></pre></td></tr></table></figure></li>
-</ol>
+<p>備份到電腦上大概長這樣:<br><img src="https://i.postimg.cc/xdDLLgvg/image.png"></p>
+<h2 id="如何使用TWRP-Orangefox還原系統"><a href="#如何使用TWRP-Orangefox還原系統" class="headerlink" title="如何使用TWRP/Orangefox還原系統"></a>如何使用TWRP/Orangefox還原系統</h2><p>如果你有刷不同的ROM，建議先把系統和內部儲存空間清除，再來還原系統。</p>
+<p>在內部儲存空間已被清除，而備份檔位於電腦的情況下，用ADB把檔案丟回手機:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push &lt;備份檔路徑&gt; /sdcard/TWRP</span><br></pre></td></tr></table></figure>
+
+<p>如果你是TWRP: 開機進入畫面，點選Restore，開始還原<br><img src="https://i.postimg.cc/tTm0M1CS/trestore.png"></p>
+<p>如果你是Orangefox: 開機進入畫面，點選Backup，點選顯示的備份檔案，滑動Swipe to Restore。<br><img src="https://i.postimg.cc/MG5J13k8/orestore.png"></p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>這是適合刷機用戶使用的備份手段；如果只要備份應用程式，請用<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.keramidas.TitaniumBackup&hl=zh_TW&gl=US">鈦備份</a>。</p>
 
     </div>
 
@@ -299,8 +277,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
           </div>
 
         
@@ -309,13 +286,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/" rel="prev" title="Termux使用教學: 在手機上執行Linux指令">
-      <i class="fa fa-chevron-left"></i> Termux使用教學: 在手機上執行Linux指令
+    <a href="/2022/01/21/chroot%E5%AE%89%E8%A3%85Box86-Wine-Box64-Wine64/" rel="prev" title="chroot同時安装Box86 Wine + Box64 Wine64">
+      <i class="fa fa-chevron-left"></i> chroot同時安装Box86 Wine + Box64 Wine64
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/24/QEMU%E5%AE%89%E8%A3%9DWindows-10%EF%BC%8C%E9%96%8B%E5%95%9F-%E9%97%9C%E9%96%89%E9%A1%AF%E7%A4%BA%E5%8D%A1%E7%9B%B4%E9%80%9A/" rel="next" title="QEMU安裝Windows 10，開啟/關閉顯示卡直通">
-      QEMU安裝Windows 10，開啟/關閉顯示卡直通 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -381,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%BD%E4%BD%9CUbuntu%E5%92%8CWindows%E7%9A%84%E9%96%8B%E6%A9%9F%E7%A2%9F"><span class="nav-number">1.</span> <span class="nav-text">製作Ubuntu和Windows的開機碟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%A1%AC%E7%A2%9F-amp-amp-%E5%AE%89%E8%A3%9DWindows"><span class="nav-number">2.</span> <span class="nav-text">分割硬碟 &amp;&amp; 安裝Windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%9DGRUB"><span class="nav-number">3.</span> <span class="nav-text">重新安裝GRUB</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TWRP-Orangefox%E5%8F%AF%E4%BB%A5%E5%82%99%E4%BB%BD%E7%9A%84%E9%A0%85%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">TWRP&#x2F;Orangefox可以備份的項目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8TWRP-Orangefox%E5%82%99%E4%BB%BD%E7%B3%BB%E7%B5%B1"><span class="nav-number">2.</span> <span class="nav-text">如何使用TWRP&#x2F;Orangefox備份系統</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%A5%E5%96%84%E4%BF%9D%E5%AD%98%E5%82%99%E4%BB%BD%E6%AA%94%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">妥善保存備份檔案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8TWRP-Orangefox%E9%82%84%E5%8E%9F%E7%B3%BB%E7%B5%B1"><span class="nav-number">4.</span> <span class="nav-text">如何使用TWRP&#x2F;Orangefox還原系統</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">總結</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -534,9 +508,9 @@ if (document.querySelectorAll('pre.mermaid').length) {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://ivon852.github.io/2021/12/24/%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A3%9D%E6%9C%89Ubutnu%E7%9A%84%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DWindows-10%E9%9B%99%E7%B3%BB%E7%B5%B1/";
-    this.page.identifier = "2021/12/24/如何在裝有Ubutnu的電腦安裝Windows-10雙系統/";
-    this.page.title = "如何在裝有Ubuntu的電腦安裝Windows 10雙系統";
+    this.page.url = "https://ivon852.github.io/2022/01/22/%E4%BD%BF%E7%94%A8TWRP-Orangefox%E7%B5%A6Android%E6%95%B4%E6%A9%9F%E5%82%99%E4%BB%BD/";
+    this.page.identifier = "2022/01/22/使用TWRP-Orangefox給Android整機備份/";
+    this.page.title = "使用TWRP/Orangefox給Android整機備份";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
