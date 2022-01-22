@@ -648,13 +648,6 @@
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/Android/</loc>
-    <lastmod>2022-01-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ivon852.github.io/tags/Termux/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -662,7 +655,7 @@
   </url>
   
   <url>
-    <loc>https://ivon852.github.io/tags/iOS/</loc>
+    <loc>https://ivon852.github.io/tags/Android/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -670,6 +663,13 @@
   
   <url>
     <loc>https://ivon852.github.io/tags/Windows/</loc>
+    <lastmod>2022-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/iOS/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
