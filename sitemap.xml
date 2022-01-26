@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2022/01/19/Linux-Deploy-Ubuntu-18-04%E5%A6%82%E4%BD%95%E5%8D%87%E7%B4%9A%E8%87%B320-04/</loc>
+    
+    <lastmod>2022-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2022/01/25/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/</loc>
     
     <lastmod>2022-01-26</lastmod>
@@ -39,15 +48,6 @@
   
   <url>
     <loc>https://ivon852.github.io/2022/01/14/%E9%9B%BB%E8%85%A6%E9%96%8B%E5%95%9F%E5%85%A7%E5%A4%96%E9%A1%AF%E5%90%8C%E6%99%82%E8%BC%B8%E5%87%BA/</loc>
-    
-    <lastmod>2022-01-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ivon852.github.io/2022/01/19/Linux-Deploy-Ubuntu-18-04%E5%A6%82%E4%BD%95%E5%8D%87%E7%B4%9A%E8%87%B320-04/</loc>
     
     <lastmod>2022-01-20</lastmod>
     
