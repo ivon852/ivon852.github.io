@@ -21,31 +21,26 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Ubuntu touch旨在將Linux帶到手機上，成為行動作業系統。 Canonical放棄Ubuntu touch後，交由Ubports社群來維護，官方支援的機型約20台，並提供一鍵安裝器。">
+  <meta name="description" content="Termux的QEMU套件可在Android手機上執行模擬器，模擬執行x86架構的完整電腦作業系統，例如安裝Windows、Linux，不需要Root權限，效果等同Limbo PC Emulator。 本文介紹使用Termux在手機上安裝Windows 7的方法，除了手機要有6G RAM、準備32GB的空間外，還需要耐心。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="紅米Note 5多重開機Ubuntu touch">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/05/%E7%B4%85%E7%B1%B3Note-5%E5%A4%9A%E9%87%8D%E9%96%8B%E6%A9%9FUbuntu-touch/index.html">
+<meta property="og:title" content="手機Termux QEMU安裝Windows 7">
+<meta property="og:url" content="https://ivon852.github.io/2022/01/29/%E6%89%8B%E6%A9%9FTermux%20QEMU%E8%B7%91Windows%E7%B3%BB%E7%B5%B1/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="Ubuntu touch旨在將Linux帶到手機上，成為行動作業系統。 Canonical放棄Ubuntu touch後，交由Ubports社群來維護，官方支援的機型約20台，並提供一鍵安裝器。">
+<meta property="og:description" content="Termux的QEMU套件可在Android手機上執行模擬器，模擬執行x86架構的完整電腦作業系統，例如安裝Windows、Linux，不需要Root權限，效果等同Limbo PC Emulator。 本文介紹使用Termux在手機上安裝Windows 7的方法，除了手機要有6G RAM、準備32GB的空間外，還需要耐心。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/jcWAoGl.png">
-<meta property="og:image" content="https://i.imgur.com/AffGowc.png">
-<meta property="og:image" content="https://i.imgur.com/fGKVZFo.png">
-<meta property="og:image" content="https://i.imgur.com/a27evfK.png">
-<meta property="og:image" content="https://i.imgur.com/zDnaiLF.png">
-<meta property="og:image" content="https://i.imgur.com/tIzKMVQ.png">
-<meta property="og:image" content="https://i.imgur.com/uoVJmc2.png">
-<meta property="og:image" content="https://i.imgur.com/q5gcqtp.png">
-<meta property="og:image" content="https://i.imgur.com/34Csgta.png">
-<meta property="article:published_time" content="2021-12-05T11:15:00.000Z">
-<meta property="article:modified_time" content="2021-12-05T11:26:38.420Z">
+<meta property="og:image" content="https://i.postimg.cc/PrcF35Jj/vlcsnap-2022-01-30-15h40m52s876.jpg">
+<meta property="og:image" content="https://i.postimg.cc/PJMKtdzS/vlcsnap-2022-01-30-15h42m07s162.jpg">
+<meta property="og:image" content="https://i.postimg.cc/FFbTbx50/vlcsnap-2022-01-30-15h42m33s740.jpg">
+<meta property="og:image" content="https://i.postimg.cc/2jnRMtMJ/Screenshot-20220130-160728.png">
+<meta property="article:published_time" content="2022-01-29T15:54:00.000Z">
+<meta property="article:modified_time" content="2022-01-30T08:17:44.084Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Termux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/jcWAoGl.png">
+<meta name="twitter:image" content="https://i.postimg.cc/PrcF35Jj/vlcsnap-2022-01-30-15h40m52s876.jpg">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/05/%E7%B4%85%E7%B1%B3Note-5%E5%A4%9A%E9%87%8D%E9%96%8B%E6%A9%9FUbuntu-touch/">
+<link rel="canonical" href="https://ivon852.github.io/2022/01/29/%E6%89%8B%E6%A9%9FTermux%20QEMU%E8%B7%91Windows%E7%B3%BB%E7%B5%B1/">
 
 
 <script id="page-configurations">
@@ -58,7 +53,7 @@
   };
 </script>
 
-  <title>紅米Note 5多重開機Ubuntu touch | Ivon's Blog</title>
+  <title>手機Termux QEMU安裝Windows 7 | Ivon's Blog</title>
   
 
 
@@ -180,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/05/%E7%B4%85%E7%B1%B3Note-5%E5%A4%9A%E9%87%8D%E9%96%8B%E6%A9%9FUbuntu-touch/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/01/29/%E6%89%8B%E6%A9%9FTermux%20QEMU%E8%B7%91Windows%E7%B3%BB%E7%B5%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -193,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          紅米Note 5多重開機Ubuntu touch
+          手機Termux QEMU安裝Windows 7
         </h1>
 
         <div class="post-meta">
@@ -202,10 +197,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-12-05 19:15:00 / 修改時間：19:26:38" itemprop="dateCreated datePublished" datetime="2021-12-05T19:15:00+08:00">2021-12-05</time>
+              <time title="創建時間：2022-01-29 23:54:00" itemprop="dateCreated datePublished" datetime="2022-01-29T23:54:00+08:00">2022-01-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-01-30 16:17:44" itemprop="dateModified" datetime="2022-01-30T16:17:44+08:00">2022-01-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -227,69 +228,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Ubuntu touch旨在將Linux帶到手機上，成為行動作業系統。</p>
-<p>Canonical放棄Ubuntu touch後，交由Ubports社群來維護，官方支援的機型約20台，並提供一鍵安裝器。</p>
+        <p>Termux的QEMU套件可在Android手機上執行模擬器，模擬執行x86架構的完整電腦作業系統，例如安裝Windows、Linux，不需要Root權限，效果等同Limbo PC Emulator。</p>
+<p>本文介紹使用Termux在手機上安裝Windows 7的方法，除了手機要有6G RAM、準備32GB的空間外，還需要耐心。<br><img src="https://i.postimg.cc/PrcF35Jj/vlcsnap-2022-01-30-15h40m52s876.jpg"></p>
 <span id="more"></span>
 
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/jcWAoGl.png"><img src="https://i.imgur.com/jcWAoGl.png"></a></p>
-<p>這台紅米Note 5非官方所支持，使用到Halium Project的技術，可與Android系統共存，還可以安裝Android模擬器。</p>
-<p>紅米Note 5 + Ubuntu touch，測試項目：</p>
-<ul>
-<li>  WIFI</li>
-<li>  藍牙</li>
-<li>  4G網路</li>
-<li>  手電筒</li>
-<li>  螢幕旋轉</li>
-<li>  GPS</li>
-<li>  震動  </li>
-<li>  相機</li>
-<li>  音效</li>
-<li>指紋  </li>
-</ul>
-<h2 id="需要工具"><a href="#需要工具" class="headerlink" title="需要工具"></a>需要工具</h2><ul>
-<li><p>手機：紅米Note 5 (whyred)，MIUI 11  </p>
+<h2 id="使用Termux-安裝Windows-7"><a href="#使用Termux-安裝Windows-7" class="headerlink" title="使用Termux 安裝Windows 7"></a>使用Termux 安裝Windows 7</h2><ol>
+<li><p>安裝<a href="https://ivon852.github.io/2021/12/23/Termux%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8-%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%9F%B7%E8%A1%8CLinux%E6%8C%87%E4%BB%A4/">Termux</a>，設定存取儲存空間權限。</p>
 </li>
-<li><p>Recovery：TWRP 3.5.2。</p>
+<li><p>安裝<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/android/">VNC Viewer</a>。</p>
 </li>
-<li><p>ROM &amp; halium-boot.img：擇一下載，各有各的bug，沒有一個是所有測試項目都沒問題的。</p>
+<li><p>下載Windows 7安裝光碟ISO。Termux若已設定存取儲存空間權限，可直接掛載。例如ISO檔案位於<code>手機內部儲存空間/Download/windows7.iso</code>，那在Termux內的路徑就是:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">storage/shared/Download/windows7.iso</span><br></pre></td></tr></table></figure></li>
+<li><p>Termux安裝QEMU套件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkg update</span><br><span class="line">pkg install qemu-utils qemu-system-x86_64</span><br></pre></td></tr></table></figure></li>
+<li><p>建立一個win7目錄存放檔案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir win7</span><br><span class="line">cd win7</span><br></pre></td></tr></table></figure></li>
+<li><p>建立32G的虛擬硬碟</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img create -f qcow2 win7.qcow2 32G</span><br></pre></td></tr></table></figure></li>
+<li><p>使用<code>vim runwin7.sh</code>建立開機腳本，填入以下內容後儲存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 4096 -smp 2 -cpu qemu64 \</span><br><span class="line">-accel tcg,thread=multi \</span><br><span class="line">-had win7.qcow2 \</span><br><span class="line">-vga std \</span><br><span class="line">-netdev user,id=0 -device rt18139,netdev=n0 \</span><br><span class="line">-device AC97 \</span><br><span class="line">-vnc :0 \</span><br><span class="line">-cdrom ../storage/shared/Download/windows7.iso</span><br></pre></td></tr></table></figure></li>
+<li><p>執行開機腳本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x runwin7.sh</span><br><span class="line">./runwin7.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>Termux點選<code>Aquire Wakelock</code>避免被殺後台，開啟VNC Viewer，新增連線，輸入<code>localhost:1</code>連線到模擬器畫面。<br><img src="https://i.postimg.cc/PJMKtdzS/vlcsnap-2022-01-30-15h42m07s162.jpg"></p>
 </li>
-</ul>
-<h3 id="Github上的版本，相機-amp-時區怪怪的-："><a href="#Github上的版本，相機-amp-時區怪怪的-：" class="headerlink" title="Github上的版本，相機&amp;時區怪怪的 ："></a>Github上的版本，相機&amp;時區怪怪的 ：</h3><p><a target="_blank" rel="noopener" href="https://github.com/Linux-On-Sdm6Series/Linux_manifest/releases">https://github.com/Linux-On-Sdm6Series/Linux_manifest/releases</a></p>
-<h3 id="Ubports論壇上parasparihar0建構的版本，沒有音效："><a href="#Ubports論壇上parasparihar0建構的版本，沒有音效：" class="headerlink" title="Ubports論壇上parasparihar0建構的版本，沒有音效："></a>Ubports論壇上parasparihar0建構的版本，沒有音效：</h3><p><a target="_blank" rel="noopener" href="https://forums.ubports.com/topic/5128/redmi-note-5-pro-whyred">https://forums.ubports.com/topic/5128/redmi-note-5-pro-whyred</a></p>
-<h2 id="安裝流程"><a href="#安裝流程" class="headerlink" title="安裝流程"></a>安裝流程</h2><p>Android似乎有分區加密導致Ubuntu touch無法啟動的問題，如果遇到就只能將data分區格式化，再裝Ubuntu touch。</p>
-<ol>
-<li><p>進入TWRP Recovery，備份boot分區。</p>
+<li><p>開機後等個五分鐘載入，再按照螢幕指示安裝Windows 7，大約要一小時。<br><img src="https://i.postimg.cc/FFbTbx50/vlcsnap-2022-01-30-15h42m33s740.jpg"></p>
 </li>
-<li><p>再刷入halium-boot.img到boot分區</p>
+<li><p>若安裝需要重開機，退出VNC Viewer，回到Termux。</p>
 </li>
-<li><p>刷入Ubuntu touch系統，會安裝到/data分區。  </p>
-</li>
-<li><p>開機進入Ubuntu touch系統。  </p>
-</li>
-<li><p>開機設定完語言、地區進入桌面，會有基本使用教學。</p>
+<li><p>按下CTRL+Z終止QEMU，修改開機腳本，去掉<code>cdrom</code>的參數後儲存。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 2048 -smp 2 -cpu qemu64 \</span><br><span class="line">-accel tcg,thread=multi \</span><br><span class="line">-had win7.qcow2 \</span><br><span class="line">-vga std \</span><br><span class="line">-netdev user,id=0 -device rt18139,netdev=n0 \</span><br><span class="line">-device AC97 \</span><br><span class="line">-vnc :0</span><br></pre></td></tr></table></figure></li>
+<li><p>重開Termux，重新執行腳本。開啟VNC，繼續安裝。</p>
 </li>
 </ol>
-<p>預設登入帳戶是<code>phablet</code>，密碼也是<code>phablet</code>。</p>
-<p>若要開機回Android系統，只要把原本的boot.img還原即可，Github上也有完全解除安裝Ubuntu touch的zip檔案。  </p>
-<h2 id="應用程式"><a href="#應用程式" class="headerlink" title="應用程式"></a>應用程式</h2><p>操作邏輯：右邊往內滑進入多工模式，左邊往內滑開啟工作列。右上角往下滑開啟快速設定選單。</p>
-<p>Ubuntu touch的截圖按鈕是同時按著上下音量鍵。  </p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/AffGowc.png"><img src="https://i.imgur.com/AffGowc.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/fGKVZFo.png"><img src="https://i.imgur.com/fGKVZFo.png"></a></p>
-<p>鎖定畫面。</p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/a27evfK.png"><img src="https://i.imgur.com/a27evfK.png"></a></p>
-<p>相機能正常拍照，偶爾崩潰。</p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/zDnaiLF.png"><img src="https://i.imgur.com/zDnaiLF.png"></a></p>
-<p>終端機開啟都要輸入密碼。</p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/tIzKMVQ.png"><img src="https://i.imgur.com/tIzKMVQ.png"></a></p>
-<p>內建的Morph瀏覽器是以Chrome 77為基礎，似乎沒有硬體加速，預設會開啟桌面網站。  </p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/uoVJmc2.png"><img src="https://i.imgur.com/uoVJmc2.png"></a></p>
-<p>APP要到應用商店OpenStore下載。<br><a target="_blank" rel="noopener" href="https://i.imgur.com/q5gcqtp.png"><img src="https://i.imgur.com/q5gcqtp.png"></a></p>
-<p>Godot 3D APP可以正常運作，測試3D效能 （這支手機處理器是s636）<br><a target="_blank" rel="noopener" href="https://i.imgur.com/34Csgta.png"><img src="https://i.imgur.com/34Csgta.png"></a></p>
-<p>還有一個UI Tweak Tool APP，它可以強制系統進入大螢幕桌面模式。</p>
-<p>在手機模式下，一般Linux程式的GUI都開不起來，必須使用Libretime容器來安裝。</p>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>最大的問題是，這些ROM的軔體都不穩定，App很容易一更新就閃退了。</p>
-<p>Linux程式還要用容器執行，也沒什麼原生App能用。</p>
-<p>或許Android裝chroot還比較實用……</p>
+<h2 id="實際使用情況"><a href="#實際使用情況" class="headerlink" title="實際使用情況"></a>實際使用情況</h2><p>使用起來真的是幻燈片，安裝後開機進入桌面至少一分鐘。</p>
+<p>Firefox開起來要二分鐘，載入維基百科頁面三分鐘。<br><img src="https://i.postimg.cc/2jnRMtMJ/Screenshot-20220130-160728.png"></p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>手機ARM跨架構模擬x86，Android手機亦不支援KVM。在種種損耗之下，就算是高通s800系列處理器性能也不怎麼樣；此外應用程式也很難有3D硬體加速。</p>
 
     </div>
 
@@ -299,8 +272,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/Termux/" rel="tag"># Termux</a>
           </div>
 
         
@@ -309,13 +282,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/05/Gelbooru%E5%9C%96%E7%AB%99%E6%90%9C%E5%B0%8B%E7%94%A8%E6%B3%95/" rel="prev" title="Gelbooru圖站搜尋用法">
-      <i class="fa fa-chevron-left"></i> Gelbooru圖站搜尋用法
+    <a href="/2022/01/27/%E8%81%86%E8%81%BDFlaming-Lips-Yoshimi-Battles-The-Pink-Robots/" rel="prev" title="感想: The Flaming Lips專輯 - Yoshimi Battles The Pink Robots">
+      <i class="fa fa-chevron-left"></i> 感想: The Flaming Lips專輯 - Yoshimi Battles The Pink Robots
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/05/%E7%B4%85%E7%B1%B3Note-5%E5%AE%89%E8%A3%9DpostmarketOS/" rel="next" title="紅米Note 5安裝postmarketOS">
-      紅米Note 5安裝postmarketOS <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -375,7 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">需要工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Github%E4%B8%8A%E7%9A%84%E7%89%88%E6%9C%AC%EF%BC%8C%E7%9B%B8%E6%A9%9F-amp-%E6%99%82%E5%8D%80%E6%80%AA%E6%80%AA%E7%9A%84-%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">Github上的版本，相機&amp;時區怪怪的 ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubports%E8%AB%96%E5%A3%87%E4%B8%8Aparasparihar0%E5%BB%BA%E6%A7%8B%E7%9A%84%E7%89%88%E6%9C%AC%EF%BC%8C%E6%B2%92%E6%9C%89%E9%9F%B3%E6%95%88%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">Ubports論壇上parasparihar0建構的版本，沒有音效：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">安裝流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">應用程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E5%BE%97"><span class="nav-number">4.</span> <span class="nav-text">心得</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Termux-%E5%AE%89%E8%A3%9DWindows-7"><span class="nav-number">1.</span> <span class="nav-text">使用Termux 安裝Windows 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E4%BD%BF%E7%94%A8%E6%83%85%E6%B3%81"><span class="nav-number">2.</span> <span class="nav-text">實際使用情況</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">3.</span> <span class="nav-text">總結</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -527,7 +497,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'ivon852.github.io',
       owner       : 'ivon852',
       admin       : ['ivon852'],
-      id          : '7932e7335dac579c7a30048336f2f9c2',
+      id          : '08bdf6611d41664b9188a46d4f17ce3d',
         language: 'zh-TW',
       distractionFreeMode: true
     });
