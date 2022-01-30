@@ -33,10 +33,10 @@
 <meta property="og:image" content="https://i.postimg.cc/FFbTbx50/vlcsnap-2022-01-30-15h42m33s740.jpg">
 <meta property="og:image" content="https://i.postimg.cc/2jnRMtMJ/Screenshot-20220130-160728.png">
 <meta property="article:published_time" content="2022-01-29T15:54:00.000Z">
-<meta property="article:modified_time" content="2022-01-30T08:19:29.526Z">
+<meta property="article:modified_time" content="2022-01-30T11:18:14.926Z">
 <meta property="article:author" content="Ivon Huang">
-<meta property="article:tag" content="Windows">
 <meta property="article:tag" content="Termux">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.postimg.cc/PrcF35Jj/vlcsnap-2022-01-30-15h40m52s876.jpg">
 
@@ -205,7 +205,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-01-30 16:19:29" itemprop="dateModified" datetime="2022-01-30T16:19:29+08:00">2022-01-30</time>
+                <time title="修改時間：2022-01-30 19:18:14" itemprop="dateModified" datetime="2022-01-30T19:18:14+08:00">2022-01-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
 <li><p>建立32G的虛擬硬碟</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img create -f qcow2 win7.qcow2 32G</span><br></pre></td></tr></table></figure></li>
 <li><p>使用<code>vim runwin7.sh</code>建立開機腳本，填入以下內容後儲存</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 4096 -smp 2 -cpu qemu64 \</span><br><span class="line">-accel tcg,thread=multi \</span><br><span class="line">-had win7.qcow2 \</span><br><span class="line">-vga std \</span><br><span class="line">-netdev user,id=0 -device rt18139,netdev=n0 \</span><br><span class="line">-device AC97 \</span><br><span class="line">-vnc :0 \</span><br><span class="line">-cdrom ../storage/shared/Download/windows7.iso</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 4096 -smp 2 -cpu qemu64 \</span><br><span class="line">-accel tcg,thread=multi \</span><br><span class="line">-had win7.qcow2 \</span><br><span class="line">-vga std \</span><br><span class="line">-netdev user,id=0 -device rt18139,netdev=n0 \</span><br><span class="line">-device AC97 \</span><br><span class="line">-usbdevice tablet \</span><br><span class="line">-vnc :0 \</span><br><span class="line">-usbdevice tablet \</span><br><span class="line">-cdrom ../storage/shared/Download/windows7.iso</span><br></pre></td></tr></table></figure></li>
 <li><p>執行開機腳本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x runwin7.sh</span><br><span class="line">./runwin7.sh</span><br></pre></td></tr></table></figure></li>
 <li><p>Termux點選<code>Aquire Wakelock</code>避免被殺後台，開啟VNC Viewer，新增連線，輸入<code>localhost:1</code>連線到模擬器畫面。<br><img src="https://i.postimg.cc/PJMKtdzS/vlcsnap-2022-01-30-15h42m07s162.jpg"></p>
@@ -256,7 +256,7 @@
 <li><p>若安裝需要重開機，退出VNC Viewer，回到Termux。</p>
 </li>
 <li><p>按下CTRL+Z終止QEMU，修改開機腳本，去掉<code>cdrom</code>的參數後儲存。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 2048 -smp 2 -cpu qemu64 \</span><br><span class="line">-accel tcg,thread=multi \</span><br><span class="line">-had win7.qcow2 \</span><br><span class="line">-vga std \</span><br><span class="line">-netdev user,id=0 -device rt18139,netdev=n0 \</span><br><span class="line">-device AC97 \</span><br><span class="line">-vnc :0</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 -machine q35 -m 2048 -smp 2 -cpu qemu64 \</span><br><span class="line">-accel tcg,thread=multi \</span><br><span class="line">-had win7.qcow2 \</span><br><span class="line">-vga std \</span><br><span class="line">-netdev user,id=0 -device rt18139,netdev=n0 \</span><br><span class="line">-device AC97 \</span><br><span class="line">-usbdevice tablet \</span><br><span class="line">-vnc :0</span><br></pre></td></tr></table></figure></li>
 <li><p>重開Termux，重新執行腳本。開啟VNC，繼續安裝。</p>
 </li>
 </ol>
@@ -273,8 +273,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Windows/" rel="tag"># Windows</a>
               <a href="/tags/Termux/" rel="tag"># Termux</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
           </div>
 
         
