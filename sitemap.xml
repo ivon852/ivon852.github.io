@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2022/02/01/Sony-Xperia-5-II%E5%88%B7%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9Lineage-OS-ROM/</loc>
+    
+    <lastmod>2022-02-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2022/01/29/%E6%89%8B%E6%A9%9FTermux%20QEMU%E8%B7%91Windows%E7%B3%BB%E7%B5%B1/</loc>
     
     <lastmod>2022-01-31</lastmod>
@@ -661,7 +670,7 @@
 
   <url>
     <loc>https://ivon852.github.io/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -669,63 +678,63 @@
   
   <url>
     <loc>https://ivon852.github.io/tags/Linux/</loc>
-    <lastmod>2022-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ivon852.github.io/tags/Android/</loc>
-    <lastmod>2022-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ivon852.github.io/tags/Windows/</loc>
-    <lastmod>2022-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ivon852.github.io/tags/Termux/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/iOS/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/Android/</loc>
+    <lastmod>2022-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/Termux/</loc>
+    <lastmod>2022-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/Windows/</loc>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/MacOS/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/postmarketOS/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/html/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/tags/R18/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -734,21 +743,21 @@
   
   <url>
     <loc>https://ivon852.github.io/categories/%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/categories/%E5%8B%95%E6%BC%AB/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ivon852.github.io/categories/%E9%9A%A8%E7%AD%86/</loc>
-    <lastmod>2022-02-01</lastmod>
+    <lastmod>2022-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
