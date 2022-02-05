@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2022/01/25/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/</loc>
+    
+    <lastmod>2022-02-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2022/02/05/Android-11%E5%AE%89%E8%A3%9DBusybox%E6%95%99%E5%AD%B8/</loc>
     
     <lastmod>2022-02-05</lastmod>
@@ -30,15 +39,6 @@
   
   <url>
     <loc>https://ivon852.github.io/2022/01/22/%E4%BD%BF%E7%94%A8TWRP-Orangefox%E7%B5%A6Android%E6%95%B4%E6%A9%9F%E5%82%99%E4%BB%BD/</loc>
-    
-    <lastmod>2022-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ivon852.github.io/2022/01/25/Linux-Deploy%E5%AE%89%E8%A3%9Dchroot%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E6%95%99%E5%AD%B8/</loc>
     
     <lastmod>2022-02-04</lastmod>
     

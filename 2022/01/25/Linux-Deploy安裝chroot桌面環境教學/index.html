@@ -29,7 +29,6 @@
 <meta property="og:description" content="Linux Deploy需要Root權限，在手機上以chroot形式安裝Linux發行版，包含Ubuntu、Alpine、Arch、Debian、Kali、Fedora、CentOS、Gentoo、Slackware，要用自己的rootfs安裝也行。 因為有root，功能比較多。本篇介紹如何在手機上安裝Ubuntu系統，以及做些小優化。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.postimg.cc/MpPvdVHf/unnamed.png">
-<meta property="og:image" content="https://i.postimg.cc/d06v4BD8/Screenshot-20211224-090730.png">
 <meta property="og:image" content="https://i.imgur.com/afJR0Dg.png">
 <meta property="og:image" content="https://i.postimg.cc/J7g5Jkqw/Screenshot-20220119-201737.png">
 <meta property="og:image" content="https://i.postimg.cc/MHh08CTZ/Screenshot-20220119-201743.png">
@@ -43,7 +42,7 @@
 <meta property="og:image" content="https://i.postimg.cc/QdxTtjzj/Screenshot-20211031-171652.png">
 <meta property="og:image" content="https://i.imgur.com/ajYinbC.png">
 <meta property="article:published_time" content="2022-01-25T01:21:00.000Z">
-<meta property="article:modified_time" content="2022-02-04T07:41:12.862Z">
+<meta property="article:modified_time" content="2022-02-05T08:29:34.936Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
@@ -215,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-02-04 15:41:12" itemprop="dateModified" datetime="2022-02-04T15:41:12+08:00">2022-02-04</time>
+                <time title="修改時間：2022-02-05 16:29:34" itemprop="dateModified" datetime="2022-02-05T16:29:34+08:00">2022-02-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +241,7 @@
 <p>因為有root，功能比較多。本篇介紹如何在手機上安裝Ubuntu系統，以及做些小優化。<br><img src="https://i.postimg.cc/MpPvdVHf/unnamed.png"></p>
 <span id="more"></span>
 
-<h2 id="安裝Busybox"><a href="#安裝Busybox" class="headerlink" title="安裝Busybox"></a>安裝Busybox</h2><p>下載<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=stericson.busybox&hl=zh_TW&gl=US">Busybox</a>，點選安裝至<code>/system/xbin</code>或者<code>/system/bin</code>。<br><img src="https://i.postimg.cc/d06v4BD8/Screenshot-20211224-090730.png"></p>
+<h2 id="安裝Busybox"><a href="#安裝Busybox" class="headerlink" title="安裝Busybox"></a>安裝Busybox</h2><p><a href="https://ivon852.github.io/2022/02/05/Android-11%E5%AE%89%E8%A3%9DBusybox%E6%95%99%E5%AD%B8/">Android 11安裝Busybox教學</a></p>
 <h2 id="安裝Ubuntu-18-04"><a href="#安裝Ubuntu-18-04" class="headerlink" title="安裝Ubuntu 18.04"></a>安裝Ubuntu 18.04</h2><p>Linux Deploy在設定choot時很容易下載錯誤。確保網路要順暢，4G或WIFI都試試看，或者把下載的來源網址(source path)改成台灣伺服器。不然一個套件下載失敗(“Cannot download xxx”)，VNC無法啟動，整個系統就要重裝。</p>
 <ol>
 <li><p>安裝<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=ru.meefik.linuxdeploy&hl=zh_TW&gl=US">Linux Deploy</a>，啟動後先點選選項。<br><img src="https://i.imgur.com/afJR0Dg.png"></p>
