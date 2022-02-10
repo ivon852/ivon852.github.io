@@ -23,7 +23,7 @@
 
   <meta name="description" content="Renegade Project這個專案主要是研究如何將Windows裝到手機上，不是虛擬機，而是真的把Android刷成Windows系統，有驅動的情況下還能玩電腦遊戲。 Github上有中國人釋出的原始碼，最關鍵的技術是把Linux kernel偽裝成UEFI，才能啟動Windows 11。目前處理器為高通s835、s845、s855的手機都有機會裝上ARM版的Windows 11。 本文先概">
 <meta property="og:type" content="article">
-<meta property="og:title" content="真．如何在手機上安裝Windows 11 (小米Pocofone F1)">
+<meta property="og:title" content="真．如何在手機上安裝Windows 11 (小米Pocophone F1)">
 <meta property="og:url" content="https://ivon852.github.io/2022/02/09/%E7%9C%9F%EF%BC%8E%E5%9C%A8%E6%89%8B%E6%A9%9F%E4%B8%8A%E5%AE%89%E8%A3%9DWindows%2011/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
 <meta property="og:description" content="Renegade Project這個專案主要是研究如何將Windows裝到手機上，不是虛擬機，而是真的把Android刷成Windows系統，有驅動的情況下還能玩電腦遊戲。 Github上有中國人釋出的原始碼，最關鍵的技術是把Linux kernel偽裝成UEFI，才能啟動Windows 11。目前處理器為高通s835、s845、s855的手機都有機會裝上ARM版的Windows 11。 本文先概">
@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://i.postimg.cc/Z5r1Hvjw/DSC-0007.jpg">
 <meta property="og:image" content="https://i.postimg.cc/3NNkCTTZ/DSC-0010.jpg">
 <meta property="article:published_time" content="2022-02-09T15:50:00.000Z">
-<meta property="article:modified_time" content="2022-02-09T10:47:24.791Z">
+<meta property="article:modified_time" content="2022-02-10T14:36:58.618Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Windows">
@@ -61,7 +61,7 @@
   };
 </script>
 
-  <title>真．如何在手機上安裝Windows 11 (小米Pocofone F1) | Ivon's Blog</title>
+  <title>真．如何在手機上安裝Windows 11 (小米Pocophone F1) | Ivon's Blog</title>
   
 
 
@@ -196,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          真．如何在手機上安裝Windows 11 (小米Pocofone F1)
+          真．如何在手機上安裝Windows 11 (小米Pocophone F1)
         </h1>
 
         <div class="post-meta">
@@ -205,10 +205,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2022-02-09 23:50:00 / 修改時間：18:47:24" itemprop="dateCreated datePublished" datetime="2022-02-09T23:50:00+08:00">2022-02-09</time>
+              <time title="創建時間：2022-02-09 23:50:00" itemprop="dateCreated datePublished" datetime="2022-02-09T23:50:00+08:00">2022-02-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-02-10 22:36:58" itemprop="dateModified" datetime="2022-02-10T22:36:58+08:00">2022-02-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -232,7 +238,7 @@
       
         <p><a target="_blank" rel="noopener" href="https://github.com/edk2-porting">Renegade Project</a>這個專案主要是研究如何將Windows裝到手機上，不是虛擬機，而是真的把Android刷成Windows系統，有驅動的情況下還能玩電腦遊戲。<br><img src="https://i.postimg.cc/tTKgPVB9/DSC-0012.jpg"></p>
 <p>Github上有中國人釋出的原始碼，最關鍵的技術是把Linux kernel偽裝成UEFI，才能啟動Windows 11。目前處理器為高通s835、s845、s855的手機都有機會裝上ARM版的Windows 11。</p>
-<p>本文先概覽小米Pocofone F1安裝Windows 11的執行效果，再來介紹如何安裝。</p>
+<p>本文先概覽小米Pocophone F1安裝Windows 11的執行效果，再來介紹如何安裝。</p>
 <span id="more"></span>
 
 <h2 id="Poco-F1裝Windows-11的效能"><a href="#Poco-F1裝Windows-11的效能" class="headerlink" title="Poco F1裝Windows 11的效能"></a>Poco F1裝Windows 11的效能</h2><p>螢幕亮度、WIFI正常，有3D硬體加速；傳感器無法運作，沒有音效驅動。</p>
@@ -244,13 +250,13 @@
 <p>步驟簡介: 解鎖Bootloader → 刪除手機全部分區 → 建立 Windows用的分區 → 用特製版Windows PE開機，安裝Windows和驅動程式。</p>
 <h2 id="硬體資訊"><a href="#硬體資訊" class="headerlink" title="硬體資訊"></a>硬體資訊</h2><ul>
 <li>電腦: Windows 11 x86_64</li>
-<li>手機: 小米Pocofone F1，原廠MIUI(Android 10)，已解鎖Bootloader。</li>
+<li>手機: 小米Pocophone F1，原廠MIUI(Android 10)，已解鎖Bootloader。</li>
 <li>USB Type-C的擴充座(或OTG)，用於給手機連接實體鍵盤和滑鼠用。</li>
 <li>64GB隨身碟</li>
 </ul>
 <h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>解鎖手機Bootloader鎖: 插入SIM卡綁定手機，到<a target="_blank" rel="noopener" href="https://www.miui.com/unlock/index.html">小米官網申請解鎖</a><br><img src="https://i.postimg.cc/KcfhWd3G/image.png"></p>
 <p><img src="https://i.postimg.cc/BQczWY6T/Screenshot-2022-02-09-12-27-20-959-com-android-settings.jpg"></p>
-<p>然後下載以下檔案</p>
+<p>然後下載以下檔案 (驅動程式最新版本可到<a target="_blank" rel="noopener" href="https://download.renegade-project.cn/">Renegard Project官網</a>下載)</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://uupdump.net/">Windows 11 ARM版的ISO</a>: 用UUP DUMP下載。</li>
 <li><a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">Platform Tools (ADB &amp; Fastboot)</a>，解壓縮後放到C槽任意位置並加入至PATH環境變數。</li>
