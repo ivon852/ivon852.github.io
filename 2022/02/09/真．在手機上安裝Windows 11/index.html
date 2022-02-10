@@ -34,14 +34,13 @@
 <meta property="og:image" content="https://i.postimg.cc/KcfhWd3G/image.png">
 <meta property="og:image" content="https://i.postimg.cc/BQczWY6T/Screenshot-2022-02-09-12-27-20-959-com-android-settings.jpg">
 <meta property="og:image" content="https://i.postimg.cc/8CxBH223/image.png">
-<meta property="og:image" content="https://i.postimg.cc/LX1dQMnZ/2022-02-06-221143.png">
 <meta property="og:image" content="https://i.postimg.cc/Vkz7Y0s0/2022-02-09-123448.png">
 <meta property="og:image" content="https://i.postimg.cc/RZzYWV9K/DSC-0003.jpg">
 <meta property="og:image" content="https://i.postimg.cc/43j2TJ8Y/DSC-0008.jpg">
 <meta property="og:image" content="https://i.postimg.cc/Z5r1Hvjw/DSC-0007.jpg">
 <meta property="og:image" content="https://i.postimg.cc/3NNkCTTZ/DSC-0010.jpg">
 <meta property="article:published_time" content="2022-02-09T15:50:00.000Z">
-<meta property="article:modified_time" content="2022-02-10T14:36:58.618Z">
+<meta property="article:modified_time" content="2022-02-10T18:02:19.141Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Windows">
@@ -213,7 +212,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-02-10 22:36:58" itemprop="dateModified" datetime="2022-02-10T22:36:58+08:00">2022-02-10</time>
+                <time title="修改時間：2022-02-11 02:02:19" itemprop="dateModified" datetime="2022-02-11T02:02:19+08:00">2022-02-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +245,7 @@
 <p>至於一般x86電腦的exe，Windows 11 ARM可轉譯執行x86的exe，此外有GPU硬體加速能玩3D遊戲。</p>
 <p>開得起來的主要為32位元x86遊戲，而64位元x86就算能開效能也很差。</p>
 <p>雖然微軟2021年出了<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-tw/p/opencl-%E5%92%8C-opengl-%E7%9B%B8%E5%AE%B9%E6%80%A7%E5%A5%97%E4%BB%B6/9nqpsl29bfff#activetab=pivot:overviewtab">OpenGL的相容層</a>，但64位元exe僅是能開，談不上硬體加速。<br><img src="https://i.postimg.cc/9fT9kVsX/DSC-0016.jpg"></p>
-<p>接下來看看如何安裝至手機。以下步驟主要參考ROYAL GAMING的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FY50giO7zZ0">影片</a>，檔案由他提供；他的頻道還有刷回Android的教學。</p>
+<p>接下來看看如何安裝至手機。以下步驟主要參考這部<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FY50giO7zZ0">影片</a>；他的頻道還有刷回Android的教學。</p>
 <p>步驟簡介: 解鎖Bootloader → 刪除手機全部分區 → 建立 Windows用的分區 → 用特製版Windows PE開機，安裝Windows和驅動程式。</p>
 <h2 id="硬體資訊"><a href="#硬體資訊" class="headerlink" title="硬體資訊"></a>硬體資訊</h2><ul>
 <li>電腦: Windows 11 x86_64</li>
@@ -256,22 +255,22 @@
 </ul>
 <h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>解鎖手機Bootloader鎖: 插入SIM卡綁定手機，到<a target="_blank" rel="noopener" href="https://www.miui.com/unlock/index.html">小米官網申請解鎖</a><br><img src="https://i.postimg.cc/KcfhWd3G/image.png"></p>
 <p><img src="https://i.postimg.cc/BQczWY6T/Screenshot-2022-02-09-12-27-20-959-com-android-settings.jpg"></p>
-<p>然後下載以下檔案 (驅動程式最新版本可到<a target="_blank" rel="noopener" href="https://download.renegade-project.cn/">Renegard Project官網</a>下載)</p>
+<p>然後下載以下檔案 (驅動程式最新版本可到<a target="_blank" rel="noopener" href="https://download.renegade-project.cn/">Renegade Project官網</a>下載)</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://uupdump.net/">Windows 11 ARM版的ISO</a>: 用UUP DUMP下載。</li>
 <li><a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">Platform Tools (ADB &amp; Fastboot)</a>，解壓縮後放到C槽任意位置並加入至PATH環境變數。</li>
 <li><a target="_blank" rel="noopener" href="https://dl.twrp.me/beryllium/">Poco F1的TWRP</a>: 下載最新版</li>
-<li><a target="_blank" rel="noopener" href="https://www.mediafire.com/file/1rr7lysi2ogelyu/UEFIImages.7z/file">UEFI開機映像</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.mediafire.com/file/6pauhp2s8j83qla/Drivers.7z/file">驅動程式</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/edk2-porting/edk2-sdm845/releases">UEFI開機映像</a>:下載<code>boot-beryllium.img</code></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/edk2-porting/WOA-Drivers/releases">驅動程式</a>:下載<code>beryllium.tar.gz</code>，解壓縮後將目錄重新命名為<code>Drivers</code>。</li>
 <li><a target="_blank" rel="noopener" href="https://www.mediafire.com/file/8hc3nidisudwtz4/PEFiles.7z/file">Windows PE</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.mediafire.com/file/mdubauqc0ikzehx/DISM.7z/file">DISM</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Chuyu-Team/Dism-Multi-language/releases">DISM++</a>，解壓縮後重新命名為<code>DISM</code>。</li>
 <li><a target="_blank" rel="noopener" href="https://www.mediafire.com/file/dywov487fceuhya/parted.7z/file">PARTED執行檔</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.mediafire.com/file/akctcmovgh4vl7y/commands.txt/file">commands.txt</a></li>
 </ul>
 <ol start="3">
 <li><p>以上檔案下載好後，解壓縮，在電腦桌面建立<code>Windows11ARM</code>目錄，放到裡面。結構應該會長這樣:<br><img src="https://i.postimg.cc/8CxBH223/image.png"></p>
 </li>
-<li><p>進入<code>Drivers</code>目錄，對<code>extract.ps1</code>按右鍵以Powershell執行，輸入<code>beryllium</code>後按下Enter，會得到一個<code>output</code>目錄，然後關閉Powershell視窗。<br><img src="https://i.postimg.cc/LX1dQMnZ/2022-02-06-221143.png"></p>
+<li><p>進入<code>Drivers</code>目錄，會有一個<code>output</code>目錄。</p>
 </li>
 <li><p>將<code>Win11 ISO</code>、<code>DISM</code>、<code>commands.txt</code>、<code>output</code>四個項目複製到隨身碟。</p>
 </li>
@@ -289,7 +288,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /data &amp;&amp; umount /sdcard</span><br></pre></td></tr></table></figure></li>
 <li><p>執行parted，進行硬碟分割</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parted /dev/block/sda</span><br></pre></td></tr></table></figure></li>
-<li><p>輸入<code>p</code>，畫面上會顯示所有的硬碟分割區<br><img src="https://i.postimg.cc/Vkz7Y0s0/2022-02-09-123448.png"></p>
+<li><p>輸入<code>p</code>，畫面上會顯示所有的硬碟分割區 (日後若要刷回Android，此分割表要紀錄起來)<br><img src="https://i.postimg.cc/Vkz7Y0s0/2022-02-09-123448.png"></p>
 </li>
 <li><p>重複執行以下指令 (rm + 數字)，刪除所有硬碟分割區。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm 1</span><br><span class="line">rm 2</span><br><span class="line">rm 3</span><br><span class="line">rm 4</span><br><span class="line"><span class="comment">#中間出現疑問，一律輸入yes或Ignored</span></span><br></pre></td></tr></table></figure></li>
