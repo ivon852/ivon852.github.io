@@ -21,26 +21,26 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Anbox是Ubuntu母公司Canonical開發的容器程式，可以在Linux系統執行Android APP，支援x86及ARM架構的設備。此外透過轉譯器，即使是x86電腦也能執行ARM的APP。本文介紹如何安裝Anbox ＋ Google Play商店。">
+  <meta name="description" content="Ubuntu Touch是手機Linux行動作業系統，原本是由Ubuntu母公司Canonical開發，現由UBports基金會維護。支援的手機相較postmarketOS來說比較少。 介面類似Ubuntu 16.04，有些機型會使用Halium Project的相容層解決硬體問題。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux電腦跑Android程式: Anbox">
-<meta property="og:url" content="https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/index.html">
+<meta property="og:title" content="Ubuntu Touch通用安裝教學">
+<meta property="og:url" content="https://ivon852.github.io/2022/02/13/Ubuntu-Touch%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="Anbox是Ubuntu母公司Canonical開發的容器程式，可以在Linux系統執行Android APP，支援x86及ARM架構的設備。此外透過轉譯器，即使是x86電腦也能執行ARM的APP。本文介紹如何安裝Anbox ＋ Google Play商店。">
+<meta property="og:description" content="Ubuntu Touch是手機Linux行動作業系統，原本是由Ubuntu母公司Canonical開發，現由UBports基金會維護。支援的手機相較postmarketOS來說比較少。 介面類似Ubuntu 16.04，有些機型會使用Halium Project的相容層解決硬體問題。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.postimg.cc/44zNRSPL/1031px-Anbox-logo-svg.png">
-<meta property="og:image" content="https://i.postimg.cc/MG2M6Sy4/2021-12-21-17-00-15.png">
-<meta property="og:image" content="https://i.postimg.cc/zBS0SNwH/2021-12-21-17-17-02.png">
-<meta property="og:image" content="https://i.postimg.cc/GpDMtGHQ/2021-12-21-17-20-07.png">
-<meta property="article:published_time" content="2021-12-21T09:41:00.000Z">
-<meta property="article:modified_time" content="2021-12-21T09:42:51.399Z">
+<meta property="og:image" content="https://i.postimg.cc/prG3ZqBL/11358614.png">
+<meta property="og:image" content="https://i.imgur.com/j1sjOot.jpg">
+<meta property="og:image" content="https://i.imgur.com/6kGXsz7.jpg">
+<meta property="article:published_time" content="2022-02-13T08:50:00.000Z">
+<meta property="article:modified_time" content="2022-02-13T14:47:18.165Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="UbuntuTouch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/44zNRSPL/1031px-Anbox-logo-svg.png">
+<meta name="twitter:image" content="https://i.postimg.cc/prG3ZqBL/11358614.png">
 
-<link rel="canonical" href="https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/">
+<link rel="canonical" href="https://ivon852.github.io/2022/02/13/Ubuntu-Touch%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">
 
 
 <script id="page-configurations">
@@ -53,7 +53,7 @@
   };
 </script>
 
-  <title>Linux電腦跑Android程式: Anbox | Ivon's Blog</title>
+  <title>Ubuntu Touch通用安裝教學 | Ivon's Blog</title>
   
 
 
@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Anbox/">
+    <link itemprop="mainEntityOfPage" href="https://ivon852.github.io/2022/02/13/Ubuntu-Touch%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linux電腦跑Android程式: Anbox
+          Ubuntu Touch通用安裝教學
         </h1>
 
         <div class="post-meta">
@@ -199,7 +199,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-12-21 17:41:00 / 修改時間：17:42:51" itemprop="dateCreated datePublished" datetime="2021-12-21T17:41:00+08:00">2021-12-21</time>
+              <time title="創建時間：2022-02-13 16:50:00 / 修改時間：22:47:18" itemprop="dateCreated datePublished" datetime="2022-02-13T16:50:00+08:00">2022-02-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,31 +222,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Anbox是Ubuntu母公司Canonical開發的容器程式，可以在Linux系統執行Android APP，支援x86及ARM架構的設備。<br>此外透過轉譯器，即使是x86電腦也能執行ARM的APP。<br>本文介紹如何安裝Anbox ＋ Google Play商店。</p>
-<p><img src="https://i.postimg.cc/44zNRSPL/1031px-Anbox-logo-svg.png"></p>
+        <p>Ubuntu Touch是手機Linux行動作業系統，原本是由Ubuntu母公司Canonical開發，現由UBports基金會維護。支援的手機相較<a href="https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/">postmarketOS</a>來說比較少。</p>
+<p>介面類似Ubuntu 16.04，有些機型會使用Halium Project的相容層解決硬體問題。 </p>
+<p><img src="https://i.postimg.cc/prG3ZqBL/11358614.png"></p>
 <span id="more"></span>
+<p>為簡化安裝流程，凡是有官方支援的機型(<a target="_blank" rel="noopener" href="https://devices.ubuntu-touch.io/">列表點此</a>)，皆可透過官方提供的安裝器刷入手機。</p>
+<p>相較之下，如果該機型只有unofficial port(非官方移植)的，就要手動刷入作者提供的原廠Android韌體和Ubuntu Touch刷機包。</p>
+<p>下面例子，手機為官方支援的小米Pocophone F1，電腦為Ubuntu 20.04。</p>
+<h2 id="電腦安裝UBports-Installer"><a href="#電腦安裝UBports-Installer" class="headerlink" title="電腦安裝UBports Installer"></a>電腦安裝UBports Installer</h2><p>到<a target="_blank" rel="noopener" href="https://devices.ubuntu-touch.io/installer/">官網</a>取得安裝包，或者Ubuntu直接用Snap安裝:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install ubports-installer</span><br></pre></td></tr></table></figure>
 
-<h2 id="安裝Anbox"><a href="#安裝Anbox" class="headerlink" title="安裝Anbox"></a>安裝Anbox</h2><ol>
-<li><p>Ubuntu 20.04不需額外安裝kernel模塊，可直接使用Snap安裝Anbox:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install --devmode --beta anbox</span><br><span class="line">sudo apt install android-tools-adb</span><br></pre></td></tr></table></figure></li>
-<li><p>接著就能在應用程式列表看到Anbox Application Manager，裡面有預先安裝的APP列表。<br><img src="https://i.postimg.cc/MG2M6Sy4/2021-12-21-17-00-15.png"></p>
+<p>雖然有Windows版的，不過Linux的會比較穩定點，Windows版可能會抓不到手機。</p>
+<h2 id="刷入Ubuntu-Touch"><a href="#刷入Ubuntu-Touch" class="headerlink" title="刷入Ubuntu Touch"></a>刷入Ubuntu Touch</h2><ol>
+<li><p>手機重開機至fastboot，連到電腦。</p>
 </li>
-<li><p>日後要啟動Application Manage的指令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anbox.appmgr</span><br></pre></td></tr></table></figure></li>
+<li><p>UBports Installer應會自動識別裝置，之後按照螢幕操作，就會開始下載安裝包。<br><img src="https://i.imgur.com/j1sjOot.jpg"></p>
+</li>
+<li><p>刷入之後可能還要手動重開機進Recovery，繼續按照螢幕指示，等它跑完。<br><img src="https://i.imgur.com/6kGXsz7.jpg"></p>
+</li>
+<li><p>之後手機重開機，安裝就完成了。</p>
+</li>
 </ol>
-<h2 id="Anbox使用指令安裝APK"><a href="#Anbox使用指令安裝APK" class="headerlink" title="Anbox使用指令安裝APK"></a>Anbox使用指令安裝APK</h2><p>安裝之後會出現在系統APP列表。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install &lt;my-app.apk&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Anbox安裝Google-Play和ARM轉譯器-houdini"><a href="#Anbox安裝Google-Play和ARM轉譯器-houdini" class="headerlink" title="Anbox安裝Google Play和ARM轉譯器(houdini)"></a>Anbox安裝Google Play和ARM轉譯器(houdini)</h2><ol>
-<li><p>使用<a target="_blank" rel="noopener" href="https://github.com/geeks-r-us/anbox-playstore-installer">geeks-r-us的腳本</a>安裝GAPPS:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lzip</span><br><span class="line">wget https://raw.githubusercontent.com/geeks-r-us/anbox-playstore-installer/master/install-playstore.sh | bash</span><br></pre></td></tr></table></figure></li>
-<li><p>開啟Application Manager，開啟系統設定，將<code>Play商店服務</code>與<code>Play商店</code>要求的權限全部開啟。<br><img src="https://i.postimg.cc/zBS0SNwH/2021-12-21-17-17-02.png"></p>
+<h2 id="後續安裝優化"><a href="#後續安裝優化" class="headerlink" title="後續安裝優化"></a>後續安裝優化</h2><p>Ubuntu Touch操作邏輯為右側螢幕往內滑進入多工，左側螢幕往內滑開啟應用程式選單，螢幕從上面往下拉開啟狀態欄。</p>
+<ol>
+<li><p>Ubuntu Touch內建常用軟體，例如瀏覽器、相機、檔案管理器、終端機。</p>
 </li>
-<li><p>這樣就可以登入Play商店了。不過就算裝了轉譯器，很多APP可能還是開不起來。<br><img src="https://i.postimg.cc/GpDMtGHQ/2021-12-21-17-20-07.png"></p>
+<li><p>注意<code>system</code>分區預設是唯讀的，因此要到OpenStore商店下載APP；系統則是採OTA更新。</p>
+</li>
+<li><p>若要用APT安裝套件，以下的指令可以解除系統唯讀，但是隨意apt upgrade系統套件很容易導致手機卡開機。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#重開機仍有效</span></span><br><span class="line">sudo touch /userdata/.writable_image</span><br><span class="line"><span class="comment">#僅限目前會話</span></span><br><span class="line">sudo mount -o remount,rw /</span><br></pre></td></tr></table></figure></li>
+<li><p>如果要使用Linux桌面軟體，先安裝<a target="_blank" rel="noopener" href="https://open-store.io/app/ut-tweak-tool.sverzegnassi">UT Tweak Tool</a>開啟「桌面模式」，再用<a target="_blank" rel="noopener" href="https://docs.ubports.com/en/latest/userguide/dailyuse/libertine.html">Libertine</a>建立容器執行。</p>
+</li>
+<li><p>如果要執行Android APP，請安裝<a target="_blank" rel="noopener" href="https://forums.ubports.com/topic/6764/anbox-halium-or-waydroid-no-support-for-ut/10">Waydroid</a>。</p>
+</li>
+<li><p>手機連到電腦用MTP傳輸檔案。</p>
 </li>
 </ol>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://anbox.io/">Anbox官網</a></li>
+<li><a target="_blank" rel="noopener" href="https://ubuntu-touch.io/">Ubuntu Touch官網</a></li>
+<li><a target="_blank" rel="noopener" href="https://forums.ubports.com/">Ubuntu Touch論壇</a></li>
 </ul>
 
     </div>
@@ -259,6 +273,7 @@
           <div class="post-tags">
               <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/UbuntuTouch/" rel="tag"># UbuntuTouch</a>
           </div>
 
         
@@ -267,13 +282,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/21/%E5%AE%89%E8%A3%9DArch-Linux%E7%AD%86%E8%A8%98%E7%B4%80%E9%8C%84/" rel="prev" title="安裝Arch Linux筆記紀錄">
-      <i class="fa fa-chevron-left"></i> 安裝Arch Linux筆記紀錄
+    <a href="/2022/02/13/KDE-Plasma-mobile%E6%B2%92%E6%9C%89%E8%99%9B%E6%93%AC%E9%8D%B5%E7%9B%A4%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/" rel="prev" title="KDE Plasma Mobile沒有虛擬鍵盤的解決方法">
+      <i class="fa fa-chevron-left"></i> KDE Plasma Mobile沒有虛擬鍵盤的解決方法
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/21/Linux%E9%9B%BB%E8%85%A6%E8%B7%91Android%E7%A8%8B%E5%BC%8F-Waydroid/" rel="next" title="Linux電腦跑Android程式: Waydroid">
-      Linux電腦跑Android程式: Waydroid <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -333,7 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DAnbox"><span class="nav-number">1.</span> <span class="nav-text">安裝Anbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anbox%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E5%AE%89%E8%A3%9DAPK"><span class="nav-number">2.</span> <span class="nav-text">Anbox使用指令安裝APK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anbox%E5%AE%89%E8%A3%9DGoogle-Play%E5%92%8CARM%E8%BD%89%E8%AD%AF%E5%99%A8-houdini"><span class="nav-number">3.</span> <span class="nav-text">Anbox安裝Google Play和ARM轉譯器(houdini)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%BB%E8%85%A6%E5%AE%89%E8%A3%9DUBports-Installer"><span class="nav-number">1.</span> <span class="nav-text">電腦安裝UBports Installer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E5%85%A5Ubuntu-Touch"><span class="nav-number">2.</span> <span class="nav-text">刷入Ubuntu Touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E7%BA%8C%E5%AE%89%E8%A3%9D%E5%84%AA%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">後續安裝優化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -485,7 +497,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'ivon852.github.io',
       owner       : 'ivon852',
       admin       : ['ivon852'],
-      id          : '045deaa9ce7c61c426d1061bde008bc7',
+      id          : 'afa18ec087055176b74afe0c5f685125',
         language: 'zh-TW',
       distractionFreeMode: true
     });
