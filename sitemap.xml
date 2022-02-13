@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ivon852.github.io/2022/02/13/KDE-Plasma-mobile%E6%B2%92%E6%9C%89%E8%99%9B%E6%93%AC%E9%8D%B5%E7%9B%A4%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2022-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ivon852.github.io/2021/12/19/postmarketOS%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8/</loc>
     
     <lastmod>2022-02-13</lastmod>
@@ -740,13 +749,6 @@
 
   
   <url>
-    <loc>https://ivon852.github.io/tags/iOS/</loc>
-    <lastmod>2022-02-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ivon852.github.io/tags/Linux/</loc>
     <lastmod>2022-02-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -762,6 +764,13 @@
   
   <url>
     <loc>https://ivon852.github.io/tags/Termux/</loc>
+    <lastmod>2022-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivon852.github.io/tags/iOS/</loc>
     <lastmod>2022-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
