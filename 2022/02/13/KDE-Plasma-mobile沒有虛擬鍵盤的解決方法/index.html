@@ -21,19 +21,19 @@
     var CONFIG = {"hostname":"ivon852.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="postmarketOS的Plasma Mobile桌面環境連英文的虛擬鍵盤都沒有，似乎是因為Wayland協議的關係。後來在Reddit看到解法，起碼這樣設定就有英文鍵盤了。">
+  <meta name="description" content="postmarketOS的Plasma Mobile桌面環境連英文的虛擬鍵盤都沒有，似乎是因為Wayland協議的關係。後來在Reddit看到解法，起碼這樣設定就有中文拼音鍵盤了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KDE Plasma Mobile沒有虛擬鍵盤的解決方法">
+<meta property="og:title" content="KDE Plasma Mobile沒有虛擬中文鍵盤的解決方法">
 <meta property="og:url" content="https://ivon852.github.io/2022/02/13/KDE-Plasma-mobile%E6%B2%92%E6%9C%89%E8%99%9B%E6%93%AC%E9%8D%B5%E7%9B%A4%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Ivon&#39;s Blog">
-<meta property="og:description" content="postmarketOS的Plasma Mobile桌面環境連英文的虛擬鍵盤都沒有，似乎是因為Wayland協議的關係。後來在Reddit看到解法，起碼這樣設定就有英文鍵盤了。">
+<meta property="og:description" content="postmarketOS的Plasma Mobile桌面環境連英文的虛擬鍵盤都沒有，似乎是因為Wayland協議的關係。後來在Reddit看到解法，起碼這樣設定就有中文拼音鍵盤了。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.postimg.cc/BQhBhg6W/Screenshot-20220213-142325.png">
 <meta property="og:image" content="https://i.postimg.cc/x1cyBzJX/Screenshot-20220213-142342.png">
 <meta property="og:image" content="https://i.postimg.cc/fRpjsRmB/Screenshot-20220213-142442.png">
 <meta property="og:image" content="https://i.postimg.cc/Xv5KY6g3/Screenshot-20220213-142545.png">
 <meta property="article:published_time" content="2022-02-13T06:40:00.000Z">
-<meta property="article:modified_time" content="2022-02-14T06:27:35.367Z">
+<meta property="article:modified_time" content="2022-02-14T16:11:47.944Z">
 <meta property="article:author" content="Ivon Huang">
 <meta property="article:tag" content="postmarketOS">
 <meta name="twitter:card" content="summary">
@@ -52,7 +52,7 @@
   };
 </script>
 
-  <title>KDE Plasma Mobile沒有虛擬鍵盤的解決方法 | Ivon's Blog</title>
+  <title>KDE Plasma Mobile沒有虛擬中文鍵盤的解決方法 | Ivon's Blog</title>
   
 
 
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          KDE Plasma Mobile沒有虛擬鍵盤的解決方法
+          KDE Plasma Mobile沒有虛擬中文鍵盤的解決方法
         </h1>
 
         <div class="post-meta">
@@ -204,7 +204,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-02-14 14:27:35" itemprop="dateModified" datetime="2022-02-14T14:27:35+08:00">2022-02-14</time>
+                <time title="修改時間：2022-02-15 00:11:47" itemprop="dateModified" datetime="2022-02-15T00:11:47+08:00">2022-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +227,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>postmarketOS的Plasma Mobile桌面環境連英文的虛擬鍵盤都沒有，似乎是因為Wayland協議的關係。<br>後來在Reddit看到解法，起碼這樣設定就有英文鍵盤了。</p>
+        <p>postmarketOS的Plasma Mobile桌面環境連英文的虛擬鍵盤都沒有，似乎是因為Wayland協議的關係。<br>後來在Reddit看到解法，起碼這樣設定就有中文拼音鍵盤了。</p>
 <span id="more"></span>
 
 <p>因為沒辦法在手機終端機輸入，所以得用實體鍵盤或者ssh到手機來設定。</p>
@@ -237,17 +237,20 @@
 <li><p>安裝maliit-keyboard</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apk add vim maliit-framework maliit-keyboard</span><br></pre></td></tr></table></figure></li>
 <li><p>編輯<code>~/.config/kwinrc</code>，加入以下內容後重開機:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Wayland]</span><br><span class="line">InputMethod[$e]=/usr/share/applications/org.github.maliit.keyboard.desktop</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Wayland]</span><br><span class="line"><span class="meta">InputMethod[$</span><span class="bash">e]=/usr/share/applications/org.github.maliit.keyboard.desktop</span></span><br></pre></td></tr></table></figure></li>
 <li><p>選擇輸入法。手機長按桌面，點選Add Widgets<br><img src="https://i.postimg.cc/BQhBhg6W/Screenshot-20220213-142325.png"></p>
 </li>
 <li><p>點選Input Method<br><img src="https://i.postimg.cc/x1cyBzJX/Screenshot-20220213-142342.png"></p>
 </li>
 <li><p>接著就會有Maliit可以選。<br><img src="https://i.postimg.cc/fRpjsRmB/Screenshot-20220213-142442.png"></p>
 </li>
-<li><p>這樣終端機就能用鍵盤了。但其他APP還是有問題，例如Firefox點選輸入字元輸入，鍵盤還是不會自己跳出來(不過內建的AngelFish才是設計給手機用的瀏覽器)。<br><img src="https://i.postimg.cc/Xv5KY6g3/Screenshot-20220213-142545.png"></p>
+<li><p>這樣終端機就能用鍵盤了，設定裡面還可以加入簡體拼音輸入法。<br><img src="https://i.postimg.cc/Xv5KY6g3/Screenshot-20220213-142545.png"></p>
 </li>
+<li><p>還可以用以下指令開啟注音輸入法，但是會崩潰。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings <span class="built_in">set</span> org.maliit.keyboard.maliit enabled-languages <span class="string">&quot;[&#x27;en&#x27;, &#x27;zh-hant&#x27;]&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/kde/comments/lm2qjl/plasma_521_released_and_the_virtual_keyboard_is/">https://www.reddit.com/r/kde/comments/lm2qjl/plasma_521_released_and_the_virtual_keyboard_is/</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.martin-graesslin.com/blog/2021/03/using-maliit-keyboard-in-a-plasma-wayland-session/">https://blog.martin-graesslin.com/blog/2021/03/using-maliit-keyboard-in-a-plasma-wayland-session/</a></p>
 
     </div>
 
